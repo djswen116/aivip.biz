@@ -1,0 +1,317 @@
+
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>服务器故障</title>
+  <meta name="description" content="发卡网服务器故障，技术紧急处理中。联系客服 QQ/微信：82765536 或进入卡密自助购买。" />
+  <style>
+    :root{
+      --bg1:#0b1220;
+      --bg2:#111a2e;
+      --card:#0f1a33cc;
+      --text:#e8eeff;
+      --muted:#b7c2e6;
+      --warn:#ffb020;
+      --danger:#ff4d6d;
+      --btn:#2f6bff;
+      --btn2:#1e4ed8;
+      --border:#2a3a6b;
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      color:var(--text);
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC","Hiragino Sans GB","Microsoft YaHei", Arial, "Noto Sans CJK SC", sans-serif;
+      background:
+        radial-gradient(1100px 700px at 15% 20%, #1d3b8a55, transparent 55%),
+        radial-gradient(900px 600px at 90% 80%, #7a1d8a44, transparent 60%),
+        linear-gradient(160deg, var(--bg1), var(--bg2));
+    }
+    .wrap{
+      width:min(860px, 100%);
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      padding:18px 20px;
+      border-bottom:1px solid rgba(42,58,107,.7);
+      background: linear-gradient(90deg, rgba(255,176,32,.12), rgba(255,77,109,.10));
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:8px 12px;
+      border-radius:999px;
+      font-weight:700;
+      letter-spacing:.2px;
+      background: rgba(255,77,109,.16);
+      border:1px solid rgba(255,77,109,.35);
+      color:#ffd6de;
+      white-space:nowrap;
+    }
+    .badge .dot{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--danger);
+      box-shadow:0 0 0 4px rgba(255,77,109,.18);
+    }
+    .title{
+      font-size:18px;
+      font-weight:800;
+      margin:0;
+      line-height:1.2;
+    }
+    .content{
+      padding:22px 20px 18px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:16px;
+    }
+    @media (max-width: 760px){
+      .content{grid-template-columns:1fr}
+    }
+    .panel{
+      border:1px solid rgba(42,58,107,.75);
+      border-radius:16px;
+      padding:16px;
+      background: rgba(13,22,45,.55);
+    }
+    .panel h2{
+      margin:0 0 10px;
+      font-size:16px;
+      letter-spacing:.2px;
+    }
+    .panel p{
+      margin:8px 0;
+      color:var(--muted);
+      line-height:1.7;
+      font-size:14.5px;
+    }
+    .callout{
+      display:flex;
+      gap:12px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,176,32,.35);
+      background: rgba(255,176,32,.10);
+      margin-top:12px;
+    }
+    .icon{
+      flex:0 0 auto;
+      width:34px;height:34px;
+      border-radius:12px;
+      display:grid;
+      place-items:center;
+      background: rgba(255,176,32,.18);
+      border:1px solid rgba(255,176,32,.35);
+      color:#ffe6b7;
+      font-weight:900;
+    }
+    .contactBox{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .kv{
+      padding:12px;
+      border-radius:14px;
+      border:1px solid rgba(42,58,107,.75);
+      background: rgba(9,14,30,.35);
+    }
+    .kv .k{
+      font-size:12px;
+      color:rgba(183,194,230,.85);
+      margin-bottom:6px;
+    }
+    .kv .v{
+      font-size:18px;
+      font-weight:900;
+      letter-spacing:.6px;
+      color:var(--text);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .miniBtn{
+      appearance:none;
+      border:1px solid rgba(42,58,107,.9);
+      background: rgba(17,26,46,.65);
+      color: var(--text);
+      padding:8px 10px;
+      border-radius:12px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.15s ease;
+      font-size:13px;
+    }
+    .miniBtn:hover{ transform: translateY(-1px); border-color: rgba(47,107,255,.75); }
+    .actions{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      justify-content:flex-start;
+      padding: 0 20px 22px;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      padding:13px 16px;
+      border-radius:14px;
+      border:1px solid rgba(47,107,255,.55);
+      background: linear-gradient(180deg, var(--btn), var(--btn2));
+      color:white;
+      font-weight:900;
+      text-decoration:none;
+      cursor:pointer;
+      transition: .15s ease;
+      min-width: 220px;
+    }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.05); }
+    .btn:active{ transform: translateY(0px); filter: brightness(.98); }
+    .sub{
+      font-size:12.5px;
+      color: rgba(183,194,230,.9);
+      display:flex;
+      align-items:center;
+      gap:8px;
+    }
+    .footer{
+      padding:12px 20px 18px;
+      border-top:1px solid rgba(42,58,107,.7);
+      color: rgba(183,194,230,.8);
+      font-size:12px;
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      padding:10px 12px;
+      border-radius:12px;
+      border:1px solid rgba(42,58,107,.85);
+      background: rgba(8,12,26,.85);
+      color: var(--text);
+      font-size:13px;
+      box-shadow: 0 12px 30px rgba(0,0,0,.35);
+      opacity:0;
+      pointer-events:none;
+      transition:.18s ease;
+    }
+    .toast.show{ opacity:1; transform:translateX(-50%) translateY(-2px); }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="card" role="region" aria-label="证书到期提示">
+      <div class="topbar">
+        <h1 class="title">发卡网服务器故障，技术正在紧急处理中</h1>
+      </div>
+
+      <div class="content">
+        <div class="panel">
+          <h2>当前状态</h2>
+          <p>发卡网服务器故障，技术正在紧急处理中</p>
+    <p>Gpt充值和其他业务均正常运营中，不受影响</p>
+          <div class="callout">
+            <div class="icon">!</div>
+            <div>
+              <p style="margin:0;color:#ffe6b7;font-weight:800;">如着急充值或需要其他业务，可直接联系客服处理。</p>
+              <p style="margin:6px 0 0;">我们会尽快恢复正常服务，给您带来不便敬请谅解。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel contactBox">
+          <h2>客服联系方式</h2>
+          <div class="kv">
+            <div class="k">客服 QQ（微信同号）</div>
+            <div class="v">
+              <span id="contact">82765536</span>
+              <button class="miniBtn" id="copyBtn" type="button">复制号码</button>
+            </div>
+          </div>
+          <div class="kv">
+            <div class="k">快捷说明</div>
+            <p style="margin:0;">添加时备注：<b style="color:#e8eeff">“GPT代充”</b>，通过更快。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="https://fe.dtyuedan.cn/shop/gptplus" target="_blank" rel="noopener noreferrer">
+          点击进入卡密自助购买
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="footer">
+        <span>提示：本页用于临时公告与引导</span>
+        <span id="time"></span>
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">已复制：82765536</div>
+
+  <script>
+    // 显示当前时间（可删）
+    const pad = n => String(n).padStart(2, "0");
+    const now = new Date();
+    document.getElementById("time").textContent =
+      `当前时间：${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())} ${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
+    // 复制联系方式
+    const contact = document.getElementById("contact").textContent.trim();
+    const toast = document.getElementById("toast");
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add("show");
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=>toast.classList.remove("show"), 1400);
+    }
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try{
+        await navigator.clipboard.writeText(contact);
+        showToast(`已复制：${contact}`);
+      }catch(e){
+        // 兼容方案
+        const ta = document.createElement("textarea");
+        ta.value = contact;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand("copy");
+        ta.remove();
+        showToast(`已复制：${contact}`);
+      }
+    });
+  </script>
+</body>
+</html>

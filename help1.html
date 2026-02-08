@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat.Gpt Plus 会员自助充值指南</title>
+    <style>
+        /* --- 全局样式 --- */
+        html {
+            scroll-behavior: smooth; /* 平滑滚动效果 */
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* --- 主内容容器 --- */
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        /* --- 标题样式 --- */
+        h1, h2, h3 {
+            color: #1a202c;
+            border-bottom: 1px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 2em;
+            border-bottom: none;
+            margin-top: 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        h3 {
+            font-size: 1.2em;
+            border-bottom: none;
+            color: #2d3748;
+        }
+
+        /* --- 段落与列表 --- */
+        p, li {
+            line-height: 1.8;
+            color: #4a5568;
+        }
+
+        ol {
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        /* --- 链接样式 --- */
+        a {
+            color: #3182ce;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* --- 图片样式 --- */
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            margin: 20px 0;
+            display: block;
+        }
+
+        /* --- 特殊区块样式 (如密钥提示、联系方式) --- */
+        .info-box, .contact-box {
+            background-color: #f7fafc;
+            border-left: 4px solid #3182ce;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box strong {
+            color: #c53030;
+        }
+
+        .contact-box {
+            border-left-color: #38a169;
+            text-align: center;
+        }
+        
+        .contact-box code {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #2f855a;
+        }
+
+        /* --- 分隔线 --- */
+        hr {
+            border: none;
+            border-top: 1px solid #e2e8f0;
+            margin: 40px 0;
+        }
+
+        strong {
+            color: #2d3748;
+        }
+
+        /* --- 新增：导航栏样式 --- */
+        .nav-bar {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 20px 0;
+            position: sticky;
+            top: 10px;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        .nav-bar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap; /* 适配手机端换行 */
+        }
+        .nav-bar li {
+            margin: 5px; /* 适配手机端间距 */
+        }
+        .nav-bar a {
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-weight: 600;
+            color: #2d3748;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .nav-bar a:hover {
+            background-color: #edf2f7;
+            color: #1a202c;
+            text-decoration: none;
+        }
+
+        /* --- 新增：返回顶部按钮样式 --- */
+        #backToTopBtn {
+            display: none; /* 默认隐藏 */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1001;
+            background-color: #3182ce;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            padding: 12px;
+            font-size: 14px;
+            width: 50px;
+            height: 50px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            line-height: 1.2;
+        }
+        #backToTopBtn:hover {
+            background-color: #2b6cb0;
+            text-decoration: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Chat.Gpt Plus 会员自助充值指南</h1>
+        <p style="text-align: center; color: #718096;">
+            欢迎使用我们的24小时自助充值系统！本指南将引导您轻松完成。
+            <br>
+            您也可以观看我们网站首页的<a href="https://gptplus.plus/#video" target="_blank"><strong>3分钟视频教程</strong></a>，快速了解所有步骤。<br>请牢记我们的网址：<a href="https://gptplus.plus" target="_blank">gptplus.plus</a>防失联
+        </p>
+
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="#steps">操作步骤</a></li>
+                <li><a href="#faq">常见问题</a></li>
+                <li><a href="#contact">联系我们</a></li>
+            </ul>
+        </nav>
+
+        <hr>
+
+        <h2 id="steps">第一步：购买充值卡密(因官方新规+ID货源紧张，已调价至180元，请知悉)</h2>
+        <p>在开始之前，您需要先从我们的网站获取一张充值卡密(因官方新规+ID货源紧张，已调价至180元，请知悉)。</p>
+          <p><strong>直接拍下会有交易手续费，在线时间建议联系客服！</strong></p>
+        <a href="rg" target="_blank" rel="noopener noreferrer">全部卡密售罄时点击这人工代付（无需上号）</a>
+        <ol>
+            <li>访问我们的网站：<a href="https://gptplus.plus" target="_blank">https://gptplus.plus</a></li>
+            <li>点击首页的 <a href="https://fe.dtyuedan.cn/shop/gptplus" target="_blank"><strong>“卡密自助购买”</strong></a> 按钮。</li>
+             <img src="help/01.png" alt="网站首页，突出“卡密自助购买”按钮">
+            <li>按照页面提示选择您需要的服务并完成购买。</li>
+            <a href="rg" target="_blank" rel="noopener noreferrer">全部卡密售罄时点击这人工代付（无需上号）</a>
+        </ol>
+        <img src="help1/h01.png" alt="渠道">
+        <img src="help1/h02.png" alt="卡密购买180">
+      <p>点击去支付，这里可以选微信也可以选支付宝支付</p>
+      <p>支付成功后等待几秒出现下面的卡密和使用说明</p>
+        <p>按要求进入对应的充值系统操作就可！</p>
+        <img src="help1/h03.png" alt="成功购买">
+        <hr>
+
+        <h2>第二步：进入自助充值系统</h2>
+        <p>获取卡密后，请返回网站首页，开始自助充值流程。</p>
+        <ol>
+            <li>再次访问网站首页：<a href="https://gptplus.plus" target="_blank">https://gptplus.plus</a></li>
+            <li>点击 <strong>“24小时代充系统”</strong>。</li>
+             <img src="help/07.png" alt="24小时代充">
+              <li>目前为保障供应尽量不断，备用多个渠道，请按卡密选择对应充值系统！</li>
+            <li>将您在第一步中购买的卡密粘贴到指定位置。</li>
+        </ol>
+        <img src="help/08.png" alt="将购买的卡密粘贴到输入框">
+    
+        
+        <hr>
+
+        <h2>第三步：登录您的 Chat.Gpt 官网账号</h2>
+        <p>为了完成充值，我们需要一个临时的授权密钥。请按以下步骤操作。</p>
+        <ol>
+            <li>打开 Chat.Gpt 官方网站：<a href="https://chat.openai.com" target="_blank">https://chat.openai.com</a></li>
+            <li>登录您自己的 Chat.Gpt 账号。</li>
+              <img src="help/09.png" alt="GPT登录">
+        </ol>
+
+        <hr>
+
+        <h2>第四步：获取临时授权密钥</h2>
+        <p>登录成功后，点击我获取用于充值的临时密钥。</p>
+            <img src="help/10.png" alt="点我获取密钥">
+        <ol>
+            <li>将自动访问官方授权页面：<a href="https://chat.openai.com/api/auth/session" target="_blank">https://chat.openai.com/api/auth/session</a></li>
+            <li>您会看到一长串代码。<strong>请完整复制页面上显示的所有内容</strong>，这就是您的临时授权密钥。</li>
+        </ol>
+        <img src="help/11.png" alt="全部密钥复制">
+        <div class="info-box">
+            <strong>重要提示：</strong>这是一个临时密钥，仅用于本次充值授权，我们无法通过它访问您的密码或个人数据。
+        </div>
+
+        <hr>
+        
+        <h2>第五步：核对账户并完成充值</h2>
+        <p>现在，返回我们的充值页面，完成最后一步。</p>
+        <ol>
+            <li>将刚刚复制的完整密钥粘贴到我们充值页面的密钥输入框中。</li>
+            <img src="help/12.png" alt="核对账户">
+            <li>系统会自动识别并显示您的账号信息，请仔细核对。</li>
+            <li>确认无误后，点击“确认充值”，系统将在几分钟内自动完成。</li>
+        </ol>
+        <img src="help/13.png" alt="核对账号">
+        <img src="help/14.png" alt="确认充值">
+        <p>充值成功后，您的会员状态将显示为通过 iOS 订阅。</p>
+   <img src="help/15.png" alt="显示通过 App Store 订阅成功">
+        
+        <hr>
+
+        <h2 id="faq">关于我们 & 常见问题</h2>
+        
+     <h3>问：为什么你们的之前你们的价格比官方更低？现在比官网更高？</h3>
+        <p>答：之前我们利用了部分国家（如尼日利亚等）在App Store上的定价差异，能够以更优惠的汇率成本，为大家提供服务。</p>
+         <p>GPT官网9月16号新规,已不存在低价国家，价格已调整！价格构成（20美金约145元+苹果ID或卡成本+磨损+服务器、设备、人工、稳定保障等成本)<strong>追求低价，注意黑卡和封号等风险！</strong>）</p>
+    <a href="gpt170" target="_blank" rel="noopener noreferrer">点击查看新规</a>
+
+        <h3>问：这种充值方式安全吗？会被封号吗？</h3>
+        <p>答：<strong>非常安全稳定。</strong>我们后台对接的是苹果正规支付，是目前最稳的充值方式。只获取临时授权密钥完成充值操作，不获取密码。<strong>迄今为止2年时间，因充值方式导致的封号记录为0。</strong></p>
+
+        <h3>问：如果遇到官方大封号等不可控因素，你们还有质保么？</h3>
+        <p>答：只要封号不问理由，按天退款！让你使用无忧！其他同行的大封号不保，普号不保，共享滥用不保（这也不保，那也不保），在我们这里通通都保！<strong>只有稳定，才敢这么保证！</strong></p>
+        <img src="help/zb.png" alt="给力质保">
+        <h3>问：提示充值失败，重新提交怎么办？</h3>
+        <p>答：偶遇充值失败或卡住，是太多人同时用通道拥挤，多点几次或晚点再试（提示会员的等会员到期再充），有问题随时联系客服处理（15小时人工在线：9:00-24:00）<strong>请放心，卡密没有充值成功前都不会失效！</strong></p>
+        <h3>问：提示充值成功后，没到账plus怎么办？</h3>
+        <p>答：请确认好邮箱再点充值，防止串号(充值成功后，GPT官网没有退款入口！)，正常充值都是秒到或几分钟内到！<strong>如果遇到延迟，获取plus那里点到底，报错后再刷新就出来了！</strong></p>
+         <img src="help/plus.png" alt="获取plus">
+        
+        <hr>
+
+        <h2 id="contact">联系我们 & 更多服务</h2>
+        <p>充值过程中遇到任何问题，有其他业务需求，请联系我们。</p>
+         <p>请保存我们网址gptplus.plus ，加上我们联系方式，防止失联！</p>
+         <div class="contact-box">
+             <p style="margin-top: 0;">防失联客服 QQ/微信同号</p>
+             <code>82765536</code>
+             <p style="margin-bottom: 0; font-size: 0.9em; color: #718096;">
+                  添加好友请备注：<strong>Gpt代充</strong><br>
+                  (加的人多，急事请先Q，微信防频繁通过慢！)
+             </p>
+              <img src="image/weixin.png" alt="防失联微信">
+         </div>
+         <p>可代付Gpt Pro，无需上号，详情找客服！</p>
+    </div>
+
+    <a id="backToTopBtn" href="#">返回<br>顶部</a>
+
+    <script>
+        // 获取返回顶部按钮的元素
+        var mybutton = document.getElementById("backToTopBtn");
+
+        // 当用户向下滚动20px时，显示按钮
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+</html>
