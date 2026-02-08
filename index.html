@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>请按指引操作</title>
+  <meta name="description" content="请按指引操作,熟悉流程可跳转卡网下单，不熟悉可联系在线客服。">
+  <style>
+    :root{
+      --bg1:#ffffff;
+      --bg2:#faf7f2;
+      --card:#ffffffcc;
+      --border:rgba(17,24,39,.10);
+      --text:#111827;
+      --muted:#6b7280;
+      --accent:#2563eb;
+      --accent2:#22c55e;
+      --danger:#ef4444;
+      --warn:#f59e0b;
+      --shadow: 0 14px 40px rgba(17,24,39,.10);
+      --radius: 18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "PingFang SC","Hiragino Sans GB","Microsoft YaHei", Arial, "Noto Sans CJK SC", sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(37,99,235,.16), transparent 60%),
+        radial-gradient(900px 600px at 85% 20%, rgba(245,158,11,.10), transparent 55%),
+        radial-gradient(700px 500px at 50% 90%, rgba(34,197,94,.10), transparent 55%),
+        linear-gradient(180deg, var(--bg1), var(--bg2));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .wrap{ width:min(920px, 100%); }
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+      border-radius:var(--radius);
+      overflow:hidden;
+      backdrop-filter: blur(10px);
+    }
+    .header{
+      padding:26px 26px 18px;
+      border-bottom:1px solid rgba(17,24,39,.10);
+      display:flex;
+      gap:16px;
+      align-items:flex-start;
+    }
+    .badge{
+      flex:0 0 auto;
+      width:44px;height:44px;
+      border-radius:14px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg, rgba(239,68,68,.92), rgba(37,99,235,.92));
+      box-shadow: 0 10px 28px rgba(37,99,235,.16);
+    }
+    .badge svg{width:22px;height:22px}
+    .badge svg path{ stroke:#fff !important; }
+
+    h1{ margin:0; font-size:20px; letter-spacing:.2px; }
+    .sub{
+      margin:6px 0 0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.6;
+    }
+    .content{
+      padding:22px 26px 26px;
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap:18px;
+    }
+    @media (max-width: 780px){ .content{grid-template-columns:1fr} }
+    .panel{
+      border:1px solid rgba(17,24,39,.10);
+      border-radius:16px;
+      padding:18px;
+      background:rgba(255,255,255,.88);
+    }
+    .title{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      margin:0 0 10px;
+      font-size:16px;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background:var(--danger);
+      box-shadow:0 0 0 6px rgba(239,68,68,.10);
+    }
+    .p{
+      margin:0;
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.75;
+    }
+    .actions{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      margin-top:14px;
+    }
+    .btn{
+      appearance:none;
+      border:none;
+      border-radius:14px;
+      padding:12px 14px;
+      font-weight:700;
+      cursor:pointer;
+      text-decoration:none;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      transition: transform .08s ease, filter .15s ease, box-shadow .15s ease;
+      user-select:none;
+      text-align:center;
+    }
+    .btn:active{ transform: translateY(1px) }
+    .btn-primary{
+      background:linear-gradient(180deg, var(--accent), #3b82f6);
+      color:white;
+      box-shadow: 0 12px 28px rgba(37,99,235,.18);
+    }
+    .btn-ghost{
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(17,24,39,.12);
+      color:var(--text);
+    }
+    .btn:hover{ filter:brightness(1.03) }
+
+    .notice{
+      margin-top:10px;
+      border-radius:14px;
+      padding:12px 12px;
+      border:1px solid rgba(245,158,11,.32);
+      background:rgba(245,158,11,.12);
+      color:#6b3f00;
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      line-height:1.6;
+      font-size:13px;
+    }
+    .notice svg{width:18px;height:18px; flex:0 0 auto; margin-top:1px; opacity:.95}
+    .notice b{color:#4b2c00}
+    .notice svg path{ stroke:#6b3f00 !important; }
+
+    .info{
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+    .row{
+      display:flex;
+      align-items:flex-start;
+      gap:10px;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(17,24,39,.10);
+      background:rgba(255,255,255,.76);
+    }
+    .row svg{width:18px;height:18px; flex:0 0 auto; margin-top:1px; opacity:.95}
+    .row b{display:block; font-size:13px; margin-bottom:2px}
+    .row span{color:var(--muted); font-size:13px; line-height:1.6}
+    .row svg path{ stroke: var(--text) !important; }
+
+    code{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      background:rgba(17,24,39,.05);
+      padding:2px 6px;
+      border-radius:8px;
+      border:1px solid rgba(17,24,39,.10);
+      color:var(--text);
+    }
+    .footer{
+      padding:14px 26px;
+      border-top:1px solid rgba(17,24,39,.10);
+      color:rgba(107,114,128,.95);
+      font-size:12px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:space-between;
+      align-items:center;
+    }
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      background:rgba(17,24,39,.94);
+      border:1px solid rgba(255,255,255,.18);
+      color:#fff;
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:13px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.18);
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease, transform .18s ease;
+    }
+    .toast.show{
+      opacity:1;
+      transform:translateX(-50%) translateY(-4px);
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap">
+    <section class="card" role="region" aria-label="请按指引操作">
+      <header class="header">
+        <div class="badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M12 9v5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+            <path d="M12 17.5h.01" stroke="white" stroke-width="3" stroke-linecap="round"/>
+            <path d="M10.3 4.5h3.4c.7 0 1.4.4 1.7 1l5.5 10.7c.7 1.4-.3 3.1-1.9 3.1H5.2c-1.6 0-2.6-1.7-1.9-3.1l5.5-10.7c.3-.6 1-1 1.7-1Z"
+                  stroke="white" stroke-width="1.8" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <h1>请按指引操作</h1>
+          <p class="sub">
+            为避免影响下单与服务，请根据以下指引进行操作。
+          </p>
+        </div>
+      </header>
+
+      <div class="content">
+        <div class="panel">
+          <h2 class="title"><span class="dot"></span>处理方式</h2>
+          <p class="p">
+            1）如果你已熟悉下单流程：可直接跳转到卡网下单。<br/>
+            2）如果你不熟悉流程，或需要其他咨询与服务：请联系客服协助处理。
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary"
+               href="https://fe.dtyuedan.cn/shop/lily"
+               target="_blank" rel="noopener noreferrer">
+              进入卡网下单（自助购买）
+              <span aria-hidden="true">↗</span>
+            </a>
+
+            <button class="btn btn-ghost" type="button" id="copyBtn">
+              复制客服微信：BKP168001
+            </button>
+
+            <div class="notice" role="note" aria-label="重要提示">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M12 8v5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M12 16.5h.01" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                <path d="M10.3 3.8h3.4c.7 0 1.3.4 1.6 1l6 11.6c.7 1.4-.3 3.1-1.9 3.1H4.2c-1.6 0-2.6-1.7-1.9-3.1l6-11.6c.3-.6.9-1 1.6-1Z"
+                      stroke="white" stroke-opacity=".9" stroke-width="1.6" stroke-linejoin="round"/>
+              </svg>
+              <div>
+                <b>重要提示：</b>此域名可能随时访问不了，建议添加我们的微信联系方式，以防失联！
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="panel info">
+          <h2 class="title" style="margin-bottom:6px;">
+            <span class="dot" style="background:var(--accent2); box-shadow:0 0 0 6px rgba(45,212,191,.12)"></span>
+            客服联系
+          </h2>
+
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 7.5c0 5.8 3.7 9.5 9.5 9.5l2-2c.4-.4.9-.5 1.4-.3l2.2 1c.6.3.9 1 .7 1.6-.7 2.2-2.6 3.7-5.1 3.7C10.7 21 3 13.3 3 4.3 3 1.8 4.5 0 6.7 0c.6 0 1.2.3 1.5.9l1 2.2c.2.5.1 1-.3 1.4l-2 2Z"
+                    stroke="white" stroke-opacity=".9" stroke-width="1.8" stroke-linejoin="round"/>
+            </svg>
+            <div>
+              <b>微信</b>
+              <span><code>BKP168001</code>（点击左侧按钮可一键复制）</span>
+            </div>
+          </div>
+
+          <div class="row">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M4 6.5C4 5.1 5.1 4 6.5 4h11C18.9 4 20 5.1 20 6.5v11c0 1.4-1.1 2.5-2.5 2.5h-11C5.1 20 4 18.9 4 17.5v-11Z"
+                    stroke="white" stroke-opacity=".9" stroke-width="1.8"/>
+              <path d="M7 8h10M7 12h7M7 16h8" stroke="white" stroke-opacity=".85" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+            <div>
+              <b>提示</b>
+              <span>如遇自助卡网页面无法打开，请直接联系客服</span>
+            </div>
+          </div>
+
+          <a class="btn btn-ghost"
+             href="https://fe.dtyuedan.cn/shop/lily"
+             target="_blank" rel="noopener noreferrer"
+             style="margin-top:2px;">
+            点击打开下单入口
+          </a>
+        </aside>
+      </div>
+
+      <footer class="footer">
+        <span>© <span id="year"></span> 服务通告</span>
+        <span>请保存客服联系方式，以便及时获取最新入口，防止失联</span>
+      </footer>
+    </section>
+
+    <div class="toast" id="toast" role="status" aria-live="polite">已复制到剪贴板</div>
+  </main>
+
+  <script>
+    // 年份
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // 复制客服号
+    const textToCopy = "BKP168001";
+    const btn = document.getElementById('copyBtn');
+    const toast = document.getElementById('toast');
+
+    function showToast(msg){
+      toast.textContent = msg;
+      toast.classList.add('show');
+      clearTimeout(showToast._t);
+      showToast._t = setTimeout(()=>toast.classList.remove('show'), 1600);
+    }
+
+    btn.addEventListener('click', async () => {
+      try{
+        await navigator.clipboard.writeText(textToCopy);
+        showToast("已复制：" + textToCopy);
+      }catch(e){
+        const ta = document.createElement('textarea');
+        ta.value = textToCopy;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.focus(); ta.select();
+        try{
+          document.execCommand('copy');
+          showToast("已复制：" + textToCopy);
+        }catch(err){
+          showToast("复制失败，请手动复制：" + textToCopy);
+        }
+        document.body.removeChild(ta);
+      }
+    });
+  </script>
+
+  <!-- Cloudflare beacon（保留一个即可） -->
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015"
+          integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ=="
+          data-cf-beacon='{"version":"2024.11.0","token":"a661f215a3544d818228e20d19489f79","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+          crossorigin="anonymous"></script>
+</body>
+</html>
