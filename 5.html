@@ -34,8 +34,13 @@
       --danger-text:#c62828;
     }
 
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
+    *{
+      box-sizing:border-box;
+    }
+
+    html,body{
+      height:100%;
+    }
 
     body{
       margin:0;
@@ -47,8 +52,8 @@
       display:flex;
       justify-content:center;
       align-items:flex-start;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
     }
 
     .container{
@@ -87,46 +92,40 @@
       border:1px solid var(--border);
     }
 
-    .section-title{
-      margin:0 0 8px;
-      font-size:16px;
-      font-weight:700;
-    }
-
     .section-desc{
       margin:0;
       font-size:14px;
       color:var(--text-2);
       line-height:1.75;
+      text-align:center;
+    }
+
+    .purchase-wrap{
+      text-align:center;
+      margin-top:12px;
+      margin-bottom:10px;
     }
 
     .purchase-link{
       display:inline-block;
       padding:12px 20px;
-      background-color:#007aff;
-      color:white;
+      background-color:var(--apple-blue);
+      color:#fff;
       font-size:16px;
       font-weight:bold;
       border-radius:10px;
       text-decoration:none;
       transition:background-color .3s, transform .2s;
-      margin-top:12px;
     }
 
     .purchase-link:hover{
-      background-color:#0056b3;
+      background-color:var(--apple-blue-active);
       transform:scale(1.03);
     }
 
     .purchase-link:active{
       background-color:#003d7a;
-      transform:scale(0.98);
-    }
-
-    .purchase-wrap{
-      text-align:center;
-      margin-top:2px;
-      margin-bottom:10px;
+      transform:scale(.98);
     }
 
     .contact{
@@ -184,9 +183,12 @@
     }
 
     .system-link{
-      display:block;
+      display:flex;
+      align-items:center;
+      justify-content:center;
       width:100%;
-      padding:15px 16px;
+      min-height:52px;
+      padding:14px 16px;
       text-align:center;
       text-decoration:none;
       background:var(--apple-blue);
@@ -195,7 +197,7 @@
       font-weight:800;
       line-height:1.5;
       border-radius:14px;
-      transition:transform .08s ease,background-color .2s ease, box-shadow .2s ease;
+      transition:transform .08s ease, background-color .2s ease, box-shadow .2s ease;
       -webkit-tap-highlight-color:transparent;
       box-shadow:0 6px 16px rgba(0,122,255,.12);
     }
@@ -331,13 +333,27 @@
       background:#ffe6e3;
       border:1px solid var(--danger-border);
       color:#1e293b !important;
+      font-size:13px;
+      line-height:1.7;
       font-weight:800;
     }
 
     @media (max-width:360px){
-      h1{ font-size:24px; }
-      .container{ padding:16px; }
-      .system-link{ font-size:15px; }
+      body{
+        padding:14px 10px;
+      }
+
+      h1{
+        font-size:24px;
+      }
+
+      .container{
+        padding:16px;
+      }
+
+      .system-link{
+        font-size:15px;
+      }
     }
   </style>
 </head>
@@ -356,11 +372,14 @@
       </p>
 
       <div class="purchase-wrap">
-        <a href="https://fe.dtyuedan.cn/shop/gptplus" target="_blank" rel="noopener noreferrer" class="purchase-link">点击这里购买卡密</a>
+        <a href="https://fe.dtyuedan.cn/shop/gptplus" target="_blank" rel="noopener noreferrer" class="purchase-link">
+          点击这里购买卡密
+        </a>
       </div>
 
       <p class="section-desc" style="margin-top:10px;">
-        请按所购卡密选择系统，验证卡密不通过多半是选错系统</p>
+        请按所购卡密选择系统，验证卡密不通过多半是选错系统
+      </p>
     </section>
 
     <div class="contact">
@@ -375,39 +394,45 @@
             点击进入后按“使用步骤”操作（需在当前浏览器已登录 GPT）。
           </p>
         </div>
-         <a href="https://ow800.com/" class="system-link" target="_blank" rel="noopener noreferrer">
+
+        <div class="system-actions">
+          <a href="https://ow800.com/" class="system-link" target="_blank" rel="noopener noreferrer">
             进入充值系统1
           </a>
 
-        <div class="system-actions">
           <a href="https://czgpt.plus/" class="system-link" target="_blank" rel="noopener noreferrer">
             进入充值系统2
           </a>
         </div>
 
         <div class="steps-wrap">
-          <p class="focus-warning"><strong>（注：禁止同时用多张卡密充同一个账号，会覆盖时间而非叠加月份，无法找GPT退款！）</strong></p>
+          <p class="focus-warning">
+            <strong>（注：禁止同时用多张卡密充同一个账号，会覆盖时间而非叠加月份，无法找GPT退款！）</strong>
+          </p>
 
           <div class="content-block focus-block">
             <div class="steps-title">使用步骤</div>
+
             <ol class="steps">
               <li>点击对应充值系统，先验证卡密（提示不存在多半是选错系统）</li>
               <li>点击获取 Session 数据或临时充值密钥（如果返回是空的，说明 GPT 没有在当前浏览器登录）。</li>
               <li>把获取到的 token 全选复制，粘贴到输入框里面。</li>
               <li>点击提交使用，稍微等待片刻。</li>
               <li class="focus-item">充值成功就是充上了，如果刷新页面后，还没有 plus，是浏览器缓存或官网延迟同步。</li>
-              <li class="focus-item">无需等待，按以下步骤操作，可马上更新状态:</li>
+              <li class="focus-item">无需等待，按以下步骤操作，可马上更新状态：</li>
             </ol>
 
             <div class="extra-text focus-text">
-              <p>①.GPT页面点升级  ②.plus套餐那里再点升级  ③.会报错（因为已经付过费）④.返回GPT页面刷新状态就是plus了</p>
+              <p>①.GPT页面点升级 ②.plus套餐那里再点升级 ③.会报错（因为已经付过费）④.返回GPT页面刷新状态就是plus了</p>
               <p><strong>（本充值渠道会绕过所有的优惠和免费试用资格，正价付费充值，极致稳定，请放心！）</strong></p>
             </div>
           </div>
 
           <div class="hint focus-hint">
             <div class="hint-title">重要提醒</div>
-            <p class="mono focus-mono">Plus会员还未到期，建议到期后再操作，未到期充值会重计周期，不会叠加！</p>
+            <p class="mono focus-mono">
+              Plus会员还未到期，建议到期后再操作，未到期充值会重计周期，不会叠加！
+            </p>
           </div>
         </div>
 
@@ -424,10 +449,5 @@
     crossorigin="anonymous">
   </script>
 
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vcd15cbe7772f49c399c6a5babf22c1241717689176015" integrity="sha512-ZpsOmlRQV6y907TI0dKBHq9Md29nnaEIPlkf84rnaERnq6zvWvPUqr2ft8M1aS28oN72PdrCzSjY4U6VaAw1EQ==" data-cf-beacon='{"version":"2024.11.0","token":"d1a00ae81deb47f5b174a177e83344f6","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-
-  <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"d1a00ae81deb47f5b174a177e83344f6","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"d1a00ae81deb47f5b174a177e83344f6","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"d1a00ae81deb47f5b174a177e83344f6","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
 </body>
 </html>
