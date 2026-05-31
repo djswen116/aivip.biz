@@ -1101,6 +1101,28 @@ body:not(.clean-home) .contact-box {
   border-left: 4px solid var(--success) !important;
 }
 
+.guide-page .more-service-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 0;
+  padding: 16px 18px;
+  border: 1px solid rgba(36, 87, 214, 0.18);
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, #f8fbff 0%, #f1f6ff 100%);
+}
+
+.guide-page .more-service-card p {
+  margin: 0 !important;
+  color: var(--muted) !important;
+  line-height: 1.75 !important;
+}
+
+.guide-page .more-service-card .purchase-link {
+  white-space: nowrap;
+}
+
 body:not(.clean-home) .info-box,
 body:not(.clean-home) .top-alert,
 body:not(.clean-home) .focus-warning,
@@ -2223,4 +2245,16 @@ body:not(.clean-home) #backToTopBtn {
   .guide-page img {
     max-height: 360px;
   }
+
+  .guide-page .more-service-card {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .guide-page .more-service-card .purchase-link {
+    width: 100%;
+  }
+
 }
