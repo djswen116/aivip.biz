@@ -181,6 +181,7 @@ strong {
 .order-card,
 .notice-row article,
 .process-section,
+.support-section,
 .split-section,
 .video-grid article,
 .faq-section {
@@ -500,6 +501,7 @@ strong {
 
 .notice-row p,
 .process-section p,
+.support-section p,
 .split-section p,
 .faq-section p {
   color: var(--muted) !important;
@@ -518,6 +520,7 @@ strong {
 }
 
 .process-section,
+.support-section,
 .faq-section {
   margin-bottom: 16px;
   padding: 24px;
@@ -587,6 +590,10 @@ strong {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
+}
+
+.support-section .support-list {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .contact-panel {
@@ -1485,6 +1492,7 @@ body:not(.clean-home) #backToTopBtn {
   .hero-copy,
   .order-card,
   .process-section,
+  .support-section,
   .split-section,
   .faq-section,
   body:not(.clean-home) > .container,
@@ -1517,6 +1525,10 @@ body:not(.clean-home) #backToTopBtn {
   .notice-row article,
   .video-grid article {
     padding: 16px;
+  }
+
+  .clean-home .support-section .support-list {
+    grid-template-columns: 1fr;
   }
 
   .subpage-topbar {
@@ -1712,6 +1724,7 @@ body:not(.clean-home) #backToTopBtn {
 .order-card,
 .notice-row article,
 .process-section,
+.support-section,
 .split-section,
 .video-grid article,
 .faq-section {
@@ -1817,12 +1830,14 @@ body:not(.clean-home) #backToTopBtn {
   border-color: var(--line-strong);
 }
 
-.process-section .section-head {
+.process-section .section-head,
+.support-section .section-head {
   display: block;
   text-align: left;
 }
 
-.process-section .section-head .eyebrow {
+.process-section .section-head .eyebrow,
+.support-section .section-head .eyebrow {
   margin: 0 0 4px !important;
   color: var(--soft) !important;
 }
@@ -1979,6 +1994,10 @@ body:not(.clean-home) #backToTopBtn {
   .clean-home #faq,
   .clean-home #video {
     scroll-margin-top: 150px;
+  }
+
+  .clean-home .support-section .support-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
