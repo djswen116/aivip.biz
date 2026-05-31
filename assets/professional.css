@@ -295,6 +295,31 @@ strong {
   font-weight: 760;
 }
 
+.hero-save-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 10px 0 0 !important;
+  padding: 10px 12px;
+  border: 1px solid #f0d2a2;
+  border-radius: var(--radius);
+  background: var(--warning-soft);
+  color: #75420a !important;
+  font-size: 0.9rem;
+  font-weight: 760;
+  line-height: 1.5;
+}
+
+.hero-save-note::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--warning);
+  box-shadow: 0 0 0 4px rgba(180, 83, 9, 0.1);
+  flex: 0 0 auto;
+}
+
 .meta-copy {
   appearance: none;
   padding: 0;
