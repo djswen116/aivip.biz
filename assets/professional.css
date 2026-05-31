@@ -819,6 +819,21 @@ body:not(.clean-home) {
   box-shadow: var(--shadow-soft);
 }
 
+body.entry-page {
+  padding-top: 88px !important;
+}
+
+.entry-page > .subpage-topbar {
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  width: min(1040px, calc(100% - 32px)) !important;
+  max-width: min(1040px, calc(100% - 32px)) !important;
+  margin: 0;
+  transform: translateX(-50%);
+  z-index: 1300;
+}
+
 .subpage-brand {
   display: inline-flex;
   align-items: center;
@@ -1499,6 +1514,46 @@ body:not(.clean-home) #backToTopBtn {
   .subpage-topbar nav a {
     padding: 0 8px;
     font-size: 0.86rem;
+  }
+
+  body.entry-page {
+    padding-top: 150px !important;
+  }
+
+  .entry-page > .subpage-topbar {
+    top: calc(env(safe-area-inset-top, 0px) + 8px);
+    right: 12px;
+    left: 12px;
+    width: auto !important;
+    max-width: none !important;
+    padding: 12px;
+    gap: 10px;
+    align-items: stretch;
+    transform: none;
+  }
+
+  .entry-page > .subpage-topbar nav {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    padding-bottom: 2px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .entry-page > .subpage-topbar nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .entry-page > .subpage-topbar nav a {
+    flex: 0 0 auto;
+    min-height: 44px;
+    padding: 0 13px;
+    background: rgba(237, 243, 255, 0.72);
+    border: 1px solid rgba(185, 200, 220, 0.58);
   }
 
   .guide-page .nav-bar ul {
