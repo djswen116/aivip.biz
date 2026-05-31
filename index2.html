@@ -1,995 +1,282 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat.GPT Plus代充值服务 | 24小时自助GPT代充 - 安全快速</title>
-    <meta name="description" content="提供专业、安全、快速的Open.AI官网Chat.Gpt Plus会员代充值服务。24小时自助充值系统，支持GPT代充和gptplus会员购买，正规渠道，快速到账，信誉保障。">
-    <meta name="keywords" content="gpt充值, GPT代充, gptplus会员, Chat.Gpt plus代充, Open.AI代充, gpt4充值, gpt会员">
-    <meta property="og:title" content="Open.AI官网Chat.Gpt Plus代充值服务 | 24小时自助">
-    <meta property="og:description" content="专业、安全、快速的Chat.Gpt Plus会员代充服务。24小时自助，正规渠道，快速到账。">
-    <meta property="og:type" content="website">
-    <script type="application/ld+json">
-        {
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "serviceType": "Chat.Gpt Plus Subscription Service",
-            "provider": {
-                "@type": "Organization",
-                "name": "Chat.Gpt Plus 专业代充"
-            },
-            "name": "Chat.Gpt Plus 会员代充服务",
-            "description": "提供安全、快速的Open.AI官网Chat.Gpt Plus会员24小时自助代充值服务。我们使用正规渠道，保证账户安全，并承诺快速到账。",
-            "offers": {
-                "@type": "Offer",
-                "price": "180.00",
-                "priceCurrency": "CNY",
-                "name": "Chat.Gpt Plus 会员 (一个月)",
-                "url": "https://ow521.com/recharge"
-            },
-            "areaServed": {
-                "@type": "Country",
-                "name": "CN"
-            },
-            "keywords": "gpt充值, GPT代充, gptplus会员, Chat.Gpt plus代充"
-        }
-    </script>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -https://fe.dtyuedan.cn/shop/gptplus-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
-            background: linear-gradient(135deg, #007aff 0%, #0051d5 100%);
-            min-height: 100vh;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* 头部区域 */
-        .header {
-            text-align: center;
-            padding: 60px 0 50px;
-        }
-
-        .header h1 {
-            color: white;
-            font-size: 3.2rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
-            letter-spacing: -0.5px;
-        }
-
-        .header .subtitle {
-            color: rgba(255, 255, 255, 0.95);
-            font-size: 1.3rem;
-            font-weight: 500;
-            letter-spacing: 2px;
-        }
-
-        /* 公告栏样式 (最终版) */
-        .announcement-banner {
-            background-color: aliceblue;
-            /* 非常浅的蓝色背景 */
-            color: #1e293b;
-            /* 调整后：更柔和的深灰蓝色文字 */
-            text-align: center;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin: -30px auto 30px;
-            max-width: 860px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            border: 1px solid lightblue;
-            /* 柔和的浅蓝色边框 */
-            font-size: 1.1rem;
-            line-height: 1.6;
-            font-weight: 500;
-        }
-
-        .announcement-banner p {
-            margin: 5px 0;
-        }
-
-        .announcement-banner a {
-            color: #1e293b;
-            /* 确保链接颜色统一 */
-            font-weight: bold;
-        }
-
-        /* 主要内容区域 */
-        .main-content {
-            background: white;
-            border-radius: 24px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-            overflow: hidden;
-            margin-bottom: 50px;
-        }
-
-        /* 产品展示区 */
-        .product-section {
-            background: linear-gradient(135deg, #007aff 0%, #0051d5 100%);
-            color: white;
-            padding: 60px 40px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-section::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: float 8s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translate(-50%, -50%) rotate(0deg);
-            }
-
-            50% {
-                transform: translate(-50%, -50%) rotate(180deg);
-            }
-        }
-
-        .product-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            padding: 12px 24px;
-            border-radius: 25px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            position: relative;
-            z-index: 2;
-            letter-spacing: 1px;
-        }
-
-        .product-title {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            position: relative;
-            z-index: 2;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-            letter-spacing: -1px;
-        }
-
-        .product-price {
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
-            display: flex;
-            justify-content: center;
-            align-items: baseline;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .price-prefix {
-            font-size: 1.5rem;
-            font-weight: 500;
-            opacity: 0.9;
-        }
-
-        .price-amount {
-            font-size: 4.5rem;
-            font-weight: 800;
-            text-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
-            background: linear-gradient(45deg, #ffffff, #e6f2ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            line-height: 1;
-        }
-
-        .price-suffix {
-            font-size: 1.2rem;
-            font-weight: 500;
-            opacity: 0.9;
-        }
-
-        /* 帮助按钮样式 */
-        .help-btn {
-            display: inline-block;
-            padding: 14px 32px;
-            text-decoration: none;
-            border-radius: 25px;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            z-index: 2;
-            background: linear-gradient(135deg, #ffb700 0%, #ff8c00 100%);
-            color: white;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 25px auto 0;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .help-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .product-period {
-            font-size: 1.2rem;
-            opacity: 0.95;
-            margin-bottom: 15px;
-            position: relative;
-            z-index: 2;
-            font-weight: 500;
-        }
-
-        .product-period .qr-code {
-            width: 300px;
-            /* 超大尺寸宽度 */
-            height: 300px;
-            /* 超大尺寸高度 */
-            margin: 15px auto;
-            display: block;
-            border-radius: 12px;
-        }
-
-        .product-note {
-            font-size: 1rem;
-            opacity: 0.9;
-            margin-bottom: 30px;
-            position: relative;
-            z-index: 2;
-            font-weight: 400;
-            line-height: 1.4;
-        }
-
-        /* 购买选项 */
-        .purchase-section {
-            padding: 50px 40px;
-            background: white;
-        }
-
-        .purchase-title {
-            font-size: 1.8rem;
-            color: #1d1d1f;
-            text-align: center;
-            margin-bottom: 40px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .purchase-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 35px;
-        }
-
-        .purchase-btn {
-            display: block;
-            padding: 30px 25px;
-            text-decoration: none;
-            border-radius: 16px;
-            text-align: center;
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            position: relative;
-            overflow: hidden;
-            border: 2px solid transparent;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        .purchase-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .purchase-btn:hover::before {
-            left: 100%;
-        }
-
-        .purchase-btn.primary {
-            background: linear-gradient(135deg, #007aff 0%, #0051d5 100%);
-            color: white;
-        }
-
-        .purchase-btn.secondary {
-            background: linear-gradient(135deg, #4da6ff 0%, #007aff 100%);
-            color: white;
-        }
-
-        .purchase-btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-        }
-
-        .purchase-btn h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
-            letter-spacing: -0.3px;
-        }
-
-        .purchase-btn p {
-            opacity: 0.9;
-            font-size: 1rem;
-            position: relative;
-            z-index: 2;
-            font-weight: 500;
-        }
-
-        /* 保障信息 */
-        .guarantee-section {
-            padding: 50px 40px;
-            background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 100%);
-        }
-
-        .guarantee-title {
-            font-size: 1.8rem;
-            color: #1e293b;
-            margin-bottom: 35px;
-            text-align: center;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .guarantee-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .guarantee-item {
-            display: flex;
-            align-items: flex-start;
-            padding: 25px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 8px 25px rgba(0, 122, 255, 0.08);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid rgba(0, 122, 255, 0.1);
-        }
-
-        .guarantee-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0, 122, 255, 0.15);
-            border-color: #007aff;
-        }
-
-        .guarantee-icon {
-            font-size: 1.8rem;
-            margin-right: 18px;
-            margin-top: 3px;
-        }
-
-        .guarantee-text {
-            flex: 1;
-        }
-
-        .guarantee-text h4 {
-            color: #1e293b;
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
-            letter-spacing: -0.3px;
-        }
-
-        .guarantee-text p {
-            color: #64748b;
-            font-size: 1rem;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-
-        /* 视频教程区域 */
-        .video-section {
-            padding: 50px 40px;
-            background: #fff;
-            text-align: center;
-        }
-
-        .video-title {
-            font-size: 1.8rem;
-            color: #0051d5;
-            margin-bottom: 25px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-        }
-
-        .video-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .video-player {
-            width: 100%;
-            height: auto;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        /* 底部特色 */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            padding: 0 40px 50px;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 35px 25px;
-            border-radius: 18px;
-            text-align: center;
-            box-shadow: 0 12px 30px rgba(0, 122, 255, 0.15);
-            backdrop-filter: blur(15px);
-            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            border: 1px solid rgba(0, 122, 255, 0.2);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0, 122, 255, 0.2);
-            border-color: #007aff;
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 18px;
-            display: block;
-        }
-
-        .feature-card h4 {
-            color: #1e293b;
-            font-weight: 700;
-            margin-bottom: 10px;
-            font-size: 1.2rem;
-            letter-spacing: -0.3px;
-        }
-
-        .feature-card p {
-            color: #64748b;
-            font-size: 1rem;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-
-        /* 移动端优化 */
-        @media (max-width: 480px) {
-            .container {
-                padding: 10px;
-            }
-
-            .header {
-                padding: 30px 0 25px;
-            }
-
-            .header h1 {
-                font-size: 1.8rem;
-                letter-spacing: -0.3px;
-                margin-bottom: 15px;
-            }
-
-            .header .subtitle {
-                font-size: 1rem;
-                letter-spacing: 1px;
-            }
-
-            .announcement-banner {
-                font-size: 0.9rem;
-                padding: 10px 15px;
-                border-radius: 8px;
-                margin: -15px auto 20px;
-            }
-
-            .main-content {
-                border-radius: 18px;
-                margin-bottom: 30px;
-            }
-
-            .product-section {
-                padding: 30px 20px;
-            }
-
-            .product-badge {
-                font-size: 0.9rem;
-                padding: 10px 18px;
-                margin-bottom: 20px;
-                letter-spacing: 0.5px;
-            }
-
-            .product-title {
-                font-size: 1.4rem;
-                margin-bottom: 15px;
-            }
-
-            .product-price {
-                flex-direction: column;
-                gap: 5px;
-                align-items: center;
-            }
-
-            .price-amount {
-                font-size: 2.8rem;
-            }
-
-            .price-prefix,
-            .price-suffix {
-                font-size: 1rem;
-            }
-
-            .help-btn {
-                font-size: 1rem;
-                padding: 12px 28px;
-                margin: 20px auto 0;
-            }
-
-            .product-period .qr-code {
-                width: 200px;
-                /* 移动端尺寸 */
-                height: 200px;
-            }
-
-            .product-period {
-                font-size: 0.9rem;
-                margin-bottom: 10px;
-                line-height: 1.4;
-            }
-
-            .product-note {
-                font-size: 0.8rem;
-                margin-bottom: 20px;
-                line-height: 1.3;
-            }
-
-            .guarantee-section,
-            .purchase-section,
-            .video-section {
-                padding: 30px 20px;
-            }
-
-            .features {
-                padding: 0 20px 30px;
-            }
-
-            .guarantee-title,
-            .purchase-title,
-            .video-title {
-                font-size: 1.4rem;
-                margin-bottom: 25px;
-            }
-
-            .guarantee-list {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .guarantee-item {
-                padding: 20px 15px;
-                border-radius: 12px;
-            }
-
-            .guarantee-icon {
-                font-size: 1.4rem;
-                margin-right: 12px;
-            }
-
-            .guarantee-text h4 {
-                font-size: 1rem;
-                margin-bottom: 5px;
-            }
-
-            .guarantee-text p {
-                font-size: 0.9rem;
-            }
-
-            .purchase-options {
-                grid-template-columns: 1fr;
-                gap: 15px;
-                margin-bottom: 25px;
-            }
-
-            .purchase-btn {
-                padding: 22px 18px;
-                border-radius: 14px;
-            }
-
-            .purchase-btn h3 {
-                font-size: 1.1rem;
-                margin-bottom: 8px;
-            }
-
-            .purchase-btn p {
-                font-size: 0.9rem;
-            }
-
-            .features {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-
-            .feature-card {
-                padding: 25px 20px;
-                border-radius: 15px;
-            }
-
-            .feature-icon {
-                font-size: 2rem;
-                margin-bottom: 12px;
-            }
-
-            .feature-card h4 {
-                font-size: 1.1rem;
-                margin-bottom: 8px;
-            }
-
-            .feature-card p {
-                font-size: 0.9rem;
-            }
-        }
-
-        /* 中等屏幕 */
-        @media (min-width: 481px) and (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            .header {
-                padding: 40px 0 35px;
-            }
-
-            .header h1 {
-                font-size: 2.5rem;
-                margin-bottom: 18px;
-            }
-
-            .header .subtitle {
-                font-size: 1.2rem;
-                letter-spacing: 1.5px;
-            }
-
-            .announcement-banner {
-                font-size: 1rem;
-                padding: 12px 18px;
-                margin: -20px auto 25px;
-            }
-
-            .product-section {
-                padding: 40px 25px;
-            }
-
-            .product-badge {
-                font-size: 1rem;
-                padding: 11px 20px;
-            }
-
-            .product-title {
-                font-size: 1.8rem;
-            }
-
-            .product-price {
-                gap: 10px;
-            }
-
-            .price-amount {
-                font-size: 3.5rem;
-            }
-
-            .price-prefix,
-            .price-suffix {
-                font-size: 1.1rem;
-            }
-
-            .product-period {
-                font-size: 1rem;
-            }
-
-            .product-note {
-                font-size: 0.9rem;
-            }
-
-            .product-period .qr-code {
-                width: 240px;
-                /* 中等屏幕尺寸 */
-                height: 240px;
-            }
-
-            .guarantee-section,
-            .purchase-section,
-            .video-section {
-                padding: 35px 25px;
-            }
-
-            .features {
-                padding: 0 25px 35px;
-            }
-
-            .guarantee-title,
-            .purchase-title,
-            .video-title {
-                font-size: 1.6rem;
-            }
-
-            .purchase-options {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .guarantee-list {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-
-            .features {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 20px;
-            }
-        }
-
-        /* 触摸优化 */
-        @media (max-width: 768px) {
-
-            .purchase-btn,
-            .video-btn {
-                -webkit-tap-highlight-color: transparent;
-                user-select: none;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-            }
-
-            .purchase-btn:active,
-            .video-btn:active {
-                transform: scale(0.98);
-            }
-
-            /* 优化滚动体验 */
-            body {
-                -webkit-overflow-scrolling: touch;
-            }
-        }
-
-        /* 新增：弹窗样式 */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-
-        .modal-overlay.visible {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: white;
-            padding: 30px 40px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-            max-width: 90%;
-            width: 450px;
-            transform: scale(0.95);
-            transition: transform 0.3s ease;
-        }
-
-        .modal-overlay.visible .modal-content {
-            transform: scale(1);
-        }
-
-        .modal-content .message {
-            color: #333;
-            font-size: 1.1rem;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .modal-content .timer-text {
-            color: #666;
-            font-size: 1rem;
-            margin-top: 20px;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat.Gpt Plus 等会员服务 | 文文AI</title>
+  <meta name="description" content="Chat.Gpt Plus 会员充值协助、自助购买指引与人工客服支持。服务网址 aivip.biz，联系方式 82765536。">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet">
+  <meta name="referrer" content="no-referrer">
+  <link rel="stylesheet" href="assets/professional.css">
 </head>
+<body class="clean-home">
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="文文AI 首页">
+      <span class="brand-mark">文</span>
+      <span>
+        <strong>文文AI</strong>
+        <small>Chat.Gpt Plus 等会员服务</small>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="主导航">
+      <a href="#service">服务项目</a>
+      <a href="#process">简易流程</a>
+      <a href="#faq">常见问题</a>
+      <a href="help.html"> GPT充值帮助</a>
+      <a href="gpt170.html">价格说明</a>
+    </nav>
+    <a class="nav-action" href="#" onclick="event.preventDefault(); alert('客服每日15小时在线，微信和 QQ 同号：82765536');">联系客服</a>
+  </header>
 
-<body>
-    <div class="container">
-        <header class="header">
-            <h1>🚀 Chat.Gpt Plus 代充</h1>
-            <div class="subtitle">专业 • 安全 • 保障<br>请牢记我们的网址：gptplus.plus<br> <a href="help#contact" target="_blank" rel="noopener noreferrer" style="text-decoration: none; color: #fff; font-weight: bold; background-color: rgba(255, 255, 255, 0.2); padding: 4px 10px; border-radius: 8px; margin-left: 8px; display: inline-block; vertical-align: middle; transition: background-color 0.2s ease;">点击加微信防失联</a></div>
-        </header>
-
-        <div class="announcement-banner">
-            <p>自助充值系统已恢复，请按卡密说明选择对应充值系统！</p>
-            <p>9月16号GPT新规,已无低价国家！<strong>现低价渠道，有极高封号风险（嘿卡、0元购等）</strong></p>
-            <a href="gpt170" target="_blank" rel="noopener noreferrer">点击查看价格说明和服务口碑</a>
+  <main>
+    <section class="hero-section">
+      <div class="hero-copy">
+        <p class="eyebrow">自助下单 · 15h在线客服 · 正规充值 · 靠谱售后</p>
+        <h1>AI会员充值服务</h1>
+        <p class="hero-lead">
+          提供 Gpt Plus、Pro,Grok,Claude等会员充值协助，自助下单，安全方便。下单前后，仔细阅读说明，提交前务必确认账号信息。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://fe.dtyuedan.cn/shop/gptplus" target="_blank" rel="noopener noreferrer nofollow">进入卡网下单</a>
+          <a class="btn btn-secondary" href="https://fe.dtyuedan.cn/order" target="_blank" rel="noopener noreferrer nofollow" data-order-query>查询订单</a>
         </div>
+        <dl class="hero-meta">
+          <div>
+            <dt>服务网址</dt>
+            <dd>aivip.biz</dd>
+          </div>
+          <div>
+            <dt>微信/QQ</dt>
+            <dd>82765536</dd>
+          </div>
+          <div>
+            <dt>在线时间</dt>
+            <dd>9:00-23:59</dd>
+          </div>
+        </dl>
+      </div>
 
-        <div class="main-content">
-            <div class="product-section">
-                <div class="product-badge">✨ 靠谱给力</div>
-                <h2 class="product-title">充值Gpt Plus 会员</h2>
-                <div class="product-price">
-                    <span class="price-prefix">现价</span>
-                    <div class="price-amount">¥180</div>
-                    <span class="price-suffix">一个月</span>
-                </div>
-                <p>现稳定渠道充值成本非常高，警惕低价非正规渠道！</p>
-                <a href="help" class="help-btn" target="_blank" rel="noopener noreferrer">📖打开使用帮助&联系方式</a>
-                <div class="product-period">
-                    <p>客服QQ:82765536【微信同号】</p>
-                    <p>微信防频繁，通过慢！急事请先加QQ！</p>
-                    <p>请加任一以防失联！备用QQ：13079809</p>
-                </div>
-            </div>
-
-            <div class="purchase-section">
-                <h3 class="purchase-title">💳 先买卡密再进代充系统</h3>
-                <div class="purchase-options">
-                    <a href="https://fe.dtyuedan.cn/shop/gptplus" class="purchase-btn secondary" target="_blank" rel="noopener noreferrer">
-                        <h3>🎫 卡密自助购买</h3>
-                        <p>若打不开，关闭外网</p>
-                    </a>
-                    <a href="5" class="purchase-btn primary" rel="noopener noreferrer">
-                        <h3>🤖 24小时代充系统</h3>
-                        <p>先买卡密，再进代充</p>
-                    </a>
-                </div>
-            </div>
-
-            <div class="guarantee-section">
-                <h3 class="guarantee-title">🛡️ 服务保障</h3>
-                <div class="guarantee-list">
-                    <div class="guarantee-item">
-                        <div class="guarantee-icon">🔒</div>
-                        <div class="guarantee-text">
-                            <h4>正规可靠</h4>
-                            <p>技术对接正规ios充值，稳定可靠</p>
-                            <p>不获取密码，安全保障</p>
-                        </div>
-                    </div>
-                    <div class="guarantee-item">
-                        <div class="guarantee-icon">💰</div>
-                        <div class="guarantee-text">
-                            <h4>强力保障！</h4>
-                            <p>因充值封号0%，其他封号也无理由按天退</p>
-                        </div>
-                    </div>
-                    <div class="guarantee-item">
-                        <div class="guarantee-icon">⚡</div>
-                        <div class="guarantee-text">
-                            <h4>快速到账</h4>
-                            <p>24小时自助充值，5分钟内开好</p>
-                        </div>
-                    </div>
-                    <div class="guarantee-item">
-                        <div class="guarantee-icon">🧾</div>
-                        <div class="guarantee-text">
-                            <h4>可开发票</h4>
-                            <p>要开发票（需要加点），如有需要请联系客服！</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="video-section" id="video">
-                <h3 class="video-title">自助充值流程</h3>
-                <div class="video-container">
-                    <video class="video-player" controls title="GPT Plus代充操作视频教程" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='24' fill='%236b7280'%3E视频教程%3C/text%3E%3C/svg%3E">
-                        <source src="https://cloud.video.taobao.com/vod/FbJyK4EKwB7btoRMw7lA98guu6U_p0BMQVdTUML7WWc.mp4" type="video/mp4">
-                        您的浏览器不支持视频播放
-                    </video>
-                </div>
-            </div>
-
-            <div class="features">
-                <div class="feature-card">
-                    <span class="feature-icon">⭐</span>
-                    <h4>信誉保证</h4>
-                    <p>多年经验，值得信赖</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">🎯</span>
-                    <h4>专业服务</h4>
-                    <p>专注Gpt Plus代充服务</p>
-                </div>
-                <div class="feature-card">
-                    <span class="feature-icon">💎</span>
-                    <h4>品质保障</h4>
-                    <p>高质量服务，用户好评</p>
-                </div>
-            </div>
+      <aside class="order-card" id="service">
+        <div class="card-label">热门服务</div>
+        <h2>Chat.Gpt Plus 会员充值</h2>
+        <div class="price-row">
+          <span>现价</span>
+          <strong>¥180</strong>
+          <span>一个月</span>
         </div>
+        <p>价格包含20美金PLUS费用、支付卡、ID成本、系统维护、服务器与售后服务成本等。<br>目前低价渠道，有较大风险（如卡Bug、嘿卡等），请谨慎选择。</p>
+        <div class="order-actions">
+          <a class="btn btn-primary full step-button" href="https://fe.dtyuedan.cn/shop/gptplus" target="_blank" rel="noopener noreferrer nofollow"><span>第一步</span>下单PLUS自助卡密</a>
+          <a class="btn btn-secondary full step-button" href="5.html"><span>第二步</span>已购卡密，进入充值</a>
+        </div>
+      </aside>
+    </section>
+
+    <section class="notice-row" aria-label="重要提示">
+      <article>
+        <h2>下单前确认</h2>
+        <p>下单前请认真阅读对应商品说明，下单后请按弹出的使用说明使用。</p>
+      </article>
+      <article>
+        <h2>政策与价格</h2>
+        <p>受平台调整和渠道成本影响，服务价格可能会有波动。<br>目前低价渠道，有较大风险（如卡Bug、嘿卡等），请谨慎选择。</p>
+      </article>
+      <article>
+        <h2>其他订阅服务</h2>
+        <p>除 Chat.Gpt Plus 外，也可下单 Chat.Gpt Pro、Grok、Claude、Gemini 等订阅服务，如有疑问，联系客服。</p>
+        <a href="https://fe.dtyuedan.cn/shop/gptplus" target="_blank" rel="noopener noreferrer nofollow">点击卡网下单</a>
+      </article>
+    </section>
+
+    <section class="process-section" id="process">
+      <div class="section-head">
+        <p class="eyebrow">Service Flow</p>
+        <h2>自助流程</h2>
+      </div>
+      <div class="steps-grid">
+        <article>
+          <span>01</span>
+          <h3>购买卡密</h3>
+          <p>进入自助购买页面，按商品说明完成付款，并提取使用说明和卡密。</p>
+        </article>
+        <article>
+          <span>02</span>
+          <h3>验证卡密</h3>
+          <p>下单前后，请认真阅读商品描述和使用说明，避免操作失误。</p>
+        </article>
+        <article>
+          <span>03</span>
+          <h3>提交信息</h3>
+          <p>登录对应平台账号，按页面提示复制临时授权信息或 ID 等，请核对账号后再做提交。</p>
+        </article>
+        <article>
+          <span>04</span>
+          <h3>快速到账</h3>
+          <p>如有异常情况联系客服，卡密激活后禁用其他卡密覆盖。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="split-section">
+      <div>
+        <div class="section-head">
+          <p class="eyebrow">Support</p>
+          <h2>服务保障</h2>
+        </div>
+        <div class="support-list">
+          <article>
+            <h3>安全正规</h3>
+            <p>不索取账号密码，正规订阅，不卡Bug，资金干净。</p>
+          </article>
+          <article>
+            <h3>售后靠谱</h3>
+            <p>如遇异常，可联系人工客服核对订单并沟通处理方案。</p>
+          </article>
+          <article>
+            <h3>支持开票</h3>
+            <p>如需发票或对公打款，请在下单前联系人工客服确认。微信/QQ：82765536</p>
+          </article>
+        </div>
+      </div>
+      <aside class="contact-panel">
+        <h2>人工客服</h2>
+        <p>购买问题、卡密使用问题、到账异常或其他订阅服务，随时联系客服，每日15小时在线。</p>
+        <div class="wechat-box">
+          <span>联系方式</span>
+          <strong>微信/QQ：82765536</strong>
+        </div>
+        <a class="btn btn-primary full" href="#" data-copy-contact="82765536">复制联系方式</a>
+      </aside>
+    </section>
+
+    <section class="video-grid" id="video">
+      <article>
+        <h2>自助充值Plus</h2>
+        <video controls title="Chat.Gpt Plus 自助充值操作视频" referrerpolicy="no-referrer" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='24' fill='%236b7280'%3E视频教程%3C/text%3E%3C/svg%3E">
+          <source src="https://cloud.video.taobao.com/vod/FbJyK4EKwB7btoRMw7lA98guu6U_p0BMQVdTUML7WWc.mp4" type="video/mp4">
+        </video>
+      </article>
+      <article>
+        <h2>人工协助流程</h2>
+        <video controls title="人工协助流程操作视频" referrerpolicy="no-referrer" poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Crect width='800' height='450' fill='%23f3f4f6'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' font-family='Inter' font-size='24' fill='%236b7280'%3E视频教程%3C/text%3E%3C/svg%3E">
+          <source src="https://cloud.video.taobao.com/vod/_Zd1yb1LTLKlWbXtnfvvm9AOchXv3KpqyvNXuIQI2ng.mp4" type="video/mp4">
+        </video>
+      </article>
+    </section>
+
+    <section class="faq-section" id="faq">
+      <div class="section-head">
+        <p class="eyebrow">FAQ</p>
+        <h2>常见问题</h2>
+      </div>
+      <div class="faq-grid">
+        <article>
+          <h3>为什么价格会变化？</h3>
+          <p>平台调整、支付渠道和配套资源所需成本会变化，服务价格会根据综合成本调整。</p>
+        </article>
+        <article>
+          <h3>是否需要提供密码？</h3>
+          <p>一般不需要。页面只会要求临时授权信息或 ID 等，请勿向任何人提供账号密码。</p>
+        </article>
+        <article>
+          <h3>充值失败怎么办？</h3>
+          <p>禁用其他卡密覆盖，提供订单号信息，联系客服处理。</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <div class="order-query-modal" data-order-query-modal hidden role="dialog" aria-modal="true" aria-labelledby="orderQueryTitle">
+    <div class="order-query-dialog">
+      <h2 id="orderQueryTitle">查询订单</h2>
+      <p>忘记卡密或使用说明？使用 JR 开头的订单号或联系方式，可通过此处查询订单。</p>
+      <div class="order-query-actions">
+        <button type="button" data-order-cancel>取消</button>
+        <button class="order-query-confirm" type="button" data-order-confirm>确认进入</button>
+      </div>
     </div>
+  </div>
 
-    <div id="custom-alert-modal" class="modal-overlay">
-        <div class="modal-content">
-            <p class="message">因卡密紧缺，目前几个系统并用，请按商品说明进入对应的充值网站！客服QQ：82765536【微信同号】，9:00-23:59都在线！</p>
-            <p class="timer-text">将在 <strong id="modal-timer">10</strong> 秒后进代充系统...</p>
-        </div>
-    </div>
+  <script>
+    (() => {
+      const modal = document.querySelector("[data-order-query-modal]");
+      const triggers = document.querySelectorAll("[data-order-query]");
+      if (!modal || !triggers.length) return;
 
-    <script>
-        // 等待DOM完全加载后执行脚本
-        document.addEventListener('DOMContentLoaded', function() {
-            // 通过链接地址精确选择“24小时代充系统”按钮
-            const rechargeLink = document.querySelector('a[href="5"]');
-            // 获取弹窗和计时器元素
-            const modal = document.getElementById('custom-alert-modal');
-            const timerSpan = document.getElementById('modal-timer');
-            // 确保按钮存在，以防万一
-            if (rechargeLink) {
-                // 为按钮添加点击事件监听器
-                rechargeLink.addEventListener('click', function(event) {
-                    // 1. 阻止链接的默认跳转行为
-                    event.preventDefault();
-                    const destinationUrl = this.href;
-                    // 2. 显示弹窗
-                    if (modal) {
-                        modal.classList.add('visible');
-                    }
-                    let timeLeft = 10; // 倒计时10秒
-                    if (timerSpan) {
-                        timerSpan.textContent = timeLeft;
-                    }
-                    // 3. 启动计时器，每秒更新显示的数字
-                    const countdownInterval = setInterval(() => {
-                        timeLeft--;
-                        if (timerSpan) {
-                            timerSpan.textContent = timeLeft;
-                        }
-                        // 倒计时结束后清除计时器
-                        if (timeLeft <= 0) {
-                            clearInterval(countdownInterval);
-                        }
-                    }, 1000);
-                    // 4. 设置一个10秒后执行的延时操作，用于跳转
-                    setTimeout(() => {
-                        window.location.href = destinationUrl;
-                    }, 10000); // 10000毫秒 = 10秒
-                });
-            }
+      const cancelButton = modal.querySelector("[data-order-cancel]");
+      const confirmButton = modal.querySelector("[data-order-confirm]");
+      let targetUrl = "";
+
+      const closeModal = () => {
+        modal.hidden = true;
+        targetUrl = "";
+      };
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", (event) => {
+          event.preventDefault();
+          targetUrl = trigger.href;
+          modal.hidden = false;
+          confirmButton.focus();
         });
-    </script>
+      });
 
-    <footer class="site-footer" style="text-align: center; padding: 15px 15px; margin-top: 20px; color: rgba(255, 255, 255, 0.7); font-size: 20px;">
-        <p style="margin: 0;">© 2024 . 本站仅提供Chat.Gpt Plus 充值服务.与 Open.AI公司无关联关系</p>
-    </footer>
+      cancelButton.addEventListener("click", closeModal);
+
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) closeModal();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !modal.hidden) closeModal();
+      });
+
+      confirmButton.addEventListener("click", () => {
+        const url = targetUrl;
+        closeModal();
+        if (url) window.open(url, "_blank", "noopener,noreferrer");
+      });
+    })();
+
+    (() => {
+      const copyButtons = document.querySelectorAll("[data-copy-contact]");
+      if (!copyButtons.length) return;
+
+      const fallbackCopy = (text) => {
+        const field = document.createElement("textarea");
+        field.value = text;
+        field.setAttribute("readonly", "");
+        field.style.position = "fixed";
+        field.style.opacity = "0";
+        document.body.appendChild(field);
+        field.select();
+        document.execCommand("copy");
+        field.remove();
+      };
+
+      copyButtons.forEach((button) => {
+        button.addEventListener("click", async (event) => {
+          event.preventDefault();
+          const text = button.dataset.copyContact || "82765536";
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(text);
+            } else {
+              fallbackCopy(text);
+            }
+            alert("复制成功");
+          } catch (error) {
+            fallbackCopy(text);
+            alert("复制成功");
+          }
+        });
+      });
+    })();
+  </script>
+
+  <footer class="clean-footer">
+    <p>© 2024 文文AI. 本站提供会员充值协助服务，与 Open.AI 公司无关联关系。</p>
+  </footer>
 </body>
-
-
 </html>
