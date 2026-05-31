@@ -207,6 +207,68 @@
       margin-top: 8px !important;
     }
 
+    .policy-floating-chat {
+      appearance: none;
+      position: fixed;
+      top: min(68vh, 600px);
+      left: max(18px, calc((100vw - 1080px) / 2 + 126px));
+      z-index: 900;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      max-width: min(280px, calc(100vw - 36px));
+      margin: 0;
+      padding: 10px 12px;
+      border: 1px solid #d8e3f0;
+      border-radius: 8px;
+      background: rgba(248, 251, 255, 0.94);
+      color: #334155;
+      font: inherit;
+      text-align: left;
+      backdrop-filter: blur(12px);
+      box-shadow: inset 3px 0 0 #cfe0f8;
+      cursor: pointer;
+      transition: border-color 0.16s ease, background-color 0.16s ease, transform 0.16s ease, box-shadow 0.16s ease;
+    }
+
+    .policy-floating-chat::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      animation: policyHintPulse 2.2s ease-in-out infinite;
+    }
+
+    .policy-floating-chat span {
+      display: block;
+      font-size: 0.86rem;
+      font-weight: 820;
+      line-height: 1.35;
+      white-space: nowrap;
+    }
+
+    .policy-floating-chat:hover {
+      border-color: #a9bad4;
+      background: #f8fbff;
+      box-shadow: inset 3px 0 0 #a8c3ef, 0 12px 26px rgba(15, 23, 42, 0.08);
+      transform: translateY(-1px);
+    }
+
+    @keyframes policyHintPulse {
+      0%,
+      100% {
+        box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+      }
+
+      50% {
+        box-shadow: 0 0 0 7px rgba(37, 99, 235, 0.04);
+      }
+    }
+
     .policy-gallery {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -339,6 +401,10 @@
       .policy-image-link:hover .notice-image {
         transform: none;
       }
+
+      .policy-floating-chat::before {
+        animation: none;
+      }
     }
 
 	    @media (max-width: 900px) {
@@ -359,6 +425,10 @@
 
       .policy-section > div:first-child {
         position: static;
+      }
+
+      .policy-floating-chat {
+        display: none;
       }
 
       .policy-image-link,
@@ -631,6 +701,9 @@
             <div>
                 <h2>9.16官网新规</h2>
                 <p>官方已经统一价格和打击漏洞刷会员等行为，不要再对任何低价渠道有侥幸心理！</p>
+                <button class="policy-floating-chat" type="button" data-policy-lightbox-trigger data-policy-lightbox-src="help/th.png" data-policy-lightbox-alt="聊天反馈大图">
+                    <span>点击图片可查看聊天大图</span>
+                </button>
             </div>
             <div class="policy-gallery">
                 <a class="policy-image-link" href="help/gpt16.png"><img src="help/gpt16.png" alt="公告图片" class="notice-image" loading="lazy" decoding="async"></a>
@@ -694,7 +767,7 @@
 
     <script>
       (() => {
-        const links = document.querySelectorAll(".policy-image-link");
+        const links = document.querySelectorAll(".policy-image-link, [data-policy-lightbox-trigger]");
         const lightbox = document.querySelector("[data-policy-lightbox]");
         const image = document.querySelector("[data-policy-lightbox-image]");
         const closeButton = document.querySelector("[data-policy-lightbox-close]");
@@ -711,8 +784,8 @@
           link.addEventListener("click", (event) => {
             event.preventDefault();
             const preview = link.querySelector("img");
-            image.src = link.href;
-            image.alt = preview ? preview.alt : "价格说明图片";
+            image.src = link.dataset.policyLightboxSrc || link.href;
+            image.alt = link.dataset.policyLightboxAlt || (preview ? preview.alt : "价格说明图片");
             lightbox.hidden = false;
             document.body.classList.add("policy-lightbox-open");
             closeButton.focus();
