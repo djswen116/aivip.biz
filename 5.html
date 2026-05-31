@@ -70,20 +70,21 @@
 
     header{
       text-align:center;
-      padding:6px 8px 4px;
+      padding:0 8px;
     }
 
     h1{
-      margin:6px 0 8px;
+      margin:0 0 10px;
       font-size:26px;
       font-weight:700;
     }
 
     .sub{
-      margin:0 0 14px;
+      margin:0 0 6px;
       font-size:14px;
       color:var(--text-2);
       line-height:1.7;
+      text-align:center;
     }
 
     .section{
@@ -131,8 +132,8 @@
     }
 
     .contact{
-      margin-top:12px;
-      padding:12px 14px;
+      margin:4px 16px 14px;
+      padding:10px 12px;
       border-radius:var(--radius-sm);
       border:1px dashed rgba(0,0,0,.14);
       background:rgba(0,0,0,.02);
@@ -148,8 +149,8 @@
     }
 
     .stock-tip{
-      margin-top:10px;
-      padding:10px 12px;
+      margin-top:8px;
+      padding:9px 10px;
       border-radius:12px;
       background:var(--focus-bg);
       border:1px solid var(--focus-border);
@@ -163,7 +164,7 @@
     .system-list{
       list-style:none;
       padding:0;
-      margin:16px 0 0;
+      margin:8px 0 0;
       display:flex;
       flex-direction:column;
       gap:14px;
@@ -177,7 +178,7 @@
     }
 
     .system-header{
-      padding:16px 16px 12px;
+      padding:14px 16px 12px;
       border-bottom:1px solid var(--border);
       background:linear-gradient(180deg, rgba(0,122,255,.03) 0%, rgba(255,255,255,0) 100%);
     }
@@ -191,7 +192,7 @@
     }
 
     .system-actions{
-      padding:14px 16px 10px;
+      padding:10px 16px 12px;
       display:flex;
       flex-direction:column;
       gap:10px;
@@ -201,6 +202,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
+      gap:10px;
       width:100%;
       min-height:52px;
       padding:14px 16px;
@@ -227,7 +229,7 @@
     }
 
     .steps-wrap{
-      padding:6px 16px 16px;
+      padding:0 16px 16px;
     }
 
     .content-block{
@@ -372,48 +374,137 @@
     }
   </style>
   <link rel="stylesheet" href="assets/professional.css?v=subnav-buy-20260531">
+  <style>
+    .system-choice-page header{
+      padding:0 0 2px !important;
+    }
+
+    .system-choice-page h1{
+      line-height:1.2;
+      margin-bottom:6px !important;
+    }
+
+    .system-choice-page .system-list{
+      margin-top:4px !important;
+    }
+
+    .system-choice-page .system-card{
+      margin-top:0 !important;
+      border-color:rgba(37,99,235,.16) !important;
+      box-shadow:0 10px 26px rgba(15,23,42,.05);
+    }
+
+    .system-choice-page .system-header{
+      padding:14px 16px 6px !important;
+      border-bottom:0 !important;
+      background:linear-gradient(180deg, rgba(37,99,235,.055) 0%, rgba(255,255,255,0) 100%) !important;
+    }
+
+    .system-choice-page .system-instructions{
+      list-style:none;
+      max-width:520px;
+      margin:0 auto;
+      padding:0;
+      display:grid;
+      gap:6px;
+    }
+
+    .system-choice-page .system-instructions li{
+      display:flex;
+      align-items:flex-start;
+      justify-content:flex-start;
+      gap:8px;
+      color:var(--muted) !important;
+      font-size:14px;
+      line-height:1.55;
+      text-align:left;
+    }
+
+    .system-choice-page .instruction-index{
+      display:inline-grid;
+      place-items:center;
+      width:22px;
+      height:22px;
+      margin-top:1px;
+      border-radius:999px;
+      background:#eef5ff;
+      color:var(--brand);
+      font-size:12px;
+      font-weight:850;
+      line-height:1;
+      flex:0 0 auto;
+    }
+
+    .system-choice-page .instruction-text{
+      min-width:0;
+      padding-top:1px;
+    }
+
+    .system-choice-page .system-actions{
+      padding:8px 14px 12px !important;
+    }
+
+    .system-choice-page .system-link{
+      gap:10px;
+      min-height:48px !important;
+      border-radius:12px !important;
+      font-size:1rem !important;
+      letter-spacing:0 !important;
+    }
+
+    .system-choice-page .contact{
+      margin-top:10px !important;
+      background:#fff !important;
+      border-style:solid !important;
+    }
+
+    @media (max-width:420px){
+      .system-choice-page .system-header{
+        padding:12px 12px 6px !important;
+      }
+
+      .system-choice-page .system-instructions li{
+        gap:7px;
+        font-size:13.5px;
+        line-height:1.55;
+      }
+
+      .system-choice-page .instruction-index{
+        width:21px;
+        height:21px;
+        font-size:11.5px;
+      }
+
+      .system-choice-page .system-actions{
+        padding:8px 12px 12px !important;
+      }
+    }
+  </style>
 </head>
 
-<body class="entry-page">
+<body class="entry-page system-choice-page">
 <div class="subpage-topbar"><a class="subpage-brand" href="index.html">文文 Gpt</a><nav><a href="index.html">首页</a><a href="https://fe.dtyuedan.cn/shop/gptplus" target="_blank" rel="noopener noreferrer nofollow">商品购买</a><a href="gpt170.html">价格说明</a><a href="index.html#contact" data-contact-qr-open>联系客服</a></nav></div>
 
   <main class="container">
 
     <header>
       <h1>请选择充值系统</h1>
-      <p class="sub">请选择对应充值系统，并按步骤完成卡密验证与充值提交。</p>
     </header>
-
-    <section class="section">
-      <p class="section-desc">
-        如未购买卡密，请点击进入购买：
-      </p>
-
-      <div class="purchase-wrap">
-        <a href="https://fe.dtyuedan.cn/shop/gptplus" target="_blank" rel="noopener noreferrer" class="purchase-link">
-          点击这里购买卡密
-        </a>
-      </div>
-
-      <p class="section-desc" style="margin-top:10px;">
-        请按所购卡密选择系统，验证卡密不通过多半是选错系统
-      </p>
-    </section>
-
-    <div class="contact">
-      客服 QQ（微信）：<strong>82765536</strong>（在线时间：9:00-23:59）
-      <div class="stock-tip">
-        如果充值提示无可用库存，可等会再试，或联系客服协助处理充值！
-      </div>
-    </div>
 
     <ul class="system-list">
       <li class="system-card">
 
         <div class="system-header">
-          <p class="system-note">
-            点击进入后按“使用步骤”操作（需在当前浏览器已登录 GPT）。
-          </p>
+          <ol class="system-instructions">
+            <li>
+              <span class="instruction-index">1</span>
+              <span class="instruction-text">请选择对应充值系统，并按步骤完成卡密验证与充值提交。</span>
+            </li>
+            <li>
+              <span class="instruction-index">2</span>
+              <span class="instruction-text">点击进入后按“使用步骤”操作（需在当前浏览器已登录 GPT）。</span>
+            </li>
+          </ol>
         </div>
 
         <div class="system-actions">
@@ -424,6 +515,13 @@
           <a href="#" class="system-link" data-disabled-system-message="系统2暂未启用，请选择系统1">
             进入充值系统2
           </a>
+        </div>
+
+        <div class="contact">
+          客服 QQ（微信）：<strong>82765536</strong>（在线时间：9:00-23:59）
+          <div class="stock-tip">
+            如果充值提示无可用库存，可等会再试，或联系客服协助处理充值！
+          </div>
         </div>
 
         <div class="steps-wrap">
