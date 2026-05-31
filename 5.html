@@ -421,7 +421,7 @@
             进入充值系统1
           </a>
 
-          <a href="https://czgpt.plus/" class="system-link" target="_blank" rel="noopener noreferrer">
+          <a href="#" class="system-link" data-disabled-system-message="系统2暂未启用，请选择系统1">
             进入充值系统2
           </a>
         </div>
@@ -463,5 +463,13 @@
   </main>
 
   <script src="assets/contact-modal.js?v=20260531-contact-modal-v2"></script>
+  <script>
+    document.querySelectorAll("[data-disabled-system-message]").forEach((link) => {
+      link.addEventListener("click", (event) => {
+        event.preventDefault();
+        alert(link.dataset.disabledSystemMessage || "系统暂未启用，请选择其他系统");
+      });
+    });
+  </script>
 </body>
 </html>
