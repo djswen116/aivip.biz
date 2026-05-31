@@ -683,6 +683,19 @@ strong {
   border-radius: var(--radius);
 }
 
+.video-tip {
+  margin: 12px 0 0 !important;
+  padding: 10px 12px;
+  border: 1px solid rgba(36, 87, 214, 0.18);
+  border-radius: var(--radius);
+  background: #f4f7ff;
+  color: #315174 !important;
+  font-size: 0.92rem;
+  font-weight: 720;
+  line-height: 1.55;
+  text-align: center;
+}
+
 .clean-footer {
   padding: 18px 0 34px;
   color: var(--soft);
@@ -1617,6 +1630,14 @@ body:not(.clean-home) #backToTopBtn {
   mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.72), transparent 58%);
 }
 
+.clean-home #service,
+.clean-home #process,
+.clean-home #support,
+.clean-home #faq,
+.clean-home #video {
+  scroll-margin-top: 92px;
+}
+
 .site-header,
 .clean-home main,
 .clean-footer {
@@ -1926,6 +1947,16 @@ body:not(.clean-home) #backToTopBtn {
   }
 }
 
+@media (min-width: 641px) and (max-width: 960px) {
+  .clean-home #service,
+  .clean-home #process,
+  .clean-home #support,
+  .clean-home #faq,
+  .clean-home #video {
+    scroll-margin-top: 150px;
+  }
+}
+
 @media (max-width: 640px) {
   .site-header {
     position: fixed;
@@ -1944,11 +1975,11 @@ body:not(.clean-home) #backToTopBtn {
     padding-top: 180px;
   }
 
-  #service,
-  #process,
-  #support,
-  #faq,
-  #video {
+  .clean-home #service,
+  .clean-home #process,
+  .clean-home #support,
+  .clean-home #faq,
+  .clean-home #video {
     scroll-margin-top: 190px;
   }
 
