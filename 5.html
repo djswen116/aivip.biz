@@ -9,8 +9,8 @@
 
   <style>
     :root{
-      --apple-blue:#007aff;
-      --apple-blue-active:#0056b3;
+      --apple-blue:#2457d6;
+      --apple-blue-active:#173f9b;
 
       --bg:#f5f5f7;
       --card:#ffffff;
@@ -26,14 +26,14 @@
       --radius-sm: 14px;
       --radius-xs: 10px;
 
-      --focus-bg:#f8fafc;
+      --focus-bg:#fbfdff;
       --focus-bg-2:#ffffff;
-      --focus-border:#d8e1ed;
+      --focus-border:#dbe6f4;
       --focus-text:#334155;
 
-      --danger-bg:#fef2f2;
-      --danger-border:#fecaca;
-      --danger-text:#b91c1c;
+      --danger-bg:#ffffff;
+      --danger-border:#e6c6c3;
+      --danger-text:#8f2f2a;
     }
 
     *{
@@ -455,13 +455,13 @@
     }
 
     .bill-query-warning{
-      max-width:640px;
+      max-width:560px;
       margin:12px auto 0;
       padding:10px 12px;
       border-radius:10px;
       background:var(--danger-bg);
       border:1px solid var(--danger-border);
-      border-left:4px solid var(--danger-text);
+      border-left:3px solid #bf6b64;
       color:var(--danger-text);
       font-size:13px;
       font-weight:850;
@@ -645,23 +645,40 @@
 
     .system-choice-page .contact{
       margin-top:10px !important;
-      background:#fff !important;
+      display:grid;
+      gap:8px;
+      background:#fbfdff !important;
+      border-color:#dbe6f4 !important;
       border-style:solid !important;
+    }
+
+    .system-choice-page .contact-line{
+      display:block;
+      text-align:center;
+      color:var(--text-2);
+      line-height:1.7;
+    }
+
+    .system-choice-page .contact-line strong{
+      margin:0 4px;
     }
 
     .system-choice-page .stock-tip,
     .system-choice-page .focus-block,
     .system-choice-page .focus-text{
-      background:#f8fafc !important;
-      border-color:#d8e1ed !important;
-      border-left-color:#8aa0bd !important;
+      background:#fbfdff !important;
+      border-color:#dbe6f4 !important;
+      border-left-color:#9db2cf !important;
       color:#334155 !important;
     }
 
     body.system-choice-page .stock-tip,
-    body.system-choice-page .focus-block,
+    body.system-choice-page .focus-block{
+      border-left:3px solid #9db2cf !important;
+    }
+
     body.system-choice-page .focus-text{
-      border-left-color:#8aa0bd !important;
+      border-left:1px solid #dbe6f4 !important;
     }
 
     .system-choice-page .focus-text{
@@ -679,33 +696,111 @@
     .system-choice-page .focus-warning,
     .system-choice-page .focus-hint,
     .system-choice-page .bill-query-warning{
-      background:#fef2f2 !important;
-      border-color:#fecaca !important;
-      border-left-color:#dc2626 !important;
-      color:#991b1b !important;
+      background:#ffffff !important;
+      border-color:#e6c6c3 !important;
+      border-left-color:#bf6b64 !important;
+      color:#8f2f2a !important;
     }
 
     body.system-choice-page .focus-warning,
     body.system-choice-page .focus-hint,
     body.system-choice-page .bill-query-warning{
-      border-left-color:#dc2626 !important;
+      border-left:3px solid #bf6b64 !important;
     }
 
     .system-choice-page .bill-query-warning{
       text-align:center !important;
     }
 
+    .system-choice-page .contact .stock-tip{
+      margin:0 !important;
+      background:#ffffff !important;
+      border-color:#dbe6f4 !important;
+      border-left-color:#9db2cf !important;
+    }
+
+    .system-choice-page .focus-warning{
+      text-align:center !important;
+    }
+
+    .system-choice-page .contact .focus-warning{
+      margin:0 !important;
+      padding:10px 12px;
+      border-radius:12px;
+      background:#fff7f6 !important;
+      border-color:#e6c6c3 !important;
+      border-left-color:#bf6b64 !important;
+      color:#8f2f2a !important;
+      font-size:13px;
+      line-height:1.7;
+      text-align:left !important;
+    }
+
+    .system-choice-page .focus-warning strong{
+      display:block;
+      max-width:64ch;
+      margin:0 auto;
+    }
+
+    .system-choice-page .contact .focus-warning strong{
+      margin:0;
+      max-width:none;
+    }
+
+    .system-choice-page .stock-tip,
+    .system-choice-page .steps-title,
+    .system-choice-page .hint-title,
+    .system-choice-page .focus-text,
+    .system-choice-page .focus-text p,
+    .system-choice-page .focus-hint p,
+    .system-choice-page .focus-mono{
+      text-align:left !important;
+    }
+
     body.system-choice-page .focus-warning strong{
-      color:#991b1b !important;
+      color:#8f2f2a !important;
+    }
+
+    .system-choice-page .focus-hint{
+      padding:0 !important;
+      overflow:hidden;
+      background:#fffefe !important;
     }
 
     .system-choice-page .focus-hint .hint-title{
-      color:#b91c1c !important;
+      display:flex !important;
+      align-items:center;
+      gap:8px;
+      width:100%;
+      min-height:40px;
+      margin:0 !important;
+      padding:10px 14px;
+      border-radius:0;
+      background:#fff7f6;
+      border:0;
+      border-bottom:1px solid #e6c6c3;
+      color:#8f2f2a !important;
+      font-size:14px;
+      font-weight:900;
+      line-height:1.4;
+    }
+
+    .system-choice-page .focus-hint .hint-title::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:999px;
+      background:#bf6b64;
+      box-shadow:0 0 0 4px rgba(191,107,100,.14);
+      flex:0 0 auto;
     }
 
     .system-choice-page .focus-mono{
-      background:#fff7f7 !important;
-      border-color:#fecaca !important;
+      margin:0 !important;
+      border:0 !important;
+      border-top:1px solid rgba(230,198,195,.42) !important;
+      border-radius:0 !important;
+      background:#ffffff !important;
       color:#334155 !important;
     }
 
@@ -746,6 +841,40 @@
         min-height:38px !important;
         padding:0 10px !important;
         font-size:.84rem !important;
+      }
+
+      body.system-choice-page > .container,
+      body.system-choice-page main.container{
+        width:calc(100% - 24px) !important;
+        max-width:calc(100% - 24px) !important;
+        margin-left:auto !important;
+        margin-right:auto !important;
+      }
+
+      .system-choice-page .system-card,
+      .system-choice-page .contact,
+      .system-choice-page .steps-wrap,
+      .system-choice-page .content-block,
+      .system-choice-page .hint,
+      .system-choice-page .focus-warning,
+      .system-choice-page .bill-query-warning,
+      .system-choice-page .focus-text,
+      .system-choice-page .focus-mono{
+        max-width:100% !important;
+      }
+
+      .system-choice-page .contact{
+        margin-left:0 !important;
+        margin-right:0 !important;
+      }
+
+      .system-choice-page .focus-warning strong,
+      .system-choice-page .bill-query-warning,
+      .system-choice-page .focus-text,
+      .system-choice-page .focus-text p,
+      .system-choice-page .focus-mono{
+        overflow-wrap:anywhere !important;
+        word-break:break-word !important;
       }
 
       .bill-query-warning span{
@@ -823,17 +952,16 @@
         </div>
 
         <div class="contact">
-          客服 QQ（微信）：<strong>82765536</strong>（在线时间：9:00-23:59）
-          <div class="stock-tip">
+          <div class="contact-line">客服 QQ（微信）：<strong>82765536</strong>（在线时间：9:00-23:59）</div>
+          <div class="stock-tip" data-channel-tip>
             如果充值提示无可用库存，可等会再试，或联系客服协助处理充值！
           </div>
-        </div>
-
-        <div class="steps-wrap">
           <p class="focus-warning">
             <strong>（注：禁止同时用多张卡密充同一个账号，会覆盖时间而非叠加月份，无法找GPT退款！）</strong>
           </p>
+        </div>
 
+        <div class="steps-wrap">
           <div class="content-block focus-block">
             <div class="steps-title">使用步骤</div>
 
@@ -878,7 +1006,8 @@
         enabled: true,
         disabledMessage: "系统1暂未启用，请选择系统2",
         entryMessage: "",
-        entryWarning: ""
+        entryWarning: "",
+        tip: "如果充值提示无可用库存，可等会再试，或联系客服协助处理充值！"
       },
       "2": {
         label: "充值系统2",
@@ -886,7 +1015,8 @@
         enabled: true,
         disabledMessage: "系统2暂未启用，请选择系统1",
         entryMessage: "验证卡密之后获取session数据，提交使用后，耐心等待 5~10 分钟充值完成",
-        entryWarning: "充值成功前禁止退出账号登录或者拉账单，否则会导致session 过期，充值失败。"
+        entryWarning: "充值成功前禁止退出账号登录或者拉账单，否则会导致session 过期，充值失败。",
+        tip: "充值系统2需等待 5~10 分钟充值完成，在提交Session后可用卡密查询进度。"
       }
     };
 
@@ -895,6 +1025,7 @@
       const entryLink = document.querySelector("[data-channel-entry]");
       const entryLabel = document.querySelector("[data-channel-entry-label]");
       const currentLabel = document.querySelector("[data-channel-current]");
+      const channelTip = document.querySelector("[data-channel-tip]");
 
       if (!entryLink || !entryLabel || !currentLabel) {
         return;
@@ -905,6 +1036,9 @@
       entryLink.dataset.disabledSystemMessage = channel.disabledMessage;
       entryLabel.textContent = `进入${channel.label}`;
       currentLabel.textContent = `当前选择：${channel.label}`;
+      if (channelTip) {
+        channelTip.textContent = channel.tip || "";
+      }
 
       if (channel.entryMessage) {
         entryLink.dataset.entryMessage = channel.entryMessage;
