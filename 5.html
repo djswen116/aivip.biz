@@ -228,6 +228,100 @@
       transform:scale(.98);
     }
 
+    .system-link[data-system-enabled="false"]{
+      background:#8e8e93;
+      box-shadow:none;
+      cursor:not-allowed;
+    }
+
+    .system-link[data-system-enabled="false"]:hover,
+    .system-link[data-system-enabled="false"]:active{
+      background:#8e8e93;
+      transform:none;
+    }
+
+    .system-status{
+      display:inline-flex;
+      align-items:center;
+      min-height:22px;
+      padding:2px 8px;
+      border-radius:999px;
+      background:rgba(255,255,255,.22);
+      color:#fff;
+      font-size:12px;
+      font-weight:800;
+      line-height:1.4;
+      white-space:nowrap;
+    }
+
+    .system-link[data-system-enabled="true"] .system-status{
+      display:none;
+    }
+
+    .entry-countdown-overlay{
+      position:fixed;
+      inset:0;
+      z-index:3000;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+      background:rgba(15,23,42,.46);
+      backdrop-filter:blur(12px);
+    }
+
+    .entry-countdown-dialog{
+      width:min(360px, 100%);
+      padding:22px;
+      border-radius:18px;
+      background:#fff;
+      border:1px solid rgba(0,0,0,.08);
+      box-shadow:0 24px 60px rgba(0,0,0,.22);
+      text-align:center;
+    }
+
+    .entry-countdown-title{
+      font-size:18px;
+      font-weight:850;
+      color:var(--text);
+    }
+
+    .entry-countdown-message{
+      margin:10px 0 16px;
+      color:var(--text-2);
+      font-size:14px;
+      line-height:1.7;
+    }
+
+    .entry-countdown-number{
+      display:inline-flex;
+      align-items:baseline;
+      justify-content:center;
+      gap:4px;
+      min-width:96px;
+      padding:10px 18px;
+      border-radius:16px;
+      background:var(--apple-blue);
+      color:#fff;
+      font-weight:900;
+    }
+
+    .entry-countdown-number span{
+      font-size:42px;
+      line-height:1;
+    }
+
+    .entry-countdown-number small{
+      font-size:14px;
+      font-weight:850;
+    }
+
+    .entry-countdown-note{
+      margin:12px 0 0;
+      color:var(--text-3);
+      font-size:13px;
+    }
+
     .steps-wrap{
       padding:0 16px 16px;
     }
@@ -458,6 +552,46 @@
       border-style:solid !important;
     }
 
+    @media (max-width:640px){
+      body.system-choice-page{
+        padding-top:92px !important;
+      }
+
+      body.system-choice-page > .subpage-topbar{
+        display:flex !important;
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:8px !important;
+        padding:10px 12px !important;
+        overflow:hidden !important;
+      }
+
+      body.system-choice-page > .subpage-topbar .subpage-brand{
+        width:auto !important;
+        flex:0 0 auto !important;
+        min-height:38px !important;
+        white-space:nowrap !important;
+      }
+
+      body.system-choice-page > .subpage-topbar nav{
+        width:auto !important;
+        flex:1 1 auto !important;
+        min-width:0 !important;
+        display:flex !important;
+        flex-wrap:nowrap !important;
+        justify-content:flex-start !important;
+        overflow-x:auto !important;
+        padding-bottom:0 !important;
+      }
+
+      body.system-choice-page > .subpage-topbar nav a{
+        flex:0 0 auto !important;
+        min-height:38px !important;
+        padding:0 10px !important;
+        font-size:.84rem !important;
+      }
+    }
+
     @media (max-width:420px){
       .system-choice-page .system-header{
         padding:12px 12px 6px !important;
@@ -512,8 +646,9 @@
             进入充值系统1
           </a>
 
-          <a href="https://czgpt.plus/" class="system-link" target="_blank" rel="noopener noreferrer">
+          <a href="https://czgpt.plus/" class="system-link" target="_blank" rel="noopener noreferrer" data-system-enabled="true" data-disabled-system-message="系统2暂未启用，请选择系统1" data-entry-message="验证卡密之后获取session数据，提交使用后，耐心等待 5~10 分钟充值完成">
             进入充值系统2
+            <span class="system-status">暂未启用</span>
           </a>
         </div>
 
@@ -562,8 +697,55 @@
 
   <script src="assets/contact-modal.js?v=20260531-contact-modal-v2"></script>
   <script>
-    document.querySelectorAll("[data-disabled-system-message]").forEach((link) => {
+    const entryCountdownSeconds = 10;
+    let entryCountdownTimer = null;
+
+    function startEntryCountdown(link) {
+      if (entryCountdownTimer) {
+        return;
+      }
+
+      let remaining = entryCountdownSeconds;
+      const overlay = document.createElement("div");
+      overlay.className = "entry-countdown-overlay";
+      overlay.setAttribute("role", "alert");
+      overlay.setAttribute("aria-live", "assertive");
+      overlay.innerHTML = `
+        <div class="entry-countdown-dialog">
+          <div class="entry-countdown-title">充值系统2即将打开</div>
+          <p class="entry-countdown-message"></p>
+          <div class="entry-countdown-number"><span data-countdown-number>${remaining}</span><small>秒</small></div>
+          <p class="entry-countdown-note">请阅读提示，倒计时结束后自动进入</p>
+        </div>
+      `;
+
+      overlay.querySelector(".entry-countdown-message").textContent = link.dataset.entryMessage || "";
+      document.body.appendChild(overlay);
+
+      const countdownNumber = overlay.querySelector("[data-countdown-number]");
+      entryCountdownTimer = window.setInterval(() => {
+        remaining -= 1;
+        countdownNumber.textContent = String(Math.max(remaining, 0));
+
+        if (remaining <= 0) {
+          window.clearInterval(entryCountdownTimer);
+          entryCountdownTimer = null;
+          window.location.href = link.href;
+        }
+      }, 1000);
+    }
+
+    document.querySelectorAll("[data-disabled-system-message], [data-entry-message]").forEach((link) => {
       link.addEventListener("click", (event) => {
+        if (link.dataset.systemEnabled !== "false") {
+          if (link.dataset.entryMessage) {
+            event.preventDefault();
+            startEntryCountdown(link);
+          }
+
+          return;
+        }
+
         event.preventDefault();
         alert(link.dataset.disabledSystemMessage || "系统暂未启用，请选择其他系统");
       });
