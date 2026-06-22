@@ -26,14 +26,14 @@
       --radius-sm: 14px;
       --radius-xs: 10px;
 
-      --focus-bg:#fff8e8;
-      --focus-bg-2:#fff3d6;
-      --focus-border:#f3c66a;
-      --focus-text:#8a5a00;
+      --focus-bg:#f8fafc;
+      --focus-bg-2:#ffffff;
+      --focus-border:#d8e1ed;
+      --focus-text:#334155;
 
-      --danger-bg:#fff1f0;
-      --danger-border:#ffb8b2;
-      --danger-text:#c62828;
+      --danger-bg:#fef2f2;
+      --danger-border:#fecaca;
+      --danger-text:#b91c1c;
     }
 
     *{
@@ -454,6 +454,25 @@
       margin:8px 0 0;
     }
 
+    .bill-query-warning{
+      max-width:640px;
+      margin:12px auto 0;
+      padding:10px 12px;
+      border-radius:10px;
+      background:var(--danger-bg);
+      border:1px solid var(--danger-border);
+      border-left:4px solid var(--danger-text);
+      color:var(--danger-text);
+      font-size:13px;
+      font-weight:850;
+      line-height:1.65;
+      text-align:center;
+    }
+
+    .bill-query-warning span{
+      display:inline;
+    }
+
     .focus-text{
       margin-top:12px;
       padding:12px 14px;
@@ -630,6 +649,66 @@
       border-style:solid !important;
     }
 
+    .system-choice-page .stock-tip,
+    .system-choice-page .focus-block,
+    .system-choice-page .focus-text{
+      background:#f8fafc !important;
+      border-color:#d8e1ed !important;
+      border-left-color:#8aa0bd !important;
+      color:#334155 !important;
+    }
+
+    body.system-choice-page .stock-tip,
+    body.system-choice-page .focus-block,
+    body.system-choice-page .focus-text{
+      border-left-color:#8aa0bd !important;
+    }
+
+    .system-choice-page .focus-text{
+      background:#ffffff !important;
+    }
+
+    .system-choice-page .focus-block{
+      box-shadow:none !important;
+    }
+
+    .system-choice-page .focus-item{
+      color:#334155 !important;
+    }
+
+    .system-choice-page .focus-warning,
+    .system-choice-page .focus-hint,
+    .system-choice-page .bill-query-warning{
+      background:#fef2f2 !important;
+      border-color:#fecaca !important;
+      border-left-color:#dc2626 !important;
+      color:#991b1b !important;
+    }
+
+    body.system-choice-page .focus-warning,
+    body.system-choice-page .focus-hint,
+    body.system-choice-page .bill-query-warning{
+      border-left-color:#dc2626 !important;
+    }
+
+    .system-choice-page .bill-query-warning{
+      text-align:center !important;
+    }
+
+    body.system-choice-page .focus-warning strong{
+      color:#991b1b !important;
+    }
+
+    .system-choice-page .focus-hint .hint-title{
+      color:#b91c1c !important;
+    }
+
+    .system-choice-page .focus-mono{
+      background:#fff7f7 !important;
+      border-color:#fecaca !important;
+      color:#334155 !important;
+    }
+
     @media (max-width:640px){
       body.system-choice-page{
         padding-top:92px !important;
@@ -667,6 +746,10 @@
         min-height:38px !important;
         padding:0 10px !important;
         font-size:.84rem !important;
+      }
+
+      .bill-query-warning span{
+        display:block;
       }
     }
 
@@ -755,13 +838,15 @@
             <div class="steps-title">使用步骤</div>
 
             <ol class="steps">
-              <li>点击对应充值系统，先验证卡密（提示不存在多半是选错系统）</li>
-              <li>点击获取 Session 数据或临时充值密钥（如果返回是空的，说明 GPT 没有在当前浏览器登录）。</li>
-              <li>把获取到的 token 全选复制，粘贴到输入框里面。</li>
+              <li>选择对应充值系统，先验证卡密（提示不存在多半是选错系统）</li>
+              <li>点击获取 Session 数据或临时充值密钥（完整数据有一页代码，如果只有两行，说明 GPT 没有在当前浏览器登录）。</li>
+              <li>把获取到的 Session 全选复制，粘贴到输入框里面。</li>
               <li>点击提交使用，稍微等待片刻。</li>
-              <li class="focus-item">充值成功就是充上了，如果刷新页面后，还没有 plus，是浏览器缓存或官网延迟同步。</li>
-              <li class="focus-item">无需等待，按以下步骤操作，可马上更新状态：</li>
+              <li class="focus-item">查询卡密为充值成功状态后，如果刷新页面，还没有 plus，是浏览器缓存或官网延迟同步。</li>
+              <li class="focus-item">按以下步骤操作，可马上更新账号会员状态：</li>
             </ol>
+
+            <div class="bill-query-warning"><span>此操作为拉账单操作，</span><span>在查询卡密为充值成功状态前请不要操作</span></div>
 
             <div class="extra-text focus-text">
               <p>①.GPT页面点升级 ②.plus套餐那里再点升级 ③.会报错（因为已经付过费）④.返回GPT页面刷新状态就是plus了</p>
