@@ -1114,7 +1114,7 @@
               <li>选择对应充值系统，先验证卡密（提示不存在多半是选错系统）</li>
               <li>点击获取 Session 数据或临时充值密钥（完整数据有一页代码，如果只有两行，说明 GPT 没有在当前浏览器登录）。</li>
               <li>把获取到的 Session 全选复制，粘贴到输入框里面。</li>
-              <li>点击提交使用，稍微等待片刻。</li>
+              <li data-submit-step-text>点击提交使用后，等待5到10分钟充值自动完成。</li>
             </ol>
 
             <div class="system2-tutorial" data-recharge-tutorial>
@@ -1203,6 +1203,7 @@
       const currentLabel = document.querySelector("[data-channel-current]");
       const channelTip = document.querySelector("[data-channel-tip]");
       const rechargeTutorial = document.querySelector("[data-recharge-tutorial]");
+      const submitStepText = document.querySelector("[data-submit-step-text]");
 
       if (!entryLink || !entryLabel || !currentLabel) {
         return;
@@ -1218,6 +1219,11 @@
       }
       if (rechargeTutorial) {
         setTutorialChannel(channelId);
+      }
+      if (submitStepText) {
+        submitStepText.textContent = channelId === "2"
+          ? "点击提交使用后，等待5到10分钟充值自动完成。"
+          : "点击提交使用，稍微等待片刻。";
       }
 
       if (channel.entryMessage) {
