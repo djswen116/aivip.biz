@@ -438,6 +438,151 @@
       margin:6px 0;
     }
 
+    .system2-tutorial{
+      margin:12px 0 12px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--focus-border);
+      background:#fbfdff;
+    }
+
+    .system2-tutorial[hidden]{
+      display:none !important;
+    }
+
+    .tutorial-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .tutorial-title{
+      color:var(--focus-text);
+      font-size:13px;
+      font-weight:850;
+    }
+
+    .tutorial-subtitle{
+      margin-top:3px;
+      color:var(--text-3);
+      font-size:12px;
+      font-weight:700;
+      line-height:1.45;
+    }
+
+    .tutorial-count{
+      flex:0 0 auto;
+      color:var(--text-3);
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .tutorial-stage{
+      display:grid;
+      grid-template-columns:34px minmax(0,1fr) 34px;
+      align-items:center;
+      gap:8px;
+    }
+
+    .tutorial-btn{
+      width:34px;
+      height:34px;
+      border:1px solid var(--focus-border);
+      border-radius:999px;
+      background:#fff;
+      color:var(--apple-blue);
+      font-size:20px;
+      line-height:1;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:0 4px 12px rgba(15,23,42,.06);
+    }
+
+    .tutorial-btn:active{
+      transform:scale(.96);
+    }
+
+    .tutorial-frame{
+      min-width:0;
+      margin:0;
+      overflow:hidden;
+      border-radius:12px;
+      border:1px solid rgba(37,99,235,.16);
+      background:#fff;
+      box-shadow:0 8px 22px rgba(15,23,42,.08);
+    }
+
+    .tutorial-image{
+      display:block;
+      width:100%;
+      height:auto;
+      background:#fff;
+    }
+
+    .tutorial-caption{
+      padding:8px 10px 10px;
+      color:var(--focus-text);
+      font-size:12.5px;
+      font-weight:800;
+      text-align:center;
+      line-height:1.5;
+      background:#fff;
+    }
+
+    .tutorial-dots{
+      display:flex;
+      justify-content:center;
+      gap:5px;
+      margin-top:9px;
+    }
+
+    .tutorial-dot{
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:#cbd5e1;
+    }
+
+    .tutorial-dot.is-active{
+      width:16px;
+      background:var(--apple-blue);
+    }
+
+    @media (max-width:640px){
+      .tutorial-stage{
+        position:relative;
+        display:block;
+      }
+
+      .tutorial-frame{
+        width:100%;
+      }
+
+      .tutorial-btn{
+        position:absolute;
+        top:50%;
+        z-index:3;
+        background:rgba(255,255,255,.94);
+        box-shadow:0 6px 18px rgba(15,23,42,.16);
+      }
+
+      .tutorial-btn[data-tutorial-prev]{
+        left:8px;
+        transform:translateY(-50%);
+      }
+
+      .tutorial-btn[data-tutorial-next]{
+        right:8px;
+        transform:translateY(-50%);
+      }
+
+      .tutorial-btn:active{
+        transform:translateY(-50%) scale(.96);
+      }
+    }
+
     .focus-item{
       color:var(--focus-text);
       font-weight:700;
@@ -970,6 +1115,37 @@
               <li>点击获取 Session 数据或临时充值密钥（完整数据有一页代码，如果只有两行，说明 GPT 没有在当前浏览器登录）。</li>
               <li>把获取到的 Session 全选复制，粘贴到输入框里面。</li>
               <li>点击提交使用，稍微等待片刻。</li>
+            </ol>
+
+            <div class="system2-tutorial" data-recharge-tutorial>
+              <div class="tutorial-top">
+                <div>
+                  <div class="tutorial-title" data-tutorial-title>充值系统2提交教程</div>
+                  <div class="tutorial-subtitle">点击左右箭头，可切换查看每一步教程图片</div>
+                </div>
+                <div class="tutorial-count"><span data-tutorial-current>1</span> / <span data-tutorial-total>8</span></div>
+              </div>
+              <div class="tutorial-stage">
+                <button class="tutorial-btn" type="button" data-tutorial-prev aria-label="上一张">‹</button>
+                <figure class="tutorial-frame">
+                  <img class="tutorial-image" src="assets/system2-tutorial-01.png" alt="充值系统2教程第1步" data-tutorial-image>
+                  <figcaption class="tutorial-caption" data-tutorial-caption>放入卡密并验证激活码</figcaption>
+                </figure>
+                <button class="tutorial-btn" type="button" data-tutorial-next aria-label="下一张">›</button>
+              </div>
+              <div class="tutorial-dots" aria-hidden="true">
+                <span class="tutorial-dot is-active" data-tutorial-dot></span>
+                <span class="tutorial-dot" data-tutorial-dot></span>
+                <span class="tutorial-dot" data-tutorial-dot></span>
+                <span class="tutorial-dot" data-tutorial-dot></span>
+                <span class="tutorial-dot" data-tutorial-dot></span>
+                <span class="tutorial-dot" data-tutorial-dot></span>
+                <span class="tutorial-dot" data-tutorial-dot></span>
+                <span class="tutorial-dot" data-tutorial-dot></span>
+              </div>
+            </div>
+
+            <ol class="steps" start="5">
               <li class="focus-item">查询卡密为充值成功状态后，如果刷新页面，还没有 plus，是浏览器缓存或官网延迟同步。</li>
               <li class="focus-item">按以下步骤操作，可马上更新账号会员状态：</li>
             </ol>
@@ -1026,6 +1202,7 @@
       const entryLabel = document.querySelector("[data-channel-entry-label]");
       const currentLabel = document.querySelector("[data-channel-current]");
       const channelTip = document.querySelector("[data-channel-tip]");
+      const rechargeTutorial = document.querySelector("[data-recharge-tutorial]");
 
       if (!entryLink || !entryLabel || !currentLabel) {
         return;
@@ -1038,6 +1215,9 @@
       currentLabel.textContent = `当前选择：${channel.label}`;
       if (channelTip) {
         channelTip.textContent = channel.tip || "";
+      }
+      if (rechargeTutorial) {
+        setTutorialChannel(channelId);
       }
 
       if (channel.entryMessage) {
@@ -1105,6 +1285,94 @@
         setRechargeChannel(button.dataset.channelChoice);
       });
     });
+
+
+
+    const tutorialSets = {
+      "1": {
+        title: "充值系统1提交教程",
+        slides: [
+          { src: "assets/system1-tutorial-01.png", caption: "放入卡密并点击立即验证", alt: "充值系统1教程第1步" },
+          { src: "assets/system1-tutorial-02.png", caption: "获取密钥后粘贴 Session，并点击核对账户", alt: "充值系统1教程第2步" },
+          { src: "assets/system1-tutorial-03.png", caption: "确认邮箱无误后点击确认充值", alt: "充值系统1教程第3步" },
+          { src: "assets/system1-tutorial-04.png", caption: "任务提交后等待几十秒再查询状态", alt: "充值系统1教程第4步" },
+          { src: "assets/system1-tutorial-05.png", caption: "显示充值成功即为完成", alt: "充值系统1教程第5步" }
+        ]
+      },
+      "2": {
+        title: "充值系统2提交教程",
+        slides: [
+          { src: "assets/system2-tutorial-01.png", caption: "放入卡密并验证激活码", alt: "充值系统2教程第1步" },
+          { src: "assets/system2-tutorial-02.png", caption: "验证成功后获取 Session 数据", alt: "充值系统2教程第2步" },
+          { src: "assets/system2-tutorial-03.png", caption: "全选复制整页 Session 代码", alt: "充值系统2教程第3步" },
+          { src: "assets/system2-tutorial-04.png", caption: "粘贴 Session 后提交使用", alt: "充值系统2教程第4步" },
+          { src: "assets/system2-tutorial-05.png", caption: "确认邮箱无误后绑定", alt: "充值系统2教程第5步" },
+          { src: "assets/system2-tutorial-06.png", caption: "提交成功后等待自动充值", alt: "充值系统2教程第6步" },
+          { src: "assets/system2-tutorial-07.png", caption: "查询到系统处理中表示还在处理", alt: "充值系统2教程第7步" },
+          { src: "assets/system2-tutorial-08.png", caption: "查询到已使用表示充值完成", alt: "充值系统2教程第8步" }
+        ]
+      }
+    };
+    let tutorialChannel = "2";
+    let tutorialIndex = 0;
+    const tutorialTitle = document.querySelector("[data-tutorial-title]");
+    const tutorialImage = document.querySelector("[data-tutorial-image]");
+    const tutorialCaption = document.querySelector("[data-tutorial-caption]");
+    const tutorialCurrent = document.querySelector("[data-tutorial-current]");
+    const tutorialTotal = document.querySelector("[data-tutorial-total]");
+    const tutorialDotsWrap = document.querySelector(".tutorial-dots");
+
+    function getTutorialSlides() {
+      return tutorialSets[tutorialChannel]?.slides || tutorialSets["2"].slides;
+    }
+
+    function renderTutorialDots(slides) {
+      if (!tutorialDotsWrap) {
+        return;
+      }
+
+      tutorialDotsWrap.innerHTML = slides.map((_, index) => {
+        return `<span class="tutorial-dot${index === tutorialIndex ? " is-active" : ""}" data-tutorial-dot></span>`;
+      }).join("");
+    }
+
+    function renderTutorial() {
+      const set = tutorialSets[tutorialChannel] || tutorialSets["2"];
+      const slides = set.slides;
+      if (!tutorialImage || !tutorialCaption || !tutorialCurrent || slides.length === 0) {
+        return;
+      }
+
+      tutorialIndex = Math.max(0, Math.min(tutorialIndex, slides.length - 1));
+      const slide = slides[tutorialIndex];
+      if (tutorialTitle) {
+        tutorialTitle.textContent = set.title;
+      }
+      if (tutorialTotal) {
+        tutorialTotal.textContent = String(slides.length);
+      }
+      tutorialImage.src = slide.src;
+      tutorialImage.alt = slide.alt;
+      tutorialCaption.textContent = slide.caption;
+      tutorialCurrent.textContent = String(tutorialIndex + 1);
+      renderTutorialDots(slides);
+    }
+
+    function setTutorialChannel(channelId) {
+      tutorialChannel = tutorialSets[channelId] ? channelId : "2";
+      tutorialIndex = 0;
+      renderTutorial();
+    }
+
+    function moveTutorial(direction) {
+      const slides = getTutorialSlides();
+      tutorialIndex = (tutorialIndex + direction + slides.length) % slides.length;
+      renderTutorial();
+    }
+
+    document.querySelector("[data-tutorial-prev]")?.addEventListener("click", () => moveTutorial(-1));
+    document.querySelector("[data-tutorial-next]")?.addEventListener("click", () => moveTutorial(1));
+    renderTutorial();
 
     setRechargeChannel(document.querySelector(".system-actions")?.dataset.defaultChannel || "2");
 
