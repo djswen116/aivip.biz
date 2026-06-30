@@ -42,6 +42,7 @@
 
     html,body{
       height:100%;
+      scroll-behavior:smooth;
     }
 
     body{
@@ -177,6 +178,10 @@
       overflow:hidden;
     }
 
+    .system-choice-page .system-card{
+      overflow:visible;
+    }
+
     .system-header{
       padding:14px 16px 12px;
       border-bottom:1px solid var(--border);
@@ -196,6 +201,80 @@
       display:flex;
       flex-direction:column;
       gap:10px;
+    }
+
+
+    .section-nav-slot{
+      min-height:54px;
+    }
+
+    .section-nav{
+      --section-nav-top:76px;
+      position:relative;
+      z-index:1290;
+      display:flex;
+      gap:8px;
+      margin:0 16px 12px;
+      padding:8px;
+      overflow-x:auto;
+      border:1px solid rgba(219,230,244,.96);
+      border-radius:999px;
+      background:rgba(255,255,255,.92);
+      box-shadow:0 10px 26px rgba(15,23,42,.10);
+      backdrop-filter:saturate(180%) blur(14px);
+      -webkit-backdrop-filter:saturate(180%) blur(14px);
+      scrollbar-width:none;
+      -webkit-overflow-scrolling:touch;
+    }
+
+    .section-nav.is-fixed{
+      position:fixed;
+      top:var(--section-nav-top);
+      left:50%;
+      width:min(520px, calc(100% - 64px));
+      max-width:520px;
+      margin:0;
+      transform:translateX(-50%);
+    }
+
+    .section-nav.is-fixed + .contact{
+      margin-top:73px !important;
+    }
+
+    .section-nav::-webkit-scrollbar{
+      display:none;
+    }
+
+    .section-nav a{
+      flex:1 1 0;
+      min-width:0;
+      min-height:36px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--focus-border);
+      background:var(--focus-bg);
+      color:var(--focus-text);
+      font-size:13px;
+      font-weight:850;
+      line-height:1.3;
+      text-align:center;
+      text-decoration:none;
+      white-space:nowrap;
+      transition:border-color .2s ease, background-color .2s ease, color .2s ease;
+    }
+
+    .section-nav a:hover,
+    .section-nav a:active{
+      border-color:rgba(36,87,214,.35);
+      background:#ffffff;
+      color:var(--apple-blue);
+    }
+
+    #recharge-entry,
+    #usage-steps,
+    #unreceived-help,
+    #important-reminder{
+      scroll-margin-top:142px;
     }
 
     .channel-switch{
@@ -426,6 +505,12 @@
       color:var(--text);
     }
 
+
+    .steps-subtitle{
+      margin:16px 0 8px;
+      color:var(--focus-text);
+    }
+
     ol.steps{
       margin:0;
       padding-left:18px;
@@ -588,6 +673,178 @@
       font-weight:700;
     }
 
+    .status-check-wrap{
+      margin:10px 0 4px;
+    }
+
+    .status-check-link{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:36px;
+      padding:8px 14px;
+      border-radius:10px;
+      background:var(--apple-blue);
+      color:#fff;
+      font-size:13px;
+      font-weight:850;
+      line-height:1.4;
+      text-decoration:none;
+      box-shadow:0 6px 14px rgba(36,87,214,.14);
+      transition:background-color .2s ease, transform .08s ease;
+    }
+
+    .status-check-link:hover{
+      background:var(--apple-blue-active);
+      color:#fff;
+      text-decoration:none;
+    }
+
+    .status-check-link:active{
+      transform:scale(.98);
+    }
+
+    .status-guide{
+      margin:12px 0 4px;
+      padding:12px;
+      border-radius:14px;
+      border:1px solid var(--focus-border);
+      background:#fbfdff;
+    }
+
+    .status-guide-top{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+
+    .status-guide-title{
+      color:var(--focus-text);
+      font-size:13px;
+      font-weight:850;
+    }
+
+    .status-guide-subtitle{
+      margin-top:3px;
+      color:var(--text-3);
+      font-size:12px;
+      font-weight:700;
+      line-height:1.45;
+    }
+
+    .status-guide-count{
+      flex:0 0 auto;
+      color:var(--text-3);
+      font-size:12px;
+      font-weight:800;
+    }
+
+    .status-guide-stage{
+      display:grid;
+      grid-template-columns:34px minmax(0,1fr) 34px;
+      align-items:center;
+      gap:8px;
+    }
+
+    .status-guide-btn{
+      width:34px;
+      height:34px;
+      border:1px solid var(--focus-border);
+      border-radius:999px;
+      background:#fff;
+      color:var(--apple-blue);
+      font-size:20px;
+      line-height:1;
+      font-weight:800;
+      cursor:pointer;
+      box-shadow:0 4px 12px rgba(15,23,42,.06);
+    }
+
+    .status-guide-btn:active{
+      transform:scale(.96);
+    }
+
+    .status-guide-frame{
+      min-width:0;
+      margin:0;
+      overflow:hidden;
+      border-radius:12px;
+      border:1px solid rgba(37,99,235,.16);
+      background:#fff;
+      box-shadow:0 8px 22px rgba(15,23,42,.08);
+    }
+
+    .status-guide-image{
+      display:block;
+      width:100%;
+      height:auto;
+      background:#fff;
+    }
+
+    .status-guide-caption{
+      padding:8px 10px 10px;
+      color:var(--focus-text);
+      font-size:12.5px;
+      font-weight:800;
+      text-align:center;
+      line-height:1.5;
+      background:#fff;
+    }
+
+    .status-guide-dots{
+      display:flex;
+      justify-content:center;
+      gap:5px;
+      margin-top:9px;
+    }
+
+    .status-guide-dot{
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:#cbd5e1;
+    }
+
+    .status-guide-dot.is-active{
+      width:16px;
+      background:var(--apple-blue);
+    }
+
+    @media (max-width:640px){
+      .status-guide-stage{
+        position:relative;
+        display:block;
+      }
+
+      .status-guide-frame{
+        width:100%;
+      }
+
+      .status-guide-btn{
+        position:absolute;
+        top:50%;
+        z-index:3;
+        background:rgba(255,255,255,.94);
+        box-shadow:0 6px 18px rgba(15,23,42,.16);
+      }
+
+      .status-guide-btn[data-status-guide-prev]{
+        left:8px;
+        transform:translateY(-50%);
+      }
+
+      .status-guide-btn[data-status-guide-next]{
+        right:8px;
+        transform:translateY(-50%);
+      }
+
+      .status-guide-btn:active{
+        transform:translateY(-50%) scale(.96);
+      }
+    }
+
     .extra-text{
       margin-top:10px;
       font-size:14px;
@@ -609,7 +866,7 @@
       border-left:3px solid #bf6b64;
       color:var(--danger-text);
       font-size:13px;
-      font-weight:850;
+      font-weight:700;
       line-height:1.65;
       text-align:center;
     }
@@ -625,11 +882,12 @@
       background:var(--focus-bg-2);
       border:1px solid var(--focus-border);
       color:#334155;
-      font-weight:700;
+      font-weight:500;
     }
 
     .focus-text strong{
       color:#1e293b;
+      font-weight:700;
     }
 
     .focus-text p:first-child{
@@ -675,7 +933,7 @@
       background:#fff;
       border:1px solid var(--danger-border);
       color:#334155;
-      font-weight:700;
+      font-weight:600;
     }
 
     .focus-warning{
@@ -688,7 +946,7 @@
       color:#1e293b !important;
       font-size:13px;
       line-height:1.7;
-      font-weight:800;
+      font-weight:700;
     }
 
     @media (max-width:360px){
@@ -808,6 +1066,16 @@
       margin:0 4px;
     }
 
+    .system-choice-page .contact .section-nav-slot{
+      min-height:54px;
+    }
+
+    .system-choice-page .contact .section-nav{
+      width:100%;
+      margin:0 !important;
+      box-shadow:0 8px 20px rgba(15,23,42,.08);
+    }
+
     .system-choice-page .stock-tip,
     .system-choice-page .focus-block,
     .system-choice-page .focus-text{
@@ -862,6 +1130,7 @@
       background:#ffffff !important;
       border-color:#dbe6f4 !important;
       border-left-color:#9db2cf !important;
+      font-weight:600 !important;
     }
 
     .system-choice-page .focus-warning{
@@ -878,6 +1147,7 @@
       color:#8f2f2a !important;
       font-size:13px;
       line-height:1.7;
+      font-weight:600 !important;
       text-align:left !important;
     }
 
@@ -885,11 +1155,64 @@
       display:block;
       max-width:64ch;
       margin:0 auto;
+      font-weight:700 !important;
+      line-height:1.65;
     }
 
     .system-choice-page .contact .focus-warning strong{
       margin:0;
       max-width:none;
+      font-weight:650 !important;
+    }
+
+    .system-choice-page .focus-text{
+      font-weight:500 !important;
+      line-height:1.75 !important;
+    }
+
+    .system-choice-page .focus-text strong{
+      color:#334155 !important;
+      font-weight:700 !important;
+    }
+
+    .system-choice-page .focus-text .assurance-note{
+      color:#64748b !important;
+      font-size:13px;
+      font-weight:500 !important;
+      line-height:1.7 !important;
+    }
+
+    .system-choice-page .focus-text .assurance-note strong{
+      color:#64748b !important;
+      font-weight:600 !important;
+    }
+
+    .system-choice-page .critical-note{
+      margin-top:10px !important;
+      padding:10px 12px;
+      border-radius:10px;
+      background:#fff7f6;
+      border:1px solid #e6c6c3;
+      border-left:3px solid #bf6b64;
+      color:#8f2f2a !important;
+      font-size:13px;
+      font-weight:700 !important;
+      line-height:1.65 !important;
+    }
+
+    .system-choice-page .critical-note strong{
+      color:#8f2f2a !important;
+      font-weight:700 !important;
+    }
+
+    .system-choice-page .contact .critical-note{
+      margin:0 !important;
+    }
+
+    .system-choice-page .bill-query-warning{
+      background:#fffafa !important;
+      font-weight:700 !important;
+      line-height:1.7 !important;
     }
 
     .system-choice-page .stock-tip,
@@ -926,7 +1249,7 @@
       border-bottom:1px solid #e6c6c3;
       color:#8f2f2a !important;
       font-size:14px;
-      font-weight:900;
+      font-weight:800;
       line-height:1.4;
     }
 
@@ -946,6 +1269,17 @@
       border-top:1px solid rgba(230,198,195,.42) !important;
       border-radius:0 !important;
       background:#ffffff !important;
+      color:#475569 !important;
+      font-family:inherit !important;
+      font-weight:600 !important;
+      line-height:1.75 !important;
+    }
+
+    .system-choice-page .focus-hint .focus-mono:first-of-type{
+      border-top:0 !important;
+    }
+
+    .system-choice-page .focus-hint .focus-mono + .focus-mono{
       color:#334155 !important;
     }
 
@@ -1013,6 +1347,25 @@
         margin-right:0 !important;
       }
 
+
+      .system-choice-page .section-nav{
+        --section-nav-top:76px;
+        margin-left:0 !important;
+        margin-right:0 !important;
+        padding:6px;
+        border-radius:18px;
+      }
+
+      .system-choice-page .section-nav.is-fixed{
+        width:calc(100% - 24px);
+        max-width:calc(100% - 24px);
+      }
+
+      .system-choice-page .section-nav a{
+        flex:0 0 auto;
+        min-width:88px;
+      }
+
       .system-choice-page .focus-warning strong,
       .system-choice-page .bill-query-warning,
       .system-choice-page .focus-text,
@@ -1076,7 +1429,7 @@
           </ol>
         </div>
 
-        <div class="system-actions" data-default-channel="2">
+        <div class="system-actions" id="recharge-entry" data-default-channel="2">
           <div class="channel-switch" role="group" aria-label="充值通道切换">
             <button class="channel-option is-active" type="button" data-channel-choice="2" aria-pressed="true">
               <span>充值系统2</span>
@@ -1098,6 +1451,14 @@
 
         <div class="contact">
           <div class="contact-line">客服 QQ（微信）：<strong>82765536</strong>（在线时间：9:00-23:59）</div>
+          <div class="section-nav-slot">
+            <nav class="section-nav" aria-label="页面导航">
+              <a href="#usage-steps">使用步骤</a>
+              <a href="#unreceived-help">未到账处理</a>
+              <a href="#important-reminder">重要提醒</a>
+              <a href="#recharge-entry">返回充值</a>
+            </nav>
+          </div>
           <div class="stock-tip" data-channel-tip>
             如果充值提示无可用库存，可等会再试，或联系客服协助处理充值！
           </div>
@@ -1108,7 +1469,7 @@
 
         <div class="steps-wrap">
           <div class="content-block focus-block">
-            <div class="steps-title">使用步骤</div>
+            <div class="steps-title" id="usage-steps">使用步骤</div>
 
             <ol class="steps">
               <li>选择对应充值系统，先验证卡密（提示不存在多半是选错系统）</li>
@@ -1146,22 +1507,51 @@
             </div>
 
             <ol class="steps" start="5">
-              <li class="focus-item">查询卡密为充值成功状态后，如果刷新页面，还没有 plus，是浏览器缓存或官网延迟同步。</li>
+              <li class="focus-item">
+                查询卡密为充值成功状态后，如果刷新页面，还没有 plus，是浏览器缓存或官网延迟同步。
+                <div class="status-check-wrap" data-system2-status-check>
+                  <a class="status-check-link" href="https://czgpt.plus/status" target="_blank" rel="noopener noreferrer nofollow">查询卡密使用状态</a>
+                  <div class="status-guide" data-status-guide>
+                    <div class="status-guide-top">
+                      <div>
+                        <div class="status-guide-title">查询卡密状态说明</div>
+                        <div class="status-guide-subtitle">点击左右箭头，可切换查看不同状态示例</div>
+                      </div>
+                      <div class="status-guide-count"><span data-status-guide-current>1</span> / <span data-status-guide-total>2</span></div>
+                    </div>
+                    <div class="status-guide-stage">
+                      <button class="status-guide-btn" type="button" data-status-guide-prev aria-label="上一张">‹</button>
+                      <figure class="status-guide-frame">
+                        <img class="status-guide-image" src="assets/system2-status-check-01.png" alt="卡密已使用状态示例" data-status-guide-image>
+                        <figcaption class="status-guide-caption" data-status-guide-caption>显示“已使用”即为充值完成状态。</figcaption>
+                      </figure>
+                      <button class="status-guide-btn" type="button" data-status-guide-next aria-label="下一张">›</button>
+                    </div>
+                    <div class="status-guide-dots" aria-hidden="true"></div>
+                  </div>
+                </div>
+              </li>
               <li class="focus-item">按以下步骤操作，可马上更新账号会员状态：</li>
             </ol>
+
+            <div class="steps-title steps-subtitle" id="unreceived-help">充值未到账处理方式</div>
 
             <div class="bill-query-warning"><span>此操作为拉账单操作，</span><span>在查询卡密为充值成功状态前请不要操作</span></div>
 
             <div class="extra-text focus-text">
               <p>①.GPT页面点升级 ②.plus套餐那里再点升级 ③.会报错（因为已经付过费）④.返回GPT页面刷新状态就是plus了</p>
-              <p><strong>（本充值渠道会绕过所有的优惠和免费试用资格，正价付费充值，极致稳定，请放心！）</strong></p>
+              <p class="assurance-note"><strong>（本充值渠道会绕过所有的优惠和免费试用资格，正价付费充值，极致稳定，请放心！）</strong></p>
+              <p class="critical-note"><strong>禁马上用其他卡密和渠道去充值！以免覆盖充值，售后麻烦！按以上步骤操作，或及时找客服协助！</strong></p>
             </div>
           </div>
 
           <div class="hint focus-hint">
-            <div class="hint-title">重要提醒</div>
+            <div class="hint-title" id="important-reminder">重要提醒</div>
             <p class="mono focus-mono">
               Plus会员还未到期，建议到期后再操作，未到期充值会重计周期，不会叠加！
+            </p>
+            <p class="mono focus-mono">
+              （注：禁止同时用多张卡密充同一个账号，会覆盖时间而非叠加月份，无法找GPT退款！）
             </p>
           </div>
         </div>
@@ -1204,6 +1594,7 @@
       const channelTip = document.querySelector("[data-channel-tip]");
       const rechargeTutorial = document.querySelector("[data-recharge-tutorial]");
       const submitStepText = document.querySelector("[data-submit-step-text]");
+      const system2StatusCheck = document.querySelector("[data-system2-status-check]");
 
       if (!entryLink || !entryLabel || !currentLabel) {
         return;
@@ -1224,6 +1615,9 @@
         submitStepText.textContent = channelId === "2"
           ? "点击提交使用后，等待5到10分钟充值自动完成。"
           : "点击提交使用，稍微等待片刻。";
+      }
+      if (system2StatusCheck) {
+        system2StatusCheck.hidden = channelId !== "2";
       }
 
       if (channel.entryMessage) {
@@ -1379,6 +1773,111 @@
     document.querySelector("[data-tutorial-prev]")?.addEventListener("click", () => moveTutorial(-1));
     document.querySelector("[data-tutorial-next]")?.addEventListener("click", () => moveTutorial(1));
     renderTutorial();
+
+    const statusGuideSlides = [
+      {
+        src: "assets/system2-status-check-01.png",
+        caption: "显示“已使用”即为充值完成状态。",
+        alt: "卡密已使用状态示例"
+      },
+      {
+        src: "assets/system2-status-check-02.png",
+        caption: "显示“系统处理中”表示充值还在处理，请继续等待。",
+        alt: "卡密系统处理中状态示例"
+      }
+    ];
+    let statusGuideIndex = 0;
+    const statusGuideImage = document.querySelector("[data-status-guide-image]");
+    const statusGuideCaption = document.querySelector("[data-status-guide-caption]");
+    const statusGuideCurrent = document.querySelector("[data-status-guide-current]");
+    const statusGuideTotal = document.querySelector("[data-status-guide-total]");
+    const statusGuideDotsWrap = document.querySelector(".status-guide-dots");
+
+    function renderStatusGuideDots() {
+      if (!statusGuideDotsWrap) {
+        return;
+      }
+
+      statusGuideDotsWrap.innerHTML = statusGuideSlides.map((_, index) => {
+        return `<span class="status-guide-dot${index === statusGuideIndex ? " is-active" : ""}"></span>`;
+      }).join("");
+    }
+
+    function renderStatusGuide() {
+      if (!statusGuideImage || !statusGuideCaption || !statusGuideCurrent || statusGuideSlides.length === 0) {
+        return;
+      }
+
+      statusGuideIndex = Math.max(0, Math.min(statusGuideIndex, statusGuideSlides.length - 1));
+      const slide = statusGuideSlides[statusGuideIndex];
+      statusGuideImage.src = slide.src;
+      statusGuideImage.alt = slide.alt;
+      statusGuideCaption.textContent = slide.caption;
+      statusGuideCurrent.textContent = String(statusGuideIndex + 1);
+      if (statusGuideTotal) {
+        statusGuideTotal.textContent = String(statusGuideSlides.length);
+      }
+      renderStatusGuideDots();
+    }
+
+    function moveStatusGuide(direction) {
+      statusGuideIndex = (statusGuideIndex + direction + statusGuideSlides.length) % statusGuideSlides.length;
+      renderStatusGuide();
+    }
+
+    document.querySelector("[data-status-guide-prev]")?.addEventListener("click", () => moveStatusGuide(-1));
+    document.querySelector("[data-status-guide-next]")?.addEventListener("click", () => moveStatusGuide(1));
+    renderStatusGuide();
+
+    const sectionNav = document.querySelector(".section-nav");
+    let sectionNavStart = 0;
+
+    function getPageScrollTop() {
+      return document.body.scrollTop || document.documentElement.scrollTop || window.scrollY || 0;
+    }
+
+    function getSectionNavTop() {
+      if (!sectionNav) {
+        return 0;
+      }
+
+      const rawTop = getComputedStyle(sectionNav).getPropertyValue("--section-nav-top").trim();
+      return Number.parseFloat(rawTop) || 76;
+    }
+
+    function refreshSectionNavPosition() {
+      if (!sectionNav) {
+        return;
+      }
+
+      const wasFixed = sectionNav.classList.contains("is-fixed");
+      sectionNav.classList.remove("is-fixed");
+      sectionNavStart = sectionNav.getBoundingClientRect().top + getPageScrollTop();
+      if (wasFixed) {
+        updateSectionNavPosition();
+      }
+    }
+
+    function updateSectionNavPosition() {
+      if (!sectionNav) {
+        return;
+      }
+
+      const shouldFix = getPageScrollTop() >= sectionNavStart - getSectionNavTop();
+      sectionNav.classList.toggle("is-fixed", shouldFix);
+    }
+
+    refreshSectionNavPosition();
+    updateSectionNavPosition();
+    window.addEventListener("scroll", updateSectionNavPosition, { passive: true });
+    document.body.addEventListener("scroll", updateSectionNavPosition, { passive: true });
+    window.addEventListener("resize", () => {
+      refreshSectionNavPosition();
+      updateSectionNavPosition();
+    });
+    window.addEventListener("hashchange", () => {
+      window.setTimeout(updateSectionNavPosition, 0);
+    });
 
     setRechargeChannel(document.querySelector(".system-actions")?.dataset.defaultChannel || "2");
 
