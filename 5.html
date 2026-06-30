@@ -704,6 +704,48 @@
       transform:scale(.98);
     }
 
+    .unreceived-status-entry{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      margin:8px 0 10px;
+    }
+
+    .unreceived-status-entry[hidden]{
+      display:none !important;
+    }
+
+    .unreceived-status-link{
+      min-height:34px;
+      padding-inline:16px;
+    }
+
+    .refresh-help-item{
+      margin-top:12px !important;
+    }
+
+    .refresh-help-lead{
+      color:var(--focus-text);
+      font-weight:800;
+    }
+
+    .refresh-help-title-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin:12px 0 8px;
+      padding-top:12px;
+      border-top:1px solid #dbe6f4;
+    }
+
+    .refresh-help-title{
+      color:var(--focus-text);
+      font-size:14px;
+      font-weight:850;
+      line-height:1.45;
+    }
+
     .status-guide{
       margin:12px 0 4px;
       padding:12px;
@@ -842,6 +884,76 @@
 
       .status-guide-btn:active{
         transform:translateY(-50%) scale(.96);
+      }
+    }
+
+    .plus-refresh-guide{
+      margin-top:12px;
+    }
+
+    .refresh-step-list{
+      display:grid;
+      gap:8px;
+      margin-top:10px;
+    }
+
+    .refresh-step{
+      display:flex;
+      align-items:flex-start;
+      gap:8px;
+      padding:9px 10px;
+      border-radius:10px;
+      background:#ffffff;
+      border:1px solid #dbe6f4;
+      color:#334155;
+      font-size:13.5px;
+      font-weight:700;
+      line-height:1.55;
+    }
+
+    .refresh-step-index{
+      flex:0 0 auto;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      background:#eaf2ff;
+      color:var(--apple-blue);
+      font-size:12px;
+      font-weight:900;
+      line-height:1;
+    }
+
+    .plus-refresh-dots{
+      display:flex;
+      justify-content:center;
+      gap:5px;
+      margin-top:9px;
+    }
+
+    .plus-refresh-dot{
+      width:6px;
+      height:6px;
+      border-radius:999px;
+      background:#cbd5e1;
+    }
+
+    .plus-refresh-dot.is-active{
+      width:16px;
+      background:var(--apple-blue);
+    }
+
+    @media (max-width:640px){
+      .plus-refresh-btn[data-plus-refresh-prev]{
+        left:8px;
+        transform:translateY(-50%);
+      }
+
+      .plus-refresh-btn[data-plus-refresh-next]{
+        right:8px;
+        transform:translateY(-50%);
       }
     }
 
@@ -1005,13 +1117,12 @@
 
     .system-choice-page .system-instructions li{
       display:flex;
-      align-items:flex-start;
-      justify-content:flex-start;
-      gap:8px;
+      align-items:center;
+      justify-content:center;
       color:var(--muted) !important;
       font-size:14px;
       line-height:1.55;
-      text-align:left;
+      text-align:center;
     }
 
     .system-choice-page .instruction-index{
@@ -1210,9 +1321,26 @@
     }
 
     .system-choice-page .bill-query-warning{
-      background:#fffafa !important;
+      background:#fff8f2 !important;
       font-weight:700 !important;
       line-height:1.7 !important;
+    }
+
+    .system-choice-page .focus-text .bill-query-warning{
+      max-width:none;
+      margin:0 0 10px !important;
+      text-align:left !important;
+      background:#fff8f2 !important;
+    }
+
+    .system-choice-page .refresh-step{
+      background:#ffffff !important;
+      border-color:#dbe6f4 !important;
+    }
+
+    .system-choice-page .refresh-step-index{
+      background:#eaf2ff !important;
+      color:var(--apple-blue) !important;
     }
 
     .system-choice-page .stock-tip,
@@ -1402,6 +1530,483 @@
       }
     }
   </style>
+  <style>
+    /* Overall UI polish trial */
+    body.system-choice-page{
+      --ui-primary:#2563eb;
+      --ui-primary-strong:#1d4ed8;
+      --ui-primary-soft:#eaf2ff;
+      --ui-primary-line:#bfdbfe;
+      --ui-ink:#172033;
+      --ui-muted:#64748b;
+      --ui-soft:#f8fbff;
+      --ui-line:#dbe7f3;
+      --ui-warn-bg:#fff7ed;
+      --ui-warn-line:#fdba74;
+      --ui-warn-text:#9a3412;
+      --ui-danger-bg:#fff1f2;
+      --ui-danger-line:#fda4af;
+      --ui-danger-text:#9f1239;
+      --ui-shadow:0 18px 46px rgba(15,23,42,.10);
+      background:
+        linear-gradient(180deg, #edf5ff 0%, #f8fbff 34%, #f3f6fa 100%) !important;
+      color:var(--ui-ink) !important;
+    }
+
+    body.system-choice-page > .subpage-topbar{
+      background:rgba(255,255,255,.90) !important;
+      border:1px solid rgba(219,231,243,.95) !important;
+      box-shadow:0 10px 30px rgba(15,23,42,.09) !important;
+      backdrop-filter:saturate(180%) blur(16px) !important;
+      -webkit-backdrop-filter:saturate(180%) blur(16px) !important;
+    }
+
+    body.system-choice-page > .subpage-topbar .subpage-brand{
+      color:var(--ui-ink) !important;
+      font-weight:900 !important;
+      letter-spacing:0 !important;
+    }
+
+    body.system-choice-page > .subpage-topbar nav a{
+      color:var(--ui-muted) !important;
+      font-weight:750 !important;
+      border-radius:999px !important;
+      transition:background-color .2s ease, color .2s ease;
+    }
+
+    body.system-choice-page > .subpage-topbar nav a:hover,
+    body.system-choice-page > .subpage-topbar nav a:active{
+      background:var(--ui-primary-soft) !important;
+      color:var(--ui-primary) !important;
+    }
+
+    body.system-choice-page main.container{
+      max-width:920px !important;
+      padding:18px !important;
+      border:1px solid rgba(219,231,243,.96) !important;
+      background:rgba(255,255,255,.94) !important;
+      box-shadow:var(--ui-shadow) !important;
+    }
+
+    .system-choice-page header{
+      padding:2px 4px 10px !important;
+    }
+
+    .system-choice-page h1{
+      color:var(--ui-ink) !important;
+      font-size:24px !important;
+      font-weight:900 !important;
+      letter-spacing:0 !important;
+    }
+
+    .system-choice-page .system-list{
+      gap:16px !important;
+    }
+
+    .system-choice-page .system-card{
+      border:1px solid var(--ui-line) !important;
+      border-radius:18px !important;
+      background:#ffffff !important;
+      box-shadow:0 12px 34px rgba(15,23,42,.06) !important;
+    }
+
+    .system-choice-page .system-header{
+      padding:14px !important;
+      background:linear-gradient(180deg, #f8fbff 0%, #ffffff 100%) !important;
+      border-bottom:1px solid rgba(219,231,243,.72) !important;
+      border-radius:18px 18px 0 0 !important;
+    }
+
+    .system-choice-page .system-instructions{
+      gap:8px !important;
+    }
+
+    .system-choice-page .system-instructions li{
+      padding:9px 10px !important;
+      border:1px solid rgba(219,231,243,.82);
+      border-radius:12px;
+      background:#ffffff;
+      color:#42526a !important;
+      font-weight:650 !important;
+      justify-content:center !important;
+      text-align:center !important;
+    }
+
+    .system-choice-page .instruction-index{
+      background:var(--ui-primary-soft) !important;
+      color:var(--ui-primary) !important;
+      box-shadow:inset 0 0 0 1px rgba(37,99,235,.10);
+    }
+
+    .system-choice-page .system-actions{
+      gap:12px !important;
+      padding:13px 14px 14px !important;
+    }
+
+    .system-choice-page .channel-switch{
+      padding:5px !important;
+      border:1px solid var(--ui-line) !important;
+      border-radius:14px !important;
+      background:#f6f9fd !important;
+    }
+
+    .system-choice-page .channel-option{
+      min-height:42px !important;
+      border-radius:11px !important;
+      color:#52647a !important;
+    }
+
+    .system-choice-page .channel-option.is-active{
+      background:#ffffff !important;
+      color:var(--ui-primary) !important;
+      box-shadow:0 8px 22px rgba(37,99,235,.12) !important;
+    }
+
+    .system-choice-page .channel-tag{
+      background:#edf2f7 !important;
+      color:#64748b !important;
+    }
+
+    .system-choice-page .channel-option.is-active .channel-tag{
+      background:var(--ui-primary-soft) !important;
+      color:var(--ui-primary) !important;
+    }
+
+    .system-choice-page .channel-current{
+      color:var(--ui-muted) !important;
+      font-weight:750 !important;
+    }
+
+    .system-choice-page .system-link,
+    .system-choice-page .status-check-link{
+      background:linear-gradient(180deg, #2f6df0 0%, var(--ui-primary) 100%) !important;
+      border:1px solid rgba(29,78,216,.18) !important;
+      box-shadow:0 10px 22px rgba(37,99,235,.20) !important;
+      color:#fff !important;
+    }
+
+    .system-choice-page .system-link:hover,
+    .system-choice-page .status-check-link:hover{
+      background:linear-gradient(180deg, #2563eb 0%, var(--ui-primary-strong) 100%) !important;
+    }
+
+    .system-choice-page .contact{
+      margin:12px 0 0 !important;
+      padding:12px !important;
+      border:1px solid var(--ui-line) !important;
+      border-radius:16px !important;
+      background:#f8fbff !important;
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.85) !important;
+    }
+
+    .system-choice-page .contact-line{
+      color:var(--ui-muted) !important;
+      font-size:13.5px !important;
+    }
+
+    .system-choice-page .contact-line strong{
+      color:var(--ui-ink) !important;
+      font-weight:900 !important;
+    }
+
+    .system-choice-page .section-nav{
+      padding:5px !important;
+      border:1px solid var(--ui-line) !important;
+      border-radius:16px !important;
+      background:#ffffff !important;
+      box-shadow:0 10px 24px rgba(15,23,42,.08) !important;
+    }
+
+    .system-choice-page .section-nav a{
+      min-height:34px !important;
+      border:0 !important;
+      border-radius:12px !important;
+      background:transparent !important;
+      color:#475569 !important;
+      font-size:13px !important;
+      font-weight:850 !important;
+    }
+
+    .system-choice-page .section-nav a:hover,
+    .system-choice-page .section-nav a:active{
+      background:var(--ui-primary-soft) !important;
+      color:var(--ui-primary) !important;
+    }
+
+    .system-choice-page .section-nav.is-fixed{
+      width:min(920px, calc(100% - 48px)) !important;
+      max-width:920px !important;
+    }
+
+    .system-choice-page .stock-tip{
+      padding:10px 12px !important;
+      border:1px solid var(--ui-primary-line) !important;
+      border-left:4px solid var(--ui-primary) !important;
+      border-radius:12px !important;
+      background:#f1f7ff !important;
+      color:#28527a !important;
+      font-weight:750 !important;
+    }
+
+    .system-choice-page .steps-wrap{
+      padding:0 0 14px !important;
+    }
+
+    .system-choice-page .content-block{
+      padding:15px !important;
+      border:1px solid var(--ui-line) !important;
+      border-radius:18px !important;
+      background:#ffffff !important;
+      box-shadow:0 12px 30px rgba(15,23,42,.06) !important;
+    }
+
+    .system-choice-page .focus-block{
+      border-left:0 !important;
+    }
+
+    .system-choice-page .steps-title,
+    .system-choice-page .hint-title,
+    .system-choice-page .refresh-help-title{
+      color:var(--ui-ink) !important;
+      font-weight:900 !important;
+      letter-spacing:0 !important;
+    }
+
+    .system-choice-page ol.steps{
+      list-style:none !important;
+      padding-left:0 !important;
+      counter-reset: step;
+      display:grid;
+      gap:10px;
+      color:#334155 !important;
+    }
+
+    .system-choice-page ol.steps[start="5"]{
+      counter-reset: step 4;
+      margin-top:12px !important;
+    }
+
+    .system-choice-page ol.steps > li{
+      counter-increment: step;
+      position:relative;
+      margin:0 !important;
+      padding:11px 12px 11px 44px;
+      border:1px solid var(--ui-line);
+      border-radius:13px;
+      background:#f8fbff;
+      color:#334155 !important;
+      font-size:13.5px;
+      font-weight:720 !important;
+      line-height:1.65;
+    }
+
+    .system-choice-page ol.steps > li::before{
+      content:counter(step);
+      position:absolute;
+      left:12px;
+      top:12px;
+      display:grid;
+      place-items:center;
+      width:22px;
+      height:22px;
+      border-radius:999px;
+      background:var(--ui-primary-soft);
+      color:var(--ui-primary);
+      font-size:12px;
+      font-weight:950;
+      box-shadow:inset 0 0 0 1px rgba(37,99,235,.12);
+    }
+
+    .system-choice-page .refresh-help-item{
+      padding-bottom:14px !important;
+      background:#ffffff !important;
+    }
+
+    .system-choice-page .refresh-help-lead{
+      color:#24364f !important;
+      font-weight:850 !important;
+    }
+
+    .system-choice-page .refresh-help-title-row{
+      margin:12px 0 10px !important;
+      padding-top:12px !important;
+      border-top:1px solid var(--ui-line) !important;
+    }
+
+    .system-choice-page .unreceived-status-entry{
+      margin:0 0 12px !important;
+    }
+
+    .system-choice-page .system2-tutorial,
+    .system-choice-page .status-guide{
+      border:1px solid var(--ui-line) !important;
+      border-radius:16px !important;
+      background:#f8fbff !important;
+      box-shadow:0 12px 28px rgba(15,23,42,.06) !important;
+    }
+
+    .system-choice-page .tutorial-title,
+    .system-choice-page .status-guide-title{
+      color:#24364f !important;
+      font-size:13.5px !important;
+      font-weight:900 !important;
+    }
+
+    .system-choice-page .tutorial-subtitle,
+    .system-choice-page .status-guide-subtitle,
+    .system-choice-page .tutorial-count,
+    .system-choice-page .status-guide-count{
+      color:var(--ui-muted) !important;
+    }
+
+    .system-choice-page .tutorial-frame,
+    .system-choice-page .status-guide-frame{
+      border:1px solid var(--ui-primary-line) !important;
+      border-radius:14px !important;
+      background:#ffffff !important;
+      box-shadow:0 12px 24px rgba(15,23,42,.08) !important;
+    }
+
+    .system-choice-page .tutorial-caption,
+    .system-choice-page .status-guide-caption{
+      color:#334155 !important;
+      font-weight:800 !important;
+      background:#ffffff !important;
+    }
+
+    .system-choice-page .tutorial-btn,
+    .system-choice-page .status-guide-btn{
+      border:1px solid var(--ui-primary-line) !important;
+      background:#ffffff !important;
+      color:var(--ui-primary) !important;
+      box-shadow:0 8px 20px rgba(37,99,235,.14) !important;
+    }
+
+    .system-choice-page .tutorial-dot.is-active,
+    .system-choice-page .status-guide-dot.is-active,
+    .system-choice-page .plus-refresh-dot.is-active{
+      background:var(--ui-primary) !important;
+    }
+
+    .system-choice-page .focus-text{
+      padding:12px !important;
+      border:1px solid var(--ui-line) !important;
+      border-left:0 !important;
+      border-radius:14px !important;
+      background:#f8fbff !important;
+      color:#334155 !important;
+    }
+
+    .system-choice-page .bill-query-warning{
+      border:1px solid var(--ui-warn-line) !important;
+      border-left:4px solid #f97316 !important;
+      border-radius:12px !important;
+      background:var(--ui-warn-bg) !important;
+      color:var(--ui-warn-text) !important;
+      font-weight:850 !important;
+    }
+
+    .system-choice-page .refresh-step{
+      padding:10px !important;
+      border:1px solid var(--ui-line) !important;
+      border-radius:12px !important;
+      background:#ffffff !important;
+      color:#334155 !important;
+      font-weight:760 !important;
+    }
+
+    .system-choice-page .refresh-step-index{
+      background:var(--ui-primary-soft) !important;
+      color:var(--ui-primary) !important;
+    }
+
+    .system-choice-page .focus-text .assurance-note{
+      color:var(--ui-muted) !important;
+      font-size:13px !important;
+    }
+
+    .system-choice-page .critical-note{
+      border:1px solid var(--ui-danger-line) !important;
+      border-left:4px solid #e11d48 !important;
+      border-radius:12px !important;
+      background:var(--ui-danger-bg) !important;
+      color:var(--ui-danger-text) !important;
+      font-weight:850 !important;
+    }
+
+    .system-choice-page .critical-note strong{
+      color:var(--ui-danger-text) !important;
+    }
+
+    .system-choice-page .focus-hint{
+      border:1px solid var(--ui-danger-line) !important;
+      border-left:0 !important;
+      border-radius:16px !important;
+      overflow:hidden;
+      background:#ffffff !important;
+      box-shadow:0 12px 30px rgba(159,18,57,.07) !important;
+    }
+
+    .system-choice-page .focus-hint .hint-title{
+      background:var(--ui-danger-bg) !important;
+      border-bottom:1px solid var(--ui-danger-line) !important;
+      color:var(--ui-danger-text) !important;
+    }
+
+    .system-choice-page .focus-hint .hint-title::before{
+      background:#e11d48 !important;
+      box-shadow:0 0 0 4px rgba(225,29,72,.12) !important;
+    }
+
+    .system-choice-page .focus-mono{
+      color:#334155 !important;
+      background:#ffffff !important;
+      border-top:1px solid #ffe4e6 !important;
+      font-weight:650 !important;
+    }
+
+    .system-choice-page .entry-countdown-dialog{
+      border:1px solid var(--ui-line) !important;
+      border-radius:20px !important;
+      box-shadow:0 26px 70px rgba(15,23,42,.24) !important;
+    }
+
+    .system-choice-page .entry-countdown-warning{
+      background:var(--ui-warn-bg) !important;
+      border-color:var(--ui-warn-line) !important;
+      color:var(--ui-warn-text) !important;
+    }
+
+    .system-choice-page .entry-countdown-number{
+      background:var(--ui-primary) !important;
+    }
+
+    @media (max-width:640px){
+      body.system-choice-page main.container{
+        width:calc(100% - 24px) !important;
+        max-width:calc(100% - 24px) !important;
+        padding:14px !important;
+        border-radius:18px !important;
+      }
+
+      .system-choice-page .content-block{
+        padding:12px !important;
+      }
+
+      .system-choice-page ol.steps > li{
+        padding:10px 10px 10px 40px;
+      }
+
+      .system-choice-page ol.steps > li::before{
+        left:10px;
+        top:11px;
+      }
+
+      .system-choice-page .section-nav{
+        border-radius:14px !important;
+      }
+    }
+  </style>
 </head>
 
 <body class="entry-page system-choice-page">
@@ -1419,11 +2024,9 @@
         <div class="system-header">
           <ol class="system-instructions">
             <li>
-              <span class="instruction-index">1</span>
               <span class="instruction-text">请选择对应充值系统，并按步骤完成卡密验证与充值提交。</span>
             </li>
             <li>
-              <span class="instruction-index">2</span>
               <span class="instruction-text">点击进入后按“使用步骤”操作（需在当前浏览器已登录 GPT）。</span>
             </li>
           </ol>
@@ -1531,18 +2134,46 @@
                   </div>
                 </div>
               </li>
-              <li class="focus-item">按以下步骤操作，可马上更新账号会员状态：</li>
+              <li class="focus-item refresh-help-item" id="unreceived-help">
+                <div class="refresh-help-lead">按以下步骤操作，可马上更新账号会员状态：</div>
+                <div class="refresh-help-title-row">
+                  <div class="refresh-help-title">充值未到账处理方式</div>
+                </div>
+                <div class="unreceived-status-entry" data-system2-unreceived-status>
+                  <a class="status-check-link unreceived-status-link" href="https://czgpt.plus/status" target="_blank" rel="noopener noreferrer nofollow">查询卡密使用状态</a>
+                </div>
+
+                <div class="extra-text focus-text">
+                  <div class="bill-query-warning"><span>此操作为拉账单操作，</span><span>在查询卡密为充值成功状态前请不要操作</span></div>
+                  <div class="refresh-step-list" aria-label="Plus状态刷新步骤">
+                    <div class="refresh-step"><span class="refresh-step-index">①</span><span>GPT页面点升级</span></div>
+                    <div class="refresh-step"><span class="refresh-step-index">②</span><span>再点升级20美金Plus（如果跳IOS订阅报错点左边）</span></div>
+                    <div class="refresh-step"><span class="refresh-step-index">③</span><span>会报错或无反应（因为付过费）</span></div>
+                    <div class="refresh-step"><span class="refresh-step-index">④</span><span>返回聊天页刷新就是Plus</span></div>
+                  </div>
+                  <div class="status-guide plus-refresh-guide" data-plus-refresh-guide>
+                    <div class="status-guide-top">
+                      <div>
+                        <div class="status-guide-title">Plus状态刷新图文说明</div>
+                        <div class="status-guide-subtitle">点击左右箭头，可切换查看每一步操作图片</div>
+                      </div>
+                      <div class="status-guide-count"><span data-plus-refresh-current>1</span> / <span data-plus-refresh-total>4</span></div>
+                    </div>
+                    <div class="status-guide-stage">
+                      <button class="status-guide-btn plus-refresh-btn" type="button" data-plus-refresh-prev aria-label="上一张">‹</button>
+                      <figure class="status-guide-frame">
+                        <img class="status-guide-image" src="assets/plus-refresh-01.png" alt="GPT页面点击升级入口" data-plus-refresh-image>
+                        <figcaption class="status-guide-caption" data-plus-refresh-caption>在 GPT 页面点击升级入口。</figcaption>
+                      </figure>
+                      <button class="status-guide-btn plus-refresh-btn" type="button" data-plus-refresh-next aria-label="下一张">›</button>
+                    </div>
+                    <div class="plus-refresh-dots" aria-hidden="true"></div>
+                  </div>
+                  <p class="assurance-note"><strong>（本充值渠道会绕过所有的优惠和免费试用资格，正价付费充值，极致稳定，请放心！）</strong></p>
+                  <p class="critical-note"><strong>禁马上用其他卡密和渠道去充值！以免覆盖充值，售后麻烦！按以上步骤操作，或及时找客服协助！</strong></p>
+                </div>
+              </li>
             </ol>
-
-            <div class="steps-title steps-subtitle" id="unreceived-help">充值未到账处理方式</div>
-
-            <div class="bill-query-warning"><span>此操作为拉账单操作，</span><span>在查询卡密为充值成功状态前请不要操作</span></div>
-
-            <div class="extra-text focus-text">
-              <p>①.GPT页面点升级 ②.plus套餐那里再点升级 ③.会报错（因为已经付过费）④.返回GPT页面刷新状态就是plus了</p>
-              <p class="assurance-note"><strong>（本充值渠道会绕过所有的优惠和免费试用资格，正价付费充值，极致稳定，请放心！）</strong></p>
-              <p class="critical-note"><strong>禁马上用其他卡密和渠道去充值！以免覆盖充值，售后麻烦！按以上步骤操作，或及时找客服协助！</strong></p>
-            </div>
           </div>
 
           <div class="hint focus-hint">
@@ -1595,6 +2226,7 @@
       const rechargeTutorial = document.querySelector("[data-recharge-tutorial]");
       const submitStepText = document.querySelector("[data-submit-step-text]");
       const system2StatusCheck = document.querySelector("[data-system2-status-check]");
+      const system2UnreceivedStatus = document.querySelector("[data-system2-unreceived-status]");
 
       if (!entryLink || !entryLabel || !currentLabel) {
         return;
@@ -1618,6 +2250,9 @@
       }
       if (system2StatusCheck) {
         system2StatusCheck.hidden = channelId !== "2";
+      }
+      if (system2UnreceivedStatus) {
+        system2UnreceivedStatus.hidden = channelId !== "2";
       }
 
       if (channel.entryMessage) {
@@ -1828,6 +2463,72 @@
     document.querySelector("[data-status-guide-prev]")?.addEventListener("click", () => moveStatusGuide(-1));
     document.querySelector("[data-status-guide-next]")?.addEventListener("click", () => moveStatusGuide(1));
     renderStatusGuide();
+
+    const plusRefreshSlides = [
+      {
+        src: "assets/plus-refresh-01.png",
+        caption: "在 GPT 页面点击升级入口。",
+        alt: "GPT页面点击升级入口"
+      },
+      {
+        src: "assets/plus-refresh-02.png?v=20260630-plus20",
+        caption: "再点升级20美金Plus。",
+        alt: "选择20美金Plus套餐升级"
+      },
+      {
+        src: "assets/plus-refresh-03.png",
+        caption: "如果跳 IOS 订阅报错，点击左边继续按钮；没有弹窗就返回聊天页刷新。",
+        alt: "IOS订阅报错提示"
+      },
+      {
+        src: "assets/plus-refresh-04.png",
+        caption: "如果进入配置套餐页面，说明充值未到账，请联系客服查看原因。",
+        alt: "配置套餐页面提示"
+      }
+    ];
+    let plusRefreshIndex = 0;
+    const plusRefreshGuide = document.querySelector("[data-plus-refresh-guide]");
+    const plusRefreshImage = document.querySelector("[data-plus-refresh-image]");
+    const plusRefreshCaption = document.querySelector("[data-plus-refresh-caption]");
+    const plusRefreshCurrent = document.querySelector("[data-plus-refresh-current]");
+    const plusRefreshTotal = document.querySelector("[data-plus-refresh-total]");
+    const plusRefreshDotsWrap = document.querySelector(".plus-refresh-dots");
+
+    function renderPlusRefreshDots() {
+      if (!plusRefreshDotsWrap) {
+        return;
+      }
+
+      plusRefreshDotsWrap.innerHTML = plusRefreshSlides.map((_, index) => {
+        return `<span class="plus-refresh-dot${index === plusRefreshIndex ? " is-active" : ""}"></span>`;
+      }).join("");
+    }
+
+    function renderPlusRefreshGuide() {
+      if (!plusRefreshGuide || !plusRefreshImage || !plusRefreshCaption || !plusRefreshCurrent || plusRefreshSlides.length === 0) {
+        return;
+      }
+
+      plusRefreshIndex = Math.max(0, Math.min(plusRefreshIndex, plusRefreshSlides.length - 1));
+      const slide = plusRefreshSlides[plusRefreshIndex];
+      plusRefreshImage.src = slide.src;
+      plusRefreshImage.alt = slide.alt;
+      plusRefreshCaption.textContent = slide.caption;
+      plusRefreshCurrent.textContent = String(plusRefreshIndex + 1);
+      if (plusRefreshTotal) {
+        plusRefreshTotal.textContent = String(plusRefreshSlides.length);
+      }
+      renderPlusRefreshDots();
+    }
+
+    function movePlusRefreshGuide(direction) {
+      plusRefreshIndex = (plusRefreshIndex + direction + plusRefreshSlides.length) % plusRefreshSlides.length;
+      renderPlusRefreshGuide();
+    }
+
+    document.querySelector("[data-plus-refresh-prev]")?.addEventListener("click", () => movePlusRefreshGuide(-1));
+    document.querySelector("[data-plus-refresh-next]")?.addEventListener("click", () => movePlusRefreshGuide(1));
+    renderPlusRefreshGuide();
 
     const sectionNav = document.querySelector(".section-nav");
     let sectionNavStart = 0;
