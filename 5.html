@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
@@ -426,68 +426,112 @@
     }
 
     .entry-countdown-dialog{
-      width:min(360px, 100%);
+      width:min(430px, 100%);
       padding:22px;
       border-radius:18px;
       background:#fff;
       border:1px solid rgba(0,0,0,.08);
       box-shadow:0 24px 60px rgba(0,0,0,.22);
-      text-align:center;
+      text-align:left;
     }
 
     .entry-countdown-title{
       font-size:18px;
       font-weight:850;
       color:var(--text);
+      text-align:center;
     }
 
     .entry-countdown-message{
-      margin:10px 0 16px;
-      color:var(--text-2);
+      margin:14px 0 12px;
+      padding:12px 14px;
+      border-radius:14px;
+      border:1px solid #e2e8f0;
+      background:#f8fafc;
+      color:#334155;
       font-size:14px;
+      font-weight:750;
       line-height:1.7;
     }
 
     .entry-countdown-warning{
-      margin:0 0 16px;
-      padding:10px 12px;
+      margin:0;
+      padding:11px 13px;
       border-radius:12px;
-      background:#fff1f0;
-      border:1px solid var(--danger-border);
-      color:#b42318;
+      background:#fff7ed;
+      border:1px solid #fed7aa;
+      color:#9a3412;
       font-size:13px;
       font-weight:850;
       line-height:1.65;
       text-align:left;
     }
 
-    .entry-countdown-number{
-      display:inline-flex;
-      align-items:baseline;
-      justify-content:center;
-      gap:4px;
-      min-width:96px;
-      padding:10px 18px;
-      border-radius:16px;
-      background:var(--apple-blue);
-      color:#fff;
+    .entry-countdown-warning + .entry-countdown-warning{
+      margin-top:10px;
+    }
+
+    .entry-countdown-warning.is-critical{
+      background:#fff1f2;
+      border-color:#fecdd3;
+      color:#be123c;
+    }
+
+    .entry-countdown-warning a{
+      color:inherit;
       font-weight:900;
-    }
-
-    .entry-countdown-number span{
-      font-size:42px;
-      line-height:1;
-    }
-
-    .entry-countdown-number small{
-      font-size:14px;
-      font-weight:850;
+      text-decoration:underline;
+      text-underline-offset:3px;
     }
 
     .entry-countdown-note{
       margin:12px 0 0;
       color:var(--text-3);
       font-size:13px;
+      line-height:1.6;
+      text-align:center;
+    }
+
+    .entry-countdown-actions{
+      display:flex;
+      gap:10px;
+      margin-top:16px;
+    }
+
+    .entry-countdown-primary,
+    .entry-countdown-secondary{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:44px;
+      padding:10px 14px;
+      border-radius:13px;
+      border:1px solid transparent;
+      font-size:14px;
+      font-weight:850;
+      line-height:1.4;
+      text-decoration:none;
+      cursor:pointer;
+      -webkit-tap-highlight-color:transparent;
+    }
+
+    .entry-countdown-primary{
+      flex:1;
+      color:#fff;
+      background:var(--apple-blue);
+      box-shadow:0 10px 22px rgba(0,122,255,.18);
+    }
+
+    .entry-countdown-secondary{
+      color:var(--text-2);
+      background:#fff;
+      border-color:var(--border);
+    }
+
+    @media (max-width:480px){
+      .entry-countdown-actions{
+        flex-direction:column;
+      }
     }
 
     .steps-wrap{
@@ -2046,13 +2090,25 @@
       box-shadow:0 26px 70px rgba(15,23,42,.24) !important;
     }
 
-    .system-choice-page .entry-countdown-warning{
-      background:var(--ui-warn-bg) !important;
-      border-color:var(--ui-warn-line) !important;
-      color:var(--ui-warn-text) !important;
+    .system-choice-page .entry-countdown-message{
+      background:#f8fafc !important;
+      border-color:#e2e8f0 !important;
+      color:#334155 !important;
     }
 
-    .system-choice-page .entry-countdown-number{
+    .system-choice-page .entry-countdown-warning{
+      background:#fff7ed !important;
+      border-color:#fed7aa !important;
+      color:#9a3412 !important;
+    }
+
+    .system-choice-page .entry-countdown-warning.is-critical{
+      background:#fff1f2 !important;
+      border-color:#fecdd3 !important;
+      color:#be123c !important;
+    }
+
+    .system-choice-page .entry-countdown-primary{
       background:var(--ui-primary) !important;
     }
 
@@ -2121,7 +2177,7 @@
 
           <p class="channel-current" data-channel-current>当前选择：充值系统2</p>
 
-          <a href="https://czgpt.plus/" class="system-link" target="_blank" rel="noopener noreferrer" data-channel-entry data-system-enabled="true" data-disabled-system-message="系统2暂未启用，请选择系统1" data-entry-message="验证卡密之后获取session数据，提交使用，等待 3~10 分钟自动完成充值" data-entry-warning="充值成功前禁止退出账号登录或者拉账单，否则会导致session 过期，充值失败。">
+          <a href="https://czgpt.plus/" class="system-link" target="_blank" rel="noopener noreferrer" data-channel-entry data-system-enabled="true" data-disabled-system-message="系统2暂未启用，请选择系统1" data-entry-message="验证卡密之后获取session数据，提交使用，等待 3~10 分钟自动完成充值" data-entry-warning="充值成功前禁止退出账号登录或者拉账单，否则会导致session 过期，充值失败。" data-entry-followup="如查询卡密已使用，但延迟到账，禁止用其他卡密覆盖，请按“未到账处理”步骤更新或联系客服协助。">
             <span data-channel-entry-label>进入充值系统2</span>
             <span class="system-status">暂未启用</span>
           </a>
@@ -2270,8 +2326,6 @@
 
   <script src="assets/contact-modal.js?v=20260531-contact-modal-v2"></script>
   <script>
-    const entryCountdownSeconds = 10;
-    let entryCountdownTimer = null;
     const rechargeChannels = {
       "1": {
         label: "充值系统1",
@@ -2280,6 +2334,7 @@
         disabledMessage: "系统1暂未启用，请选择系统2",
         entryMessage: "",
         entryWarning: "",
+        entryFollowup: "",
         tip: "如果充值提示无可用库存，可等会再试，或联系客服协助处理充值！"
       },
       "2": {
@@ -2289,6 +2344,7 @@
         disabledMessage: "系统2暂未启用，请选择系统1",
         entryMessage: "验证卡密之后获取session数据，提交使用，等待 3~10 分钟自动完成充值",
         entryWarning: "充值成功前禁止退出账号登录或者拉账单，否则会导致session 过期，充值失败。",
+        entryFollowup: "如查询卡密已使用，但延迟到账，禁止用其他卡密覆盖，请按“未到账处理”步骤更新或联系客服协助。",
         tip: "充值系统2在提交Session后等待 3~10 分钟自动充值完成，可用",
         tipLinkText: "卡密查询进度",
         tipLinkHref: "https://czgpt.plus/status"
@@ -2367,6 +2423,12 @@
         delete entryLink.dataset.entryWarning;
       }
 
+      if (channel.entryFollowup) {
+        entryLink.dataset.entryFollowup = channel.entryFollowup;
+      } else {
+        delete entryLink.dataset.entryFollowup;
+      }
+
       document.querySelectorAll("[data-channel-choice]").forEach((button) => {
         const isActive = button.dataset.channelChoice === channelId;
         button.classList.toggle("is-active", isActive);
@@ -2374,23 +2436,25 @@
       });
     }
 
-    function startEntryCountdown(link) {
-      if (entryCountdownTimer) {
-        return;
-      }
+    function showEntryNotice(link) {
+      document.querySelector(".entry-countdown-overlay")?.remove();
 
-      let remaining = entryCountdownSeconds;
       const overlay = document.createElement("div");
       overlay.className = "entry-countdown-overlay";
-      overlay.setAttribute("role", "alert");
-      overlay.setAttribute("aria-live", "assertive");
+      overlay.setAttribute("role", "dialog");
+      overlay.setAttribute("aria-modal", "true");
+      overlay.setAttribute("aria-labelledby", "entry-notice-title");
       overlay.innerHTML = `
         <div class="entry-countdown-dialog">
-          <div class="entry-countdown-title">充值系统2即将打开</div>
+          <div class="entry-countdown-title" id="entry-notice-title">进入充值系统2前请先阅读</div>
           <p class="entry-countdown-message"></p>
           <p class="entry-countdown-warning" data-entry-warning-text hidden></p>
-          <div class="entry-countdown-number"><span data-countdown-number>${remaining}</span><small>秒</small></div>
-          <p class="entry-countdown-note">请阅读提示，倒计时结束后自动进入</p>
+          <p class="entry-countdown-warning is-critical" data-entry-followup-text hidden></p>
+          <p class="entry-countdown-note">阅读完提示后，再进入充值系统2。</p>
+          <div class="entry-countdown-actions">
+            <button class="entry-countdown-secondary" type="button" data-entry-cancel>先不进入</button>
+            <a class="entry-countdown-primary" href="#" target="_blank" rel="noopener noreferrer" data-entry-confirm>我已阅读，进入充值系统2</a>
+          </div>
         </div>
       `;
 
@@ -2400,19 +2464,35 @@
         warningText.textContent = link.dataset.entryWarning;
         warningText.hidden = false;
       }
+
+      const followupText = overlay.querySelector("[data-entry-followup-text]");
+      if (link.dataset.entryFollowup) {
+        followupText.append("如查询卡密已使用，但延迟到账，禁止用其他卡密覆盖，请按");
+        const unreceivedLink = document.createElement("a");
+        unreceivedLink.href = "#unreceived-help";
+        unreceivedLink.textContent = "“未到账处理”";
+        unreceivedLink.dataset.entryUnreceivedLink = "true";
+        followupText.append(unreceivedLink, "步骤更新或联系客服协助。");
+        followupText.hidden = false;
+      }
+
       document.body.appendChild(overlay);
 
-      const countdownNumber = overlay.querySelector("[data-countdown-number]");
-      entryCountdownTimer = window.setInterval(() => {
-        remaining -= 1;
-        countdownNumber.textContent = String(Math.max(remaining, 0));
+      overlay.querySelector("[data-entry-cancel]")?.addEventListener("click", () => {
+        overlay.remove();
+      });
 
-        if (remaining <= 0) {
-          window.clearInterval(entryCountdownTimer);
-          entryCountdownTimer = null;
-          window.location.href = link.href;
-        }
-      }, 1000);
+      const confirmLink = overlay.querySelector("[data-entry-confirm]");
+      if (confirmLink) {
+        confirmLink.href = link.href;
+      }
+      confirmLink?.addEventListener("click", () => {
+        overlay.remove();
+      });
+
+      overlay.querySelector("[data-entry-unreceived-link]")?.addEventListener("click", () => {
+        overlay.remove();
+      });
     }
 
     document.querySelectorAll("[data-channel-choice]").forEach((button) => {
@@ -2685,9 +2765,9 @@
     document.querySelectorAll("[data-disabled-system-message], [data-entry-message]").forEach((link) => {
       link.addEventListener("click", (event) => {
         if (link.dataset.systemEnabled !== "false") {
-          if (link.dataset.entryMessage) {
+          if (link.dataset.entryMessage || link.dataset.entryWarning || link.dataset.entryFollowup) {
             event.preventDefault();
-            startEntryCountdown(link);
+            showEntryNotice(link);
           }
 
           return;
