@@ -162,7 +162,18 @@
       text-align:left;
     }
 
-    .system-list{
+    
+    .stock-tip-link{
+      color:var(--apple-blue);
+      font-weight:850;
+      text-decoration:none;
+      white-space:nowrap;
+    }
+
+    .stock-tip-link:hover{
+      text-decoration:underline;
+    }
+.system-list{
       list-style:none;
       padding:0;
       margin:8px 0 0;
@@ -673,6 +684,24 @@
       font-weight:700;
     }
 
+    .step-note-line{
+      display:block;
+    }
+
+    .step-note-line + .step-note-line{
+      margin-top:6px;
+    }
+
+    .step-note-link{
+      color:var(--apple-blue);
+      font-weight:800;
+      text-decoration:none;
+    }
+
+    .step-note-link:hover{
+      text-decoration:underline;
+    }
+
     .status-check-wrap{
       margin:10px 0 4px;
     }
@@ -987,7 +1016,12 @@
       display:inline;
     }
 
-    .focus-text{
+    
+    .bill-query-warning[hidden] + .refresh-step-list{
+      margin-top:0;
+    }
+
+.focus-text{
       margin-top:12px;
       padding:12px 14px;
       border-radius:12px;
@@ -1690,6 +1724,47 @@
       background:linear-gradient(180deg, #2563eb 0%, var(--ui-primary-strong) 100%) !important;
     }
 
+    @property --entry-border-angle{
+      syntax:"<angle>";
+      inherits:false;
+      initial-value:0deg;
+    }
+
+    .system-choice-page .system-link[data-channel-entry][data-system-enabled="true"]{
+      --entry-border-angle:0deg;
+      --entry-button-surface:linear-gradient(180deg, #2f6df0 0%, var(--ui-primary) 100%);
+      position:relative;
+      overflow:hidden;
+      border:2px solid transparent !important;
+      background:
+        var(--entry-button-surface) padding-box,
+        conic-gradient(from var(--entry-border-angle), rgba(147,197,253,.36) 0deg, rgba(147,197,253,.36) 232deg, rgba(255,255,255,.98) 270deg, rgba(125,211,252,.98) 292deg, rgba(59,130,246,.46) 324deg, rgba(147,197,253,.36) 360deg) border-box !important;
+      background-clip:padding-box, border-box !important;
+      box-shadow:0 10px 22px rgba(37,99,235,.20) !important;
+      animation:entryBorderFlow 2.2s linear infinite;
+    }
+
+    .system-choice-page .system-link[data-channel-entry][data-system-enabled="true"]:hover{
+      --entry-button-surface:linear-gradient(180deg, #2563eb 0%, var(--ui-primary-strong) 100%);
+    }
+
+    .system-choice-page .system-link[data-channel-entry][data-system-enabled="true"]::before,
+    .system-choice-page .system-link[data-channel-entry][data-system-enabled="true"]::after{
+      content:none;
+    }
+
+    @keyframes entryBorderFlow{
+      to{
+        --entry-border-angle:360deg;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .system-choice-page .system-link[data-channel-entry][data-system-enabled="true"]{
+        animation:none;
+      }
+    }
+
     .system-choice-page .contact{
       margin:12px 0 0 !important;
       padding:12px !important;
@@ -2046,7 +2121,7 @@
 
           <p class="channel-current" data-channel-current>当前选择：充值系统2</p>
 
-          <a href="https://czgpt.plus/" class="system-link" target="_blank" rel="noopener noreferrer" data-channel-entry data-system-enabled="true" data-disabled-system-message="系统2暂未启用，请选择系统1" data-entry-message="验证卡密之后获取session数据，提交使用后，耐心等待 5~10 分钟充值完成" data-entry-warning="充值成功前禁止退出账号登录或者拉账单，否则会导致session 过期，充值失败。">
+          <a href="https://czgpt.plus/" class="system-link" target="_blank" rel="noopener noreferrer" data-channel-entry data-system-enabled="true" data-disabled-system-message="系统2暂未启用，请选择系统1" data-entry-message="验证卡密之后获取session数据，提交使用，等待 3~10 分钟自动完成充值" data-entry-warning="充值成功前禁止退出账号登录或者拉账单，否则会导致session 过期，充值失败。">
             <span data-channel-entry-label>进入充值系统2</span>
             <span class="system-status">暂未启用</span>
           </a>
@@ -2111,7 +2186,8 @@
 
             <ol class="steps" start="5">
               <li class="focus-item">
-                查询卡密为充值成功状态后，如果刷新页面，还没有 plus，是浏览器缓存或官网延迟同步。
+                <span class="step-note-line">查询卡密为充值成功状态后，如果刷新页面，还没有 plus，是浏览器缓存或官网延迟同步。</span>
+                <span class="step-note-line">可点击导航条中的“<a class="step-note-link" href="#unreceived-help">未到账处理</a>”，按步骤立刻更新会员状态。</span>
                 <div class="status-check-wrap" data-system2-status-check>
                   <a class="status-check-link" href="https://czgpt.plus/status" target="_blank" rel="noopener noreferrer nofollow">查询卡密使用状态</a>
                   <div class="status-guide" data-status-guide>
@@ -2137,14 +2213,14 @@
               <li class="focus-item refresh-help-item" id="unreceived-help">
                 <div class="refresh-help-lead">按以下步骤操作，可马上更新账号会员状态：</div>
                 <div class="refresh-help-title-row">
-                  <div class="refresh-help-title">充值未到账处理方式</div>
+                  <div class="refresh-help-title" data-refresh-help-title>如查询卡密使用状态为“已使用”，会员未到账，可按以下步骤操作</div>
                 </div>
                 <div class="unreceived-status-entry" data-system2-unreceived-status>
                   <a class="status-check-link unreceived-status-link" href="https://czgpt.plus/status" target="_blank" rel="noopener noreferrer nofollow">查询卡密使用状态</a>
                 </div>
 
                 <div class="extra-text focus-text">
-                  <div class="bill-query-warning"><span>此操作为拉账单操作，</span><span>在查询卡密为充值成功状态前请不要操作</span></div>
+                  <div class="bill-query-warning" data-bill-query-warning><span>此操作为拉账单操作，</span><span>在查询卡密为充值成功状态前请不要操作</span></div>
                   <div class="refresh-step-list" aria-label="Plus状态刷新步骤">
                     <div class="refresh-step"><span class="refresh-step-index">①</span><span>GPT页面点升级</span></div>
                     <div class="refresh-step"><span class="refresh-step-index">②</span><span>再点升级20美金Plus（如果跳IOS订阅报错点左边）</span></div>
@@ -2211,9 +2287,11 @@
         href: "https://czgpt.plus/",
         enabled: true,
         disabledMessage: "系统2暂未启用，请选择系统1",
-        entryMessage: "验证卡密之后获取session数据，提交使用后，耐心等待 5~10 分钟充值完成",
+        entryMessage: "验证卡密之后获取session数据，提交使用，等待 3~10 分钟自动完成充值",
         entryWarning: "充值成功前禁止退出账号登录或者拉账单，否则会导致session 过期，充值失败。",
-        tip: "充值系统2需等待 5~10 分钟充值完成，在提交Session后可用卡密查询进度。"
+        tip: "充值系统2在提交Session后等待 3~10 分钟自动充值完成，可用",
+        tipLinkText: "卡密查询进度",
+        tipLinkHref: "https://czgpt.plus/status"
       }
     };
 
@@ -2227,6 +2305,8 @@
       const submitStepText = document.querySelector("[data-submit-step-text]");
       const system2StatusCheck = document.querySelector("[data-system2-status-check]");
       const system2UnreceivedStatus = document.querySelector("[data-system2-unreceived-status]");
+      const refreshHelpTitle = document.querySelector("[data-refresh-help-title]");
+      const billQueryWarning = document.querySelector("[data-bill-query-warning]");
 
       if (!entryLink || !entryLabel || !currentLabel) {
         return;
@@ -2238,7 +2318,19 @@
       entryLabel.textContent = `进入${channel.label}`;
       currentLabel.textContent = `当前选择：${channel.label}`;
       if (channelTip) {
-        channelTip.textContent = channel.tip || "";
+        channelTip.textContent = "";
+        if (channel.tip) {
+          channelTip.append(document.createTextNode(channel.tip));
+        }
+        if (channel.tipLinkText && channel.tipLinkHref) {
+          const tipLink = document.createElement("a");
+          tipLink.className = "stock-tip-link";
+          tipLink.href = channel.tipLinkHref;
+          tipLink.target = "_blank";
+          tipLink.rel = "noopener noreferrer nofollow";
+          tipLink.textContent = channel.tipLinkText;
+          channelTip.append(tipLink);
+        }
       }
       if (rechargeTutorial) {
         setTutorialChannel(channelId);
@@ -2253,6 +2345,14 @@
       }
       if (system2UnreceivedStatus) {
         system2UnreceivedStatus.hidden = channelId !== "2";
+      }
+      if (refreshHelpTitle) {
+        refreshHelpTitle.textContent = channelId === "2"
+          ? "如查询卡密使用状态为“已使用”，会员未到账，可按以下步骤操作"
+          : "充值未到账处理方式";
+      }
+      if (billQueryWarning) {
+        billQueryWarning.hidden = channelId !== "2";
       }
 
       if (channel.entryMessage) {
