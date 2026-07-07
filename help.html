@@ -93,6 +93,103 @@
             display: block;
         }
 
+        .guide-carousel {
+            max-width: 760px;
+            position: relative;
+            margin: 20px auto 28px;
+        }
+
+        .guide-carousel-track {
+            display: flex;
+            gap: 14px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            border: 1px solid #d9e4f2;
+            border-radius: 12px;
+            background: #f8fbff;
+            padding: 10px;
+            box-shadow: 0 10px 26px rgba(15, 23, 42, 0.08);
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .guide-carousel-track::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .guide-carousel-track::-webkit-scrollbar-thumb {
+            background: #c9d8ea;
+            border-radius: 999px;
+        }
+
+        .guide-slide {
+            flex: 0 0 100%;
+            margin: 0;
+            scroll-snap-align: center;
+        }
+
+        .guide-carousel-image {
+            width: 100% !important;
+            max-height: none !important;
+            height: auto !important;
+            margin: 0 auto !important;
+            border: 0 !important;
+            border-radius: 8px !important;
+            padding: 0 !important;
+            box-shadow: none !important;
+            object-fit: contain !important;
+        }
+
+        .guide-carousel-btn {
+            position: absolute;
+            top: 50%;
+            z-index: 2;
+            width: 38px;
+            height: 38px;
+            border: 1px solid #c9d8ea;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.94);
+            color: #1a202c;
+            font-size: 24px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 18px rgba(15, 23, 42, 0.14);
+            transform: translateY(-50%);
+        }
+
+        .guide-carousel-btn:hover {
+            background: #edf4ff;
+        }
+
+        .guide-carousel-prev {
+            left: -14px;
+        }
+
+        .guide-carousel-next {
+            right: -14px;
+        }
+
+        @media (max-width: 640px) {
+            .guide-carousel {
+                max-width: 100%;
+            }
+
+            .guide-carousel-track {
+                padding: 8px;
+            }
+
+            .guide-carousel-prev {
+                left: 4px;
+            }
+
+            .guide-carousel-next {
+                right: 4px;
+            }
+        }
+
         /* --- 特殊区块样式 (如密钥提示、联系方式) --- */
         .info-box, .contact-box {
             background-color: #f7fafc;
@@ -104,6 +201,22 @@
         
         .info-box strong {
             color: #c53030;
+        }
+
+        .urgent-note {
+            margin: -4px 0 28px;
+            padding: 14px 18px;
+            color: #b42318;
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-left: 5px solid #e53e3e;
+            border-radius: 10px;
+            font-weight: 700;
+            line-height: 1.8;
+        }
+
+        .urgent-note strong {
+            color: #9b1c1c;
         }
 
         .contact-box {
@@ -279,7 +392,21 @@
         <img src="help/13.png" alt="核对账号">
         <img src="help/14.png" alt="确认充值">
         <p>提示充值成功后，刷新一下 GPT 首页就出来会员了。如果没出来的话，请按以下步骤操作</p>
-   <img src="help/15.png" alt="显示通过 App Store 订阅成功">
+   <div class="guide-carousel" data-guide-carousel>
+       <button class="guide-carousel-btn guide-carousel-prev" type="button" aria-label="上一张">‹</button>
+       <div class="guide-carousel-track">
+           <figure class="guide-slide">
+               <img class="guide-carousel-image" src="help/app-store-warning-slide-1.jpg?v=20260708-cut3" alt="刷新后未显示 Plus 的处理步骤 1">
+           </figure>
+           <figure class="guide-slide">
+               <img class="guide-carousel-image" src="help/app-store-warning-slide-2.jpg?v=20260708-cut3" alt="刷新后未显示 Plus 的处理步骤 2">
+           </figure>
+           <figure class="guide-slide">
+               <img class="guide-carousel-image" src="help/app-store-warning-slide-3.jpg?v=20260708-cut3" alt="刷新后未显示 Plus 的处理步骤 3">
+           </figure>
+       </div>
+       <button class="guide-carousel-btn guide-carousel-next" type="button" aria-label="下一张">›</button>
+   </div>
         
         <hr>
 
@@ -295,8 +422,12 @@
         <h3>问：提示充值失败，重新提交怎么办？</h3>
         <p>答：偶遇充值失败或卡住，是太多人同时用通道拥挤，多点几次或晚点再试（提示会员的等会员到期再充），有问题随时联系客服处理（15小时人工在线：9:00-24:00）<strong>请放心，卡密没有充值成功前都不会失效！</strong></p>
         <h3>问：提示充值成功后，没到账plus怎么办？</h3>
-        <p>答：请确认好邮箱再点充值，防止串号(充值成功后，GPT官网没有退款入口！)，正常充值都是秒到或几分钟内到！<strong>如果遇到延迟，获取plus那里点到底，报错后再刷新就出来了！</strong></p>
+         <p>答：请确认好邮箱再点充值，防止串号(充值成功后，GPT官网没有退款入口！)，正常充值都是三到十分钟内到！<strong>如果遇到延迟，获取plus那里点到底（如果还跳IOS报错再点左边），报错或者无反应，再回聊天页刷新就出来了！</strong></p>
          <img src="help/plus.png" alt="获取plus">
+         <img id="app-store-ios-warning" src="help/app-store-ios-warning.png?v=20260708" alt="App Store 订阅报错处理">
+         <div id="recharge-warning-note" class="urgent-note">
+             <strong>重要提醒：</strong>禁止马上用其他卡密和渠道去充值！以免覆盖充值，售后麻烦！请按以上步骤操作，或及时找客服协助！
+         </div>
         
         <hr>
 
@@ -334,6 +465,22 @@
                 mybutton.style.display = "none";
             }
         }
+
+        document.querySelectorAll('[data-guide-carousel]').forEach(function(carousel) {
+            var track = carousel.querySelector('.guide-carousel-track');
+            var prev = carousel.querySelector('.guide-carousel-prev');
+            var next = carousel.querySelector('.guide-carousel-next');
+
+            function move(direction) {
+                track.scrollBy({
+                    left: direction * track.clientWidth,
+                    behavior: 'smooth'
+                });
+            }
+
+            prev.addEventListener('click', function() { move(-1); });
+            next.addEventListener('click', function() { move(1); });
+        });
     </script>
 
   <script src="assets/contact-modal.js?v=20260531-contact-modal-v2"></script>
