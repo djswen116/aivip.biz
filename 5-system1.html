@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="referrer" content="no-referrer">
+    <meta name="color-scheme" content="light">
+    <meta name="theme-color" content="#f5f7fb">
+    <title>AI 充值系统1｜GPT 自助充值</title>
+    <meta
+      name="description"
+      content="AI 充值系统1，提供 GPT 卡密验证、账户充值及卡密状态查询。"
+    >
+    <link rel="icon" href="./assets/ai-recharge-favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./assets/system1-app.css?v=20260731-refresh-v2">
+    <link rel="stylesheet" href="./assets/index-jX4GbGLT.css">
+    <link rel="stylesheet" href="./assets/system-switch.css?v=20260731-switch-v1">
+    <link rel="stylesheet" href="./assets/system1-match.css?v=20260731-refresh-v2">
+    <script src="./assets/system1-app.js?v=20260731-switch-v1" defer></script>
+  </head>
+  <body>
+    <main class="site-shell system1-shell" id="main-content">
+      <a class="skip-link" href="#recharge-app">跳到充值表单</a>
+      <div class="page-glow page-glow-one" aria-hidden="true"></div>
+      <div class="page-glow page-glow-two" aria-hidden="true"></div>
+
+      <header class="topbar">
+        <a class="brand" href="#main-content" aria-label="AI 充值系统1首页">
+          <span class="brand-mark" aria-hidden="true">AI</span>
+          <span><strong>AI 充值系统1</strong></span>
+        </a>
+        <nav class="topnav" aria-label="页面导航">
+          <a class="topnav-primary" href="#recharge-app">立即充值</a>
+          <button type="button" class="topnav-query" data-open-recovery>卡密查询</button>
+          <button type="button" class="topnav-refresh" id="open-subscription-refresh">订阅刷新</button>
+          <a class="topnav-guide" href="#help">使用说明</a>
+        </nav>
+      </header>
+
+      <aside
+        class="system-switcher"
+        aria-label="充值系统切换"
+        data-system-switcher
+        data-current-system="1"
+        data-default-system="2"
+      >
+        <span class="system-switcher__current" id="system-switcher-current">当前：AI 充值系统1</span>
+        <a class="system-switcher__link" href="./5.html?channel=default" data-target-system="2">
+          <span id="system-switcher-link-label">返回默认系统2</span>
+          <span class="system-switcher__arrow" aria-hidden="true">→</span>
+        </a>
+      </aside>
+
+      <div class="system-switcher-notice" id="system-switcher-notice" role="status" hidden>
+        <span class="system-switcher-notice__dot" aria-hidden="true"></span>
+        <div>
+          <strong id="system-switcher-notice-title"></strong>
+          <span>若验证卡密提示“不存在”，通常是系统选错，请切换另一系统重试。</span>
+        </div>
+      </div>
+
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="service-banner system1-service-banner">
+          <span class="banner-signal" aria-hidden="true"></span>
+          <div>
+            <strong>系统1充值通道已就绪</strong>
+            <span>验证 GPT 卡密后进入自动充值流程</span>
+          </div>
+          <span class="banner-status">24 小时自助</span>
+        </div>
+        <div class="hero-copy">
+          <span class="eyebrow">FAST · STABLE · AUTOMATED</span>
+          <h1 id="hero-title" aria-label="24小时卡密自助，稳定快捷">
+            <span class="hero-title-main" aria-hidden="true">24小时卡密自助</span>
+            <span class="hero-title-accent" aria-hidden="true">稳定快捷</span>
+          </h1>
+        </div>
+      </section>
+
+      <section class="workspace workspace-initial" aria-label="充值服务">
+        <div class="recharge-column">
+          <article class="recharge-card app-card" id="recharge-app" tabindex="-1">
+            <div class="card-heading">
+              <div>
+                <span class="section-kicker">REDEEM CODE</span>
+                <h2>输入卡密验证，升级PLUS</h2>
+                <p>先验证卡密，再按照提示填写信息确认升级</p>
+              </div>
+              <div class="step-indicator" aria-label="当前步骤">
+                <span class="is-active" data-step-indicator="1" aria-current="step">1</span>
+                <i aria-hidden="true"></i>
+                <span data-step-indicator="2">2</span>
+                <i aria-hidden="true"></i>
+                <span data-step-indicator="3">3</span>
+              </div>
+            </div>
+
+            <section class="card-stage" data-stage="card">
+              <form class="code-form" id="card-form" novalidate>
+                <label for="card-code">卡密 / 激活码</label>
+                <div class="code-field-row">
+                  <div class="input-wrap">
+                    <input
+                      id="card-code"
+                      name="card-code"
+                      type="text"
+                      inputmode="text"
+                      autocomplete="off"
+                      autocapitalize="characters"
+                      spellcheck="false"
+                      placeholder="例如：G5PH••••••••••••••••"
+                      aria-describedby="card-help card-error"
+                      required
+                    >
+                  </div>
+                  <button class="primary-button" type="submit" id="verify-card-button">
+                    <span>验证卡密</span>
+                    <span class="button-spinner" aria-hidden="true"></span>
+                  </button>
+                </div>
+                <p class="field-help" id="card-help">输入时会自动移除空格和符号，不区分大小写。</p>
+                <p class="field-error" id="card-error" aria-live="polite"></p>
+              </form>
+            </section>
+
+            <section class="notice" id="main-notice" role="status" aria-live="polite" hidden>
+              <span class="notice-symbol" aria-hidden="true">i</span>
+              <div>
+                <strong id="notice-title"></strong>
+                <p id="notice-detail"></p>
+                <p class="backend-message" id="notice-backend" hidden></p>
+                <button class="notice-action" id="notice-action" type="button" hidden></button>
+              </div>
+            </section>
+
+            <section class="form-section account-section" data-stage="account" hidden>
+              <div class="section-heading">
+                <span class="section-number">02</span>
+                <div>
+                  <h3>填写账户信息</h3>
+                  <p id="verified-product-copy">卡密已验证，请填写目标账户凭证。</p>
+                </div>
+                <span class="verified-badge">已匹配</span>
+              </div>
+
+              <form class="recharge-form" id="account-form" novalidate>
+                <div class="credential-panel" data-credential-panel="gpt">
+                  <label for="gpt-credential">ChatGPT Session JSON</label>
+                  <textarea
+                    id="gpt-credential"
+                    name="gpt-credential"
+                    autocomplete="off"
+                    autocapitalize="off"
+                    spellcheck="false"
+                    placeholder='请粘贴完整的JSON数据，例如：&#10;{&#10;  "WARNING_BANNER": "……",&#10;  "user": { "email": "name@example.com" },&#10;  "account": { "id": "account_xxx" },&#10;  "accessToken": "完整 accessToken"&#10;}}}'
+                    aria-describedby="gpt-help gpt-error confirmed-account-summary"
+                  ></textarea>
+                  <p class="field-help" id="gpt-help">上方仅为结构示意，请全选复制 Session 页面中的全部内容，不要增删任何字段。不要开网页翻译，会导致 Session 识别失败。</p>
+                  <p class="field-error" id="gpt-error" aria-live="polite"></p>
+                  <div class="confirmed-account-summary" id="confirmed-account-summary" hidden aria-live="polite">
+                    <span class="confirmed-account-mark" aria-hidden="true">✓</span>
+                    <div>
+                      <small>已确认充值邮箱</small>
+                      <strong id="confirmed-account-email">—</strong>
+                    </div>
+                    <button type="button" id="reopen-account-confirm">重新确认</button>
+                  </div>
+                  <div class="form-grid form-grid-single">
+                    <label class="check-card" for="force-recharge">
+                      <input id="force-recharge" name="force-recharge" type="checkbox">
+                      <span>
+                        <strong>账号已有会员，仍继续充值</strong>
+                        <small>仅在确认需要覆盖时勾选</small>
+                      </span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="consent-note">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 3 5 6v5c0 4.6 2.8 8.1 7 10 4.2-1.9 7-5.4 7-10V6l-7-3Z"></path>
+                    <path d="m9.2 12 1.8 1.8 3.9-4"></path>
+                  </svg>
+                  <p>
+                    <strong>提交即开始处理，请勿重复提交。</strong>
+                    请求超时不代表失败；请稍后使用原卡密查询状态。
+                  </p>
+                </div>
+
+                <div class="form-actions submit-row">
+                  <button class="primary-button recharge-button" type="submit" id="submit-recharge-button">
+                    <span>确认并提交充值</span>
+                    <span class="button-spinner" aria-hidden="true"></span>
+                  </button>
+                  <button class="secondary-button" type="button" id="back-to-card">更换卡密</button>
+                </div>
+              </form>
+            </section>
+
+            <section
+              class="task-section task-panel"
+              data-stage="task"
+              aria-live="polite"
+              aria-atomic="false"
+              hidden
+            >
+              <div class="section-heading task-panel-head">
+                <span class="section-number">03</span>
+                <div>
+                  <h3 id="task-title">正在处理</h3>
+                  <p id="task-summary">请保持页面打开，状态将自动更新。</p>
+                </div>
+                <span class="status-pill status-processing" id="task-status-pill">处理中</span>
+              </div>
+
+              <div class="progress-track" aria-hidden="true">
+                <span id="task-progress"></span>
+              </div>
+              <ol class="task-timeline" id="task-timeline" aria-label="任务进度"></ol>
+              <dl class="task-meta">
+                <div>
+                  <dt>使用卡密</dt>
+                  <dd><code id="task-card">—</code></dd>
+                </div>
+                <div>
+                  <dt>充值邮箱</dt>
+                  <dd id="task-email">未提供</dd>
+                </div>
+                <div>
+                  <dt>最近更新</dt>
+                  <dd id="task-updated">—</dd>
+                </div>
+              </dl>
+              <div class="task-actions">
+                <button class="secondary-button" type="button" id="stop-polling">停止页面查询</button>
+                <button class="secondary-button" type="button" id="start-over" hidden>开始新充值</button>
+                <button class="quiet-button" type="button" data-open-recovery>查询卡密状态</button>
+              </div>
+            </section>
+          </article>
+
+          <section class="support-card">
+            <strong>提交前后请不要退出账号登录</strong>
+            <p>如果充值成功，刷新页面后，还没有Plus，请点导航条刷新订阅操作。</p>
+          </section>
+        </div>
+
+        <aside class="side-panel" id="help">
+          <section class="guide-card">
+            <span class="section-kicker">HOW IT WORKS</span>
+            <h2>三步完成充值</h2>
+            <ol>
+              <li>
+                <span>1</span>
+                <div><strong>输入并验证卡密</strong></div>
+                <p class="guide-warning">
+                  <span>禁止同时用多张卡密充同一个账号</span>
+                  <span>会覆盖时间而非叠加月份，无法找GPT退款！</span>
+                </p>
+              </li>
+              <li>
+                <span>2</span>
+                <div>
+                  <strong>填写目标账户信息</strong>
+                  <p>获取Session后粘贴，核实邮箱并提交</p>
+                </div>
+              </li>
+              <li>
+                <span>3</span>
+                <div>
+                  <strong>等待自动处理</strong>
+                  <p>页面会持续更新任务结果</p>
+                </div>
+              </li>
+            </ol>
+          </section>
+        </aside>
+      </section>
+
+      <footer class="footer-alert" aria-label="充值完成后的处理提示">
+        <p>查询卡密如果充值成功，刷新页面后，还没有Plus，非充值出问题，是官网延迟同步</p>
+        <p class="footer-alert-warning">禁马上用其他卡密和渠道去充值！以免覆盖充值，售后麻烦！请刷新订阅，或及时找客服协助！</p>
+      </footer>
+    </main>
+
+    <dialog
+      class="account-confirm-dialog"
+      id="account-confirm-dialog"
+      aria-labelledby="account-confirm-title"
+      aria-describedby="account-confirm-description"
+    >
+      <form method="dialog" class="query-dialog-close-form">
+        <button class="query-dialog-close" id="account-confirm-close" value="cancel" aria-label="关闭账户确认">×</button>
+      </form>
+      <div class="account-confirm-icon" aria-hidden="true">@</div>
+      <span class="section-kicker">ACCOUNT CHECK</span>
+      <h2 id="account-confirm-title">确认充值账户</h2>
+      <p id="account-confirm-description">请确认这是需要升级的 ChatGPT 账户，确认后将立即提交充值。</p>
+      <dl class="account-confirm-meta">
+        <div>
+          <dt>充值邮箱</dt>
+          <dd id="account-confirm-email">—</dd>
+        </div>
+        <div>
+          <dt>当前套餐</dt>
+          <dd id="account-confirm-plan">未识别</dd>
+        </div>
+      </dl>
+      <p class="account-membership-notice" id="account-membership-notice" hidden>
+        检测到账号已有会员，确认后将自动勾选“覆盖充值”。请确认现有会员时间可能被重新计算。
+      </p>
+      <label class="account-confirm-check" for="account-confirm-checkbox">
+        <input id="account-confirm-checkbox" type="checkbox">
+        <span>
+          <strong>我已核对以上账户信息</strong>
+          <small>邮箱和套餐状态均确认无误</small>
+        </span>
+      </label>
+      <div class="account-confirm-actions">
+        <button class="secondary-button" type="button" id="account-confirm-cancel">取消</button>
+        <button class="primary-button" type="button" id="account-confirm-submit" disabled>确认并提交充值</button>
+      </div>
+    </dialog>
+
+    <dialog
+      class="query-card"
+      id="recovery-dialog"
+      aria-labelledby="recovery-title"
+      aria-describedby="recovery-description"
+    >
+      <form method="dialog" class="query-dialog-close-form">
+        <button class="query-dialog-close" value="close" aria-label="关闭卡密查询">×</button>
+      </form>
+      <div class="query-card-heading">
+        <span class="section-kicker">CARD STATUS</span>
+        <h2 id="recovery-title">卡密查询</h2>
+        <p id="recovery-description">输入卡密即可查看当前使用状态和绑定信息。</p>
+      </div>
+
+      <div class="query-card-content">
+        <form class="query-form" id="recovery-form" novalidate>
+          <label for="recovery-value">卡密 / 激活码</label>
+          <div class="query-field-row">
+            <input
+              id="recovery-value"
+              name="recovery-value"
+              type="text"
+              autocomplete="off"
+              autocapitalize="characters"
+              spellcheck="false"
+              placeholder="例如：G5PH••••••••••••••••"
+              aria-describedby="recovery-help recovery-error"
+              required
+            >
+            <button class="primary-button query-submit-button" type="submit" id="recovery-submit">
+              <span>查询状态</span>
+              <span class="button-spinner" aria-hidden="true"></span>
+            </button>
+          </div>
+          <p class="field-help" id="recovery-help">仅查询卡密状态，不会提交充值。</p>
+          <p class="field-error" id="recovery-error" aria-live="polite"></p>
+        </form>
+
+        <section class="query-result" id="recovery-result" aria-live="polite" aria-atomic="true">
+          <div class="query-result-message" id="recovery-result-message">
+            <span class="query-result-dot" aria-hidden="true"></span>
+            <div>
+              <strong id="recovery-result-title">等待查询</strong>
+              <p id="recovery-result-detail">查询后会显示使用状态、绑定邮箱和使用时间，如有异常联系客服处理。</p>
+            </div>
+          </div>
+
+          <div class="query-result-heading" id="recovery-result-heading" hidden>
+            <div>
+              <span>查询结果</span>
+              <strong>卡密信息</strong>
+            </div>
+            <span class="query-status" id="recovery-result-status"></span>
+          </div>
+          <dl class="query-result-grid" id="recovery-result-grid" hidden>
+            <div>
+              <dt>使用状态</dt>
+              <dd id="recovery-result-status-value">—</dd>
+            </div>
+            <div>
+              <dt>绑定邮箱</dt>
+              <dd id="recovery-result-email">—</dd>
+            </div>
+            <div>
+              <dt>使用时间</dt>
+              <dd id="recovery-result-used-at">—</dd>
+            </div>
+          </dl>
+        </section>
+      </div>
+    </dialog>
+
+    <div class="refresh-dialog-backdrop" id="subscription-refresh-backdrop" hidden>
+      <div
+        class="refresh-card"
+        id="subscription-refresh-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="subscription-refresh-title"
+        aria-describedby="subscription-refresh-warning subscription-refresh-description"
+      >
+        <button
+          type="button"
+          class="query-dialog-close"
+          id="subscription-refresh-close"
+          aria-label="关闭订阅刷新"
+        >×</button>
+
+        <div class="refresh-card-heading">
+          <span class="section-kicker">SUBSCRIPTION SYNC</span>
+          <h2 id="subscription-refresh-title">刷新并核对订阅状态</h2>
+          <p id="subscription-refresh-warning" class="refresh-heading-warning">
+            请在充值完成，或查询卡密已使用、未成功显示Plus的情况下，才刷新！
+          </p>
+          <p id="subscription-refresh-description">
+            粘贴完整的 Session JSON，完成格式校验后提交同步请求。结果仅显示账号、订阅状态、刷新时间与说明。
+          </p>
+        </div>
+
+        <div class="refresh-workspace">
+          <form class="refresh-panel refresh-input-panel" id="subscription-refresh-form" novalidate>
+            <div class="refresh-panel-heading">
+              <div>
+                <span>STEP 01</span>
+                <h3>输入 Session</h3>
+              </div>
+              <a
+                class="refresh-session-link"
+                href="https://chatgpt.com/api/auth/session"
+                target="_blank"
+                rel="noopener noreferrer"
+                referrerpolicy="no-referrer"
+              >点击获取Session</a>
+            </div>
+
+            <label for="subscription-refresh-session">
+              粘贴完整 Session JSON <span aria-hidden="true">*</span>
+            </label>
+            <div class="refresh-textarea-wrap">
+              <textarea
+                id="subscription-refresh-session"
+                name="subscription-refresh-session"
+                rows="7"
+                maxlength="200000"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                placeholder='请粘贴完整的JSON数据，例如：&#10;{&#10;  "WARNING_BANNER": "……",&#10;  "user": { "email": "name@example.com" },&#10;  "account": { "id": "account_xxx" },&#10;  "accessToken": "完整 accessToken"&#10;}}}'
+                aria-describedby="subscription-refresh-help subscription-refresh-error"
+                data-1p-ignore="true"
+                data-lpignore="true"
+              ></textarea>
+              <span id="subscription-refresh-count" aria-hidden="true">0 字符</span>
+            </div>
+            <p id="subscription-refresh-help" class="refresh-field-help">
+              上方仅为结构示意，请全选复制 Session 页面中的全部内容，不要增删任何字段。不要开网页翻译，会导致 Session 识别失败。
+            </p>
+            <p id="subscription-refresh-error" class="refresh-field-error" aria-live="assertive"></p>
+
+            <div class="refresh-actions">
+              <button type="submit" class="primary-button" id="subscription-refresh-submit">
+                <span class="query-spinner" id="subscription-refresh-submit-spinner" hidden aria-hidden="true"></span>
+                <span id="subscription-refresh-submit-label">校验并刷新</span>
+              </button>
+              <button type="button" class="secondary-button" id="subscription-refresh-clear">清空输入</button>
+            </div>
+
+            <details class="refresh-rules">
+              <summary>查看页面校验规则</summary>
+              <pre>必须是有效 JSON，并包含：
+• accessToken：有效 JWT 字符串（三段式）
+• user.email：账户邮箱
+• WARNING_BANNER：安全提示字段
+
+请求体：{ "token": "完整 Session JSON 字符串" }</pre>
+            </details>
+          </form>
+
+          <section class="refresh-panel refresh-result-panel" aria-labelledby="subscription-refresh-result-title">
+            <div class="refresh-panel-heading">
+              <div>
+                <span>STEP 02</span>
+                <h3 id="subscription-refresh-result-title">刷新结果（实时显示）</h3>
+              </div>
+              <span class="refresh-status-pill" id="subscription-refresh-status">等待输入</span>
+            </div>
+
+            <div
+              class="refresh-result-state"
+              id="subscription-refresh-result-state"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <div class="refresh-state-message" id="subscription-refresh-empty">
+                <span class="query-spinner" id="subscription-refresh-loading-spinner" hidden aria-hidden="true"></span>
+                <span class="refresh-state-symbol" id="subscription-refresh-state-symbol" aria-hidden="true">↻</span>
+                <div>
+                  <strong id="subscription-refresh-state-title">等待刷新，请粘贴完整Session后提交刷新</strong>
+                  <p id="subscription-refresh-state-detail"></p>
+                </div>
+              </div>
+
+              <div class="refresh-result-table-wrap" id="subscription-refresh-table-wrap" hidden>
+                <table class="refresh-result-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">账号信息</th>
+                      <th scope="col">订阅状态</th>
+                      <th scope="col">刷新时间</th>
+                      <th scope="col">结果说明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td id="subscription-refresh-email">—</td>
+                      <td><span class="refresh-result-tag" id="subscription-refresh-result-tag">—</span></td>
+                      <td id="subscription-refresh-time">—</td>
+                      <td id="subscription-refresh-message">—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="noscript">此充值页面需要启用 JavaScript 才能验证卡密和查询卡密状态。</div>
+    </noscript>
+  </body>
+</html>

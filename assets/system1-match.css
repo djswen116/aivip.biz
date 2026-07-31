@@ -1,0 +1,245 @@
+.system1-shell [hidden],
+dialog[hidden],
+#subscription-refresh-backdrop[hidden],
+#subscription-refresh-dialog [hidden] {
+  display: none !important;
+}
+
+#subscription-refresh-dialog .refresh-result-state {
+  width: 100%;
+}
+
+.system1-shell .topbar {
+  min-height: 60px;
+}
+
+.system1-shell > .system-switcher {
+  min-height: 38px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.system1-shell .service-banner {
+  min-height: 78px;
+  padding: 17px 18px;
+  color: #fff;
+  background:
+    radial-gradient(circle at 92% 0, rgba(255, 255, 255, 0.28), transparent 28%),
+    linear-gradient(105deg, #f0a13c, #eb8335 54%, #e98a60);
+  border: 1px solid rgba(255, 255, 255, 0.68);
+  border-radius: 20px;
+  box-shadow: 0 18px 40px rgba(214, 111, 42, 0.18);
+}
+
+.system1-shell .banner-signal {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border: 3px solid rgba(255, 255, 255, 0.84);
+  border-radius: 50%;
+  box-shadow: none;
+}
+
+.system1-shell .banner-signal::after {
+  position: absolute;
+  inset: -8px;
+  display: block;
+  content: "";
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: inherit;
+}
+
+.system1-shell .service-banner strong {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.system1-shell .service-banner div span {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 11px;
+}
+
+.system1-shell .service-banner .banner-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 32px;
+  padding: 7px 13px;
+  color: #90400f;
+  background: rgba(255, 248, 239, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  box-shadow: 0 5px 14px rgba(145, 61, 15, 0.14);
+  font-size: 11px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.system1-shell .hero-copy h1 {
+  margin-bottom: 0;
+}
+
+.system1-shell .recharge-card {
+  min-height: 0;
+}
+
+.system1-shell .card-stage {
+  margin: 0;
+}
+
+.system1-shell .code-form label {
+  display: block;
+  margin-bottom: 8px;
+  color: #1d1d1f;
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.system1-shell .code-form input {
+  min-height: 50px;
+  color: #1d1d1f;
+  background: #f3f3f6;
+  border-color: transparent;
+  border-radius: 12px;
+  font-size: 15px;
+}
+
+.system1-shell .code-form input:focus {
+  background: #fff;
+  border-color: rgba(0, 113, 227, 0.52);
+  box-shadow: 0 0 0 4px rgba(0, 113, 227, 0.1);
+}
+
+.system1-shell .code-form .primary-button {
+  min-width: 92px;
+}
+
+.system1-shell .step-indicator span.is-active {
+  color: #fff;
+  background: #0071e3;
+  border-color: #0071e3;
+}
+
+.system1-shell .step-indicator span.is-complete {
+  color: #0066cc;
+  background: #edf5ff;
+  border-color: #c7ddf5;
+}
+
+.system1-shell .form-section,
+.system1-shell .task-section {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top-color: rgba(29, 29, 31, 0.09);
+}
+
+.system1-shell .section-heading {
+  margin-bottom: 18px;
+}
+
+.system1-shell .section-heading h3 {
+  color: #1d1d1f;
+  font-size: 17px;
+  font-weight: 650;
+}
+
+.system1-shell .section-heading p {
+  color: #6e6e73;
+}
+
+.system1-shell .notice {
+  margin-top: 18px;
+  border-radius: 14px;
+}
+
+.system1-shell .account-section textarea {
+  min-height: 168px;
+}
+
+.system1-shell .submit-row {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.system1-shell .submit-row .secondary-button {
+  width: auto;
+}
+
+.system1-shell .task-section.task-panel {
+  margin-top: 24px;
+  padding: 24px;
+}
+
+.system1-shell .task-section .task-panel-head {
+  padding: 0;
+  border: 0;
+}
+
+.system1-shell .footer-alert {
+  box-sizing: border-box;
+}
+
+.system1-shell .footer-alert-warning {
+  color: #b54708;
+}
+
+@media (max-width: 1020px) {
+  .system1-shell .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .system1-shell .side-panel {
+    grid-area: auto / 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .system1-shell .service-banner {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+    min-height: 70px;
+    padding: 13px 12px;
+  }
+
+  .system1-shell .service-banner strong {
+    font-size: 13px;
+  }
+
+  .system1-shell .service-banner div span {
+    font-size: 10px;
+    line-height: 1.45;
+  }
+
+  .system1-shell .service-banner .banner-status {
+    min-height: 29px;
+    padding: 6px 9px;
+    font-size: 10px;
+  }
+
+  .system1-shell .code-field-row,
+  .system1-shell .submit-row {
+    grid-template-columns: 1fr;
+  }
+
+  .system1-shell .code-form .primary-button,
+  .system1-shell .submit-row .secondary-button {
+    width: 100%;
+  }
+
+  .system1-shell .task-section.task-panel {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 420px) {
+  .system1-shell .service-banner {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .system1-shell .service-banner .banner-status {
+    grid-column: 2;
+    justify-self: start;
+  }
+}

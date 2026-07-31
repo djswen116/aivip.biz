@@ -1,0 +1,120 @@
+.system-switcher {
+  width: min(1160px, calc(100% - 40px));
+  min-height: 38px;
+  margin: 2px auto 14px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  color: #6e6e73;
+  font-size: 12px;
+  line-height: 1.35;
+}
+
+.system-switcher__current {
+  white-space: nowrap;
+}
+
+.system-switcher__link {
+  padding: 5px 2px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #6681a5;
+  font-size: 12px;
+  font-weight: 400;
+  text-decoration: none;
+  transition:
+    color 160ms ease;
+}
+
+.system-switcher__link:hover {
+  color: #335e98;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.system-switcher__link:focus-visible {
+  outline: 3px solid rgba(0, 113, 227, 0.25);
+  outline-offset: 2px;
+}
+
+.system-switcher__arrow {
+  font-size: 13px;
+  line-height: 1;
+}
+
+.system-switcher-notice {
+  width: min(1160px, calc(100% - 40px));
+  margin: -6px auto 18px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  color: #52657d;
+  background: rgba(237, 244, 252, 0.78);
+  border-left: 3px solid #9bbce6;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.system-switcher-notice[hidden] {
+  display: none;
+}
+
+.system-switcher-notice__dot {
+  width: 7px;
+  height: 7px;
+  margin-top: 5px;
+  flex: 0 0 auto;
+  background: #6e9ed8;
+  border-radius: 50%;
+}
+
+.system-switcher-notice strong {
+  display: block;
+  margin-bottom: 2px;
+  color: #324966;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.system-switcher-notice span:not(.system-switcher-notice__dot) {
+  display: block;
+}
+
+@media (max-width: 760px) {
+  .system-switcher {
+    width: min(100% - 28px, 1160px);
+    margin-bottom: 10px;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .system-switcher__link {
+    padding: 5px 2px;
+  }
+
+  .system-switcher-notice {
+    width: min(100% - 28px, 1160px);
+    margin-top: -3px;
+  }
+}
+
+@media (max-width: 420px) {
+  .system-switcher__current {
+    display: none;
+  }
+
+  .system-switcher {
+    justify-content: flex-end;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .system-switcher__link {
+    transition: none;
+  }
+}
