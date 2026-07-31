@@ -117,6 +117,20 @@
     if (refreshHelp && refreshHelp.textContent !== sessionRefreshHelp) {
       refreshHelp.textContent = sessionRefreshHelp;
     }
+
+    const detectedPlan = document.querySelector(
+      "#session-confirm-dialog .email-confirm-meta > div:nth-child(2) dd",
+    );
+    if (detectedPlan?.textContent.trim() === "PLUS") {
+      detectedPlan.textContent = "请确认为免费版";
+    }
+
+    const parsedPlan = document.querySelector(
+      ".session-review-card .session-plan-type b",
+    );
+    if (parsedPlan?.textContent.trim() === "PLUS") {
+      parsedPlan.textContent = "请确认为免费版";
+    }
   }
 
   function start() {
