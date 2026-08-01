@@ -2,7 +2,7 @@
   "use strict";
 
   const scriptUrl = import.meta.url;
-  const stylesheetUrl = new URL("system-switch.css?v=20260731-switch-v1", scriptUrl).href;
+  const stylesheetUrl = new URL("system-switch.css?v=20260801-used-refresh-v1", scriptUrl).href;
   const systemOneUrl = new URL("../5-system1.html", scriptUrl).href;
   const currentSystem = 2;
   const defaultSystem = 2;
@@ -133,11 +133,77 @@
     }
   }
 
+  function buildUsedRefreshHint(scope) {
+    const hint = document.createElement("p");
+    hint.className = "system2-used-refresh-hint";
+    hint.dataset.system2UsedRefreshHint = scope;
+    hint.append(document.createTextNode("已完成升级，如有异常，"));
+
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "system2-used-refresh-button";
+    button.textContent = "请点此刷新订阅";
+    button.addEventListener("click", () => {
+      const refreshButton = document.querySelector(".topnav-refresh");
+      if (refreshButton instanceof HTMLButtonElement) {
+        refreshButton.click();
+      }
+    });
+
+    hint.append(button);
+    return hint;
+  }
+
+  function removeUsedRefreshHints(scope) {
+    document
+      .querySelectorAll(`[data-system2-used-refresh-hint="${scope}"]`)
+      .forEach((hint) => hint.remove());
+  }
+
+  function syncUsedRefreshHints() {
+    const verificationNotice = document.querySelector(
+      "#recharge-card .notice.notice-warning",
+    );
+    const verificationTitle = verificationNotice?.querySelector(":scope > div > strong");
+    const verificationCopy = verificationTitle?.parentElement;
+    const verificationIsUsed = verificationTitle?.textContent.trim() === "卡密状态：已使用";
+
+    if (verificationCopy && verificationIsUsed) {
+      if (!verificationCopy.querySelector('[data-system2-used-refresh-hint="verification"]')) {
+        verificationCopy.append(buildUsedRefreshHint("verification"));
+      }
+    } else {
+      removeUsedRefreshHints("verification");
+    }
+
+    const queryResult = document.querySelector("#card-query-dialog .query-result");
+    const queryGrid = queryResult?.querySelector(".query-result-grid");
+    const queryStatus = queryResult?.querySelector(".query-result-heading .query-status");
+    const queryIsUsed = queryStatus?.textContent.trim() === "已使用";
+
+    if (queryResult && queryGrid && queryIsUsed) {
+      let hint = queryResult.querySelector('[data-system2-used-refresh-hint="query"]');
+      if (!hint) {
+        hint = buildUsedRefreshHint("query");
+      }
+      if (queryGrid.nextElementSibling !== hint) {
+        queryGrid.insertAdjacentElement("afterend", hint);
+      }
+    } else {
+      removeUsedRefreshHints("query");
+    }
+  }
+
+  function syncPageEnhancements() {
+    syncSessionGuidance();
+    syncUsedRefreshHints();
+  }
+
   function start() {
     ensureStylesheet();
-    syncSessionGuidance();
-    const observer = new MutationObserver(syncSessionGuidance);
-    observer.observe(document.body, { childList: true, subtree: true });
+    syncPageEnhancements();
+    const observer = new MutationObserver(syncPageEnhancements);
+    observer.observe(document.body, { childList: true, characterData: true, subtree: true });
     window.addEventListener("pagehide", () => observer.disconnect(), { once: true });
     let attempts = 0;
     mountSwitcher();
@@ -145,7 +211,7 @@
     const retry = window.setInterval(() => {
       attempts += 1;
       mountSwitcher();
-      syncSessionGuidance();
+      syncPageEnhancements();
       if (attempts >= 24) {
         window.clearInterval(retry);
       }

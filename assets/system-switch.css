@@ -118,3 +118,42 @@
     transition: none;
   }
 }
+
+.system2-used-refresh-hint {
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(0, 102, 204, 0.16);
+  color: #52657d;
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.query-result .system2-used-refresh-hint {
+  margin-top: 14px;
+  padding-top: 12px;
+}
+
+.system2-used-refresh-button {
+  appearance: none;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #0066cc;
+  background: transparent;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.system2-used-refresh-button:hover {
+  color: #004f9f;
+}
+
+.system2-used-refresh-button:focus-visible {
+  outline: 3px solid rgba(0, 113, 227, 0.25);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
