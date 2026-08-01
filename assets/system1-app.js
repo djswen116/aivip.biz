@@ -1718,7 +1718,17 @@
       `refresh-result-tag refresh-result-tag-${result.tone}`;
     elements.refreshResultTag.textContent = result.statusLabel;
     elements.refreshResultTime.textContent = result.refreshedAt;
-    elements.refreshResultMessage.textContent = result.message;
+    if (result.tone === "error") {
+      const manualRefreshLink = document.createElement("a");
+      manualRefreshLink.className = "manual-refresh-link";
+      manualRefreshLink.href = "./subscription-refresh-guide.html?from=system1";
+      manualRefreshLink.target = "_blank";
+      manualRefreshLink.rel = "noopener noreferrer";
+      manualRefreshLink.textContent = "请手动刷新订阅";
+      elements.refreshResultMessage.replaceChildren(manualRefreshLink);
+    } else {
+      elements.refreshResultMessage.textContent = result.message;
+    }
     setRefreshStatus(
       result.tone,
       result.tone === "success" ? "1 条记录" : result.statusLabel,

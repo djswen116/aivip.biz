@@ -157,3 +157,21 @@
   outline-offset: 2px;
   border-radius: 3px;
 }
+
+.manual-refresh-link {
+  color: #006dcc;
+  font-weight: 650;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.manual-refresh-link:hover {
+  color: #004f9f;
+}
+
+.manual-refresh-link:focus-visible {
+  border-radius: 3px;
+  outline: 3px solid rgba(0, 113, 227, 0.22);
+  outline-offset: 3px;
+}
