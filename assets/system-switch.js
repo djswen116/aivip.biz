@@ -2,8 +2,12 @@
   "use strict";
 
   const scriptUrl = import.meta.url;
-  const stylesheetUrl = new URL("system-switch.css?v=20260801-used-refresh-v1", scriptUrl).href;
+  const stylesheetUrl = new URL("system-switch.css?v=20260801-manual-refresh-v1", scriptUrl).href;
   const systemOneUrl = new URL("../5-system1.html", scriptUrl).href;
+  const manualRefreshGuideUrl = new URL(
+    "../subscription-refresh-guide.html?from=system2",
+    scriptUrl,
+  ).href;
   const currentSystem = 2;
   const defaultSystem = 2;
   const targetSystem = 1;
@@ -194,9 +198,36 @@
     }
   }
 
+  function syncManualRefreshLink() {
+    const resultRow = document.querySelector(
+      "#subscription-refresh-dialog .refresh-result-table tbody tr",
+    );
+    const resultStatus = resultRow?.querySelector(".refresh-result-tag");
+    const resultMessage = resultRow?.querySelector("td:nth-child(4)");
+
+    if (!resultMessage || resultStatus?.textContent.trim() !== "刷新失败") {
+      return;
+    }
+
+    const existingLink = resultMessage.querySelector("[data-manual-refresh-link]");
+    if (existingLink) {
+      return;
+    }
+
+    const manualRefreshLink = document.createElement("a");
+    manualRefreshLink.className = "manual-refresh-link";
+    manualRefreshLink.dataset.manualRefreshLink = "system2";
+    manualRefreshLink.href = manualRefreshGuideUrl;
+    manualRefreshLink.target = "_blank";
+    manualRefreshLink.rel = "noopener noreferrer";
+    manualRefreshLink.textContent = "请手动刷新订阅";
+    resultMessage.replaceChildren(manualRefreshLink);
+  }
+
   function syncPageEnhancements() {
     syncSessionGuidance();
     syncUsedRefreshHints();
+    syncManualRefreshLink();
   }
 
   function start() {

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#f5f7fb">
+  <title>手动刷新订阅｜AI 充值系统</title>
+  <link rel="icon" href="./assets/ai-recharge-favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./assets/subscription-refresh-guide.css?v=20260801-v2">
+</head>
+<body>
+  <main class="guide-shell">
+    <header class="guide-topbar">
+      <a class="back-link" id="back-link" href="./5.html">返回充值页</a>
+      <span class="system-label" id="system-label">AI 充值系统2</span>
+    </header>
+
+    <section class="guide-hero" aria-labelledby="page-title">
+      <span class="guide-eyebrow">SUBSCRIPTION REFRESH</span>
+      <h1 id="page-title">请按以下步骤手动刷新订阅</h1>
+      <p>适用于充值已完成，但刷新页面后仍未显示 Plus 的情况。</p>
+      <div class="hero-warning" role="note">
+        <strong>如未解决，切勿使用其他卡密覆盖充值，请联系客服</strong>
+      </div>
+    </section>
+
+    <section class="steps-card" aria-label="手动刷新订阅步骤">
+      <article class="guide-step">
+        <div class="step-copy">
+          <span class="step-index">01</span>
+          <div>
+            <h2>打开升级入口</h2>
+            <p>在 ChatGPT 页面左上角点击账号名称，在弹出的菜单中点击“升级”。</p>
+          </div>
+        </div>
+        <figure>
+          <img src="./assets/plus-refresh-01.png" width="973" height="313" alt="在 ChatGPT 账号菜单中点击升级入口">
+        </figure>
+      </article>
+
+      <article class="guide-step">
+        <div class="step-copy">
+          <span class="step-index">02</span>
+          <div>
+            <h2>选择 Plus 套餐</h2>
+            <p>进入套餐页面后，找到 Plus 套餐并点击“升级至 Plus”。</p>
+          </div>
+        </div>
+        <figure>
+          <img src="./assets/plus-refresh-02.png" width="1227" height="785" alt="在套餐页面选择 Plus 并点击升级至 Plus">
+        </figure>
+      </article>
+
+      <article class="guide-step">
+        <div class="step-copy">
+          <span class="step-index">03</span>
+          <div>
+            <h2>处理订阅提示</h2>
+            <p>如果出现 App Store 订阅提示，点击左侧“I understand, continue anyways”；没有弹窗就返回聊天页刷新。</p>
+          </div>
+        </div>
+        <figure>
+          <img src="./assets/plus-refresh-03.png" width="965" height="716" alt="App Store 订阅提示的继续按钮">
+        </figure>
+      </article>
+
+      <article class="guide-step">
+        <div class="step-copy">
+          <span class="step-index">04</span>
+          <div>
+            <h2>确认是否未到账</h2>
+            <p>如果进入“配置套餐”或填写账单地址页面，说明充值暂未到账。请停止操作并联系客服查看原因。</p>
+          </div>
+        </div>
+        <figure>
+          <img src="./assets/plus-refresh-04.png" width="1107" height="649" alt="配置套餐页面表示充值暂未到账">
+        </figure>
+      </article>
+    </section>
+
+    <section class="guide-notes" aria-label="重要提醒">
+      <p class="assurance-note">（本充值渠道会绕过所有的优惠和免费试用资格，正价付费充值，极致稳定，请放心！）</p>
+      <p class="critical-note">如未解决，切勿使用其他卡密覆盖充值，请联系客服</p>
+    </section>
+  </main>
+
+  <script>
+    (() => {
+      const fromSystemOne = new URLSearchParams(window.location.search).get("from") === "system1";
+      const systemNumber = fromSystemOne ? 1 : 2;
+      const backLink = document.getElementById("back-link");
+      const systemLabel = document.getElementById("system-label");
+
+      backLink.href = fromSystemOne ? "./5-system1.html" : "./5.html";
+      systemLabel.textContent = `AI 充值系统${systemNumber}`;
+      document.title = `手动刷新订阅｜AI 充值系统${systemNumber}`;
+    })();
+  </script>
+</body>
+</html>
