@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./assets/system1-app.css?v=20260731-refresh-v2">
     <link rel="stylesheet" href="./assets/index-jX4GbGLT.css">
     <link rel="stylesheet" href="./assets/system-switch.css?v=20260801-manual-refresh-v1">
-    <link rel="stylesheet" href="./assets/system1-match.css?v=20260731-refresh-v2">
+    <link rel="stylesheet" href="./assets/system1-match.css?v=20260801-session-reacquire-v1">
     <script src="./assets/system1-app.js?v=20260801-manual-refresh-v1" defer></script>
   </head>
   <body>
@@ -418,7 +418,7 @@
             请在充值完成，或查询卡密已使用、未成功显示Plus的情况下，才刷新！
           </p>
           <p id="subscription-refresh-description">
-            粘贴完整的 Session JSON，完成格式校验后提交同步请求。结果仅显示账号、订阅状态、刷新时间与说明。
+            粘贴完整的 Session JSON，完成格式校验后提交同步请求。
           </p>
         </div>
 
@@ -428,6 +428,7 @@
               <div>
                 <span>STEP 01</span>
                 <h3>输入 Session</h3>
+                <p class="refresh-session-hint">（请点击重新获取，别复用旧的）</p>
               </div>
               <a
                 class="refresh-session-link"

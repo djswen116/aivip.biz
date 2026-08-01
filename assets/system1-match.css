@@ -185,6 +185,14 @@ dialog[hidden],
   color: #b54708;
 }
 
+.system1-shell .refresh-session-hint {
+  margin: 3px 0 0;
+  color: #86868b;
+  font-size: 9px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
 @media (max-width: 1020px) {
   .system1-shell .workspace {
     grid-template-columns: 1fr;
