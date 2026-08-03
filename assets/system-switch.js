@@ -9,7 +9,7 @@
     scriptUrl,
   ).href;
   const currentSystem = 2;
-  const defaultSystem = 2;
+  const defaultSystem = 1;
   const targetSystem = 1;
   const sessionGuidancePlaceholder = `请粘贴完整的JSON数据，例如：
 {
