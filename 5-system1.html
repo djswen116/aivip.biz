@@ -12,11 +12,11 @@
       content="AI 充值系统1，提供 GPT 卡密验证、账户充值及卡密状态查询。"
     >
     <link rel="icon" href="./assets/ai-recharge-favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./assets/system1-app.css?v=20260731-refresh-v2">
+    <link rel="stylesheet" href="./assets/system1-app.css?v=20260803-session-link-v1">
     <link rel="stylesheet" href="./assets/index-jX4GbGLT.css">
     <link rel="stylesheet" href="./assets/system-switch.css?v=20260801-manual-refresh-v1">
     <link rel="stylesheet" href="./assets/system1-match.css?v=20260801-session-reacquire-v1">
-    <script src="./assets/system1-app.js?v=20260801-manual-refresh-v1" defer></script>
+    <script src="./assets/system1-app.js?v=20260803-session-link-v1" defer></script>
   </head>
   <body>
     <main class="site-shell system1-shell" id="main-content">
@@ -138,14 +138,24 @@
                 <span class="section-number">02</span>
                 <div>
                   <h3>填写账户信息</h3>
-                  <p id="verified-product-copy">卡密已验证，请填写目标账户凭证。</p>
+                  <p id="verified-product-copy">请获取并粘贴完整的 ChatGPT Session JSON。</p>
                 </div>
                 <span class="verified-badge">已匹配</span>
               </div>
 
               <form class="recharge-form" id="account-form" novalidate>
                 <div class="credential-panel" data-credential-panel="gpt">
-                  <label for="gpt-credential">ChatGPT Session JSON</label>
+                  <div class="credential-panel-heading">
+                    <label for="gpt-credential">ChatGPT Session JSON</label>
+                    <a
+                      class="primary-button credential-session-link"
+                      href="https://chatgpt.com/api/auth/session"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      referrerpolicy="no-referrer"
+                      aria-label="在新标签页获取 ChatGPT Session"
+                    >点击获取Session</a>
+                  </div>
                   <textarea
                     id="gpt-credential"
                     name="gpt-credential"

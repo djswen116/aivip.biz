@@ -2156,7 +2156,7 @@
       elements.accountStage.hidden = false;
       elements.taskStage.hidden = true;
       elements.verifiedProductCopy.textContent =
-        `已匹配 ${state.verified.productName}（商品 ${productId}），请粘贴 ChatGPT Session JSON。`;
+        "请获取并粘贴完整的 ChatGPT Session JSON。";
       updateStepper(2, 1);
       showNotice(
         "success",

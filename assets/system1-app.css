@@ -739,6 +739,27 @@ button:disabled {
   border-radius: 16px;
 }
 
+.credential-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.credential-panel-heading label {
+  margin-bottom: 0;
+}
+
+.credential-session-link {
+  flex: none;
+  min-height: 38px;
+  padding: 0 14px;
+  border-radius: 11px;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
 .confirmed-account-summary {
   display: flex;
   align-items: center;
@@ -1912,6 +1933,16 @@ footer span {
 
   .field-with-action .primary-button {
     width: 100%;
+  }
+
+  .credential-panel-heading {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .credential-session-link {
+    width: 100%;
+    min-height: 46px;
   }
 
   input,
