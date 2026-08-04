@@ -178,24 +178,34 @@
   function syncSystemSwitcherContext() {
     const currentSystem = Number(elements.systemSwitcher?.dataset.currentSystem);
     const defaultSystem = Number(elements.systemSwitcher?.dataset.defaultSystem);
-    const targetSystem = Number(
-      elements.systemSwitcher?.querySelector("[data-target-system]")?.dataset.targetSystem,
-    );
+    const switchLink = elements.systemSwitcher?.querySelector("[data-target-system]");
+    const targetSystem = Number(switchLink?.dataset.targetSystem);
 
     if (!currentSystem || !defaultSystem) {
       return;
     }
 
+    const entryMode = new URLSearchParams(window.location.search).get("entry") === "total"
+      ? "total"
+      : "direct";
+    const isTotalEntry = entryMode === "total";
     const isDefault = currentSystem === defaultSystem;
-    elements.systemSwitcherCurrent.textContent = isDefault
+    elements.systemSwitcher.dataset.entryMode = entryMode;
+    elements.systemSwitcherCurrent.textContent = isTotalEntry && isDefault
       ? `当前默认：AI 充值系统${currentSystem}`
       : `当前：AI 充值系统${currentSystem}`;
-    elements.systemSwitcherLinkLabel.textContent = isDefault
-      ? `切换到系统${targetSystem}`
-      : `返回默认系统${defaultSystem}`;
+    elements.systemSwitcherLinkLabel.textContent = isTotalEntry && !isDefault
+      ? `返回默认系统${defaultSystem}`
+      : `切换到系统${targetSystem}`;
     elements.systemSwitcherNoticeTitle.textContent =
       `现使用 AI 充值系统${currentSystem}，当前默认系统为 AI 充值系统${defaultSystem}`;
-    elements.systemSwitcherNotice.hidden = isDefault;
+    elements.systemSwitcherNotice.hidden = !isTotalEntry || isDefault;
+
+    if (switchLink) {
+      const targetUrl = new URL(`./${targetSystem}/`, window.location.href);
+      targetUrl.searchParams.set("entry", entryMode);
+      switchLink.href = targetUrl.href;
+    }
   }
 
   class NetworkRequestError extends Error {

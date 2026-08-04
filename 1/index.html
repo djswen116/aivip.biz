@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+    <title>正在进入充值系统1</title>
+    <script>
+      (() => {
+        const currentUrl = new URL(window.location.href);
+        const destination = new URL("../5-system1.html", currentUrl);
+        const destinationParams = new URLSearchParams(currentUrl.search);
+        const entryMode = destinationParams.get("entry") === "total" ? "total" : "direct";
+        destinationParams.set("entry", entryMode);
+        destination.search = destinationParams.toString();
+        destination.hash = currentUrl.hash;
+        window.location.replace(destination.href);
+      })();
+    </script>
+  </head>
+  <body>
+    <p>正在进入充值系统1。若没有自动跳转，请<a href="../5-system1.html">点击这里</a>。</p>
+  </body>
+</html>

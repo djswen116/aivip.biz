@@ -3,7 +3,7 @@
 
   const scriptUrl = import.meta.url;
   const stylesheetUrl = new URL("system-switch.css?v=20260801-manual-refresh-v1", scriptUrl).href;
-  const systemOneUrl = new URL("../5-system1.html", scriptUrl).href;
+  const systemOneBaseUrl = new URL("../1/", scriptUrl);
   const manualRefreshGuideUrl = new URL(
     "../subscription-refresh-guide.html?from=system2",
     scriptUrl,
@@ -13,10 +13,22 @@
   const targetSystem = 1;
   const currentPageUrl = new URL(window.location.href);
   const requestedSystem = currentPageUrl.searchParams.get("channel");
+  const requestedEntryMode = currentPageUrl.searchParams.get("entry");
+  const entryMode = requestedEntryMode === "total"
+    || (!requestedEntryMode && requestedSystem !== String(currentSystem))
+    ? "total"
+    : "direct";
+  const systemOneUrl = new URL(systemOneBaseUrl);
+  systemOneUrl.searchParams.set("entry", entryMode);
 
-  if (defaultSystem === 1 && requestedSystem !== String(currentSystem)) {
-    const defaultSystemUrl = new URL(systemOneUrl);
+  if (
+    entryMode === "total"
+    && defaultSystem === 1
+    && requestedSystem !== String(currentSystem)
+  ) {
+    const defaultSystemUrl = new URL(systemOneBaseUrl);
     currentPageUrl.searchParams.delete("channel");
+    currentPageUrl.searchParams.set("entry", "total");
     defaultSystemUrl.search = currentPageUrl.searchParams.toString();
     defaultSystemUrl.hash = currentPageUrl.hash;
     window.location.replace(defaultSystemUrl.href);
@@ -49,21 +61,23 @@
     const bar = document.createElement("aside");
     bar.className = "system-switcher";
     bar.dataset.systemSwitcher = "true";
+    bar.dataset.entryMode = entryMode;
     bar.setAttribute("aria-label", "充值系统切换");
 
     const current = document.createElement("span");
     current.className = "system-switcher__current";
     const isDefault = currentSystem === defaultSystem;
-    current.textContent = isDefault
+    const isTotalEntry = entryMode === "total";
+    current.textContent = isTotalEntry && isDefault
       ? `当前默认：AI 充值系统${currentSystem}`
       : `当前：AI 充值系统${currentSystem}`;
 
     const systemOne = document.createElement("a");
     systemOne.className = "system-switcher__link";
-    systemOne.href = systemOneUrl;
-    systemOne.textContent = isDefault
-      ? `切换到系统${targetSystem}`
-      : `返回默认系统${defaultSystem}`;
+    systemOne.href = systemOneUrl.href;
+    systemOne.textContent = isTotalEntry && !isDefault
+      ? `返回默认系统${defaultSystem}`
+      : `切换到系统${targetSystem}`;
 
     const arrow = document.createElement("span");
     arrow.className = "system-switcher__arrow";
@@ -80,7 +94,7 @@
     notice.className = "system-switcher-notice";
     notice.dataset.systemSwitcherNotice = "true";
     notice.setAttribute("role", "status");
-    notice.hidden = currentSystem === defaultSystem;
+    notice.hidden = entryMode !== "total" || currentSystem === defaultSystem;
 
     const dot = document.createElement("span");
     dot.className = "system-switcher-notice__dot";
