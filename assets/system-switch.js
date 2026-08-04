@@ -9,7 +9,7 @@
     scriptUrl,
   ).href;
   const currentSystem = 2;
-  const defaultSystem = 1;
+  const defaultSystem = 2;
   const targetSystem = 1;
   const currentPageUrl = new URL(window.location.href);
   const requestedSystem = currentPageUrl.searchParams.get("channel");
