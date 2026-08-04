@@ -11,6 +11,18 @@
   const currentSystem = 2;
   const defaultSystem = 1;
   const targetSystem = 1;
+  const currentPageUrl = new URL(window.location.href);
+  const requestedSystem = currentPageUrl.searchParams.get("channel");
+
+  if (defaultSystem === 1 && requestedSystem !== String(currentSystem)) {
+    const defaultSystemUrl = new URL(systemOneUrl);
+    currentPageUrl.searchParams.delete("channel");
+    defaultSystemUrl.search = currentPageUrl.searchParams.toString();
+    defaultSystemUrl.hash = currentPageUrl.hash;
+    window.location.replace(defaultSystemUrl.href);
+    return;
+  }
+
   const sessionGuidancePlaceholder = `请粘贴完整的JSON数据，例如：
 {
   "WARNING_BANNER": "……",
