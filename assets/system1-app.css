@@ -246,7 +246,7 @@ footer {
 
 .section-kicker,
 .eyebrow {
-  color: var(--blue-dark);
+  color: var(--blue);
   font-size: 9px;
   font-weight: 850;
   letter-spacing: 0.18em;
@@ -1112,7 +1112,7 @@ button:disabled {
   display: inline;
   margin: 0;
   padding: 0;
-  color: var(--blue);
+  color: var(--blue-dark);
   background: transparent;
   border: 0;
   border-radius: 2px;
