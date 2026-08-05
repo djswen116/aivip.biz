@@ -10,6 +10,9 @@
   const POLL_INTERVAL = 4_500;
   const POLL_LIMIT = 15 * 60_000;
   const TIMELINE = ["提交充值请求", "等待通道处理", "充值完成"];
+  const RECHARGE_SUCCESS_DETAIL =
+    "充值已经完成，若会员状态未显示，是官网延迟同步，请点击刷新订阅。";
+  const REFRESH_ACTION_TEXT = "刷新订阅";
 
   const ERROR_COPY = Object.freeze({
     3001: {
@@ -728,6 +731,26 @@
     elements.noticeAction.onclick = action ? action.handler : null;
   }
 
+  function renderInlineRefreshAction(element, detail) {
+    const actionIndex = detail.lastIndexOf(REFRESH_ACTION_TEXT);
+    if (actionIndex < 0) {
+      element.textContent = detail;
+      return;
+    }
+
+    const action = document.createElement("button");
+    action.type = "button";
+    action.className = "inline-refresh-link";
+    action.textContent = REFRESH_ACTION_TEXT;
+    action.addEventListener("click", openRefreshDialog);
+
+    element.replaceChildren(
+      detail.slice(0, actionIndex),
+      action,
+      detail.slice(actionIndex + REFRESH_ACTION_TEXT.length),
+    );
+  }
+
   function setRecoveryResult(type, title, detail) {
     elements.recoveryResult.className =
       type === "neutral" ? "query-result" : `query-result query-result-${type}`;
@@ -1016,6 +1039,10 @@
     elements.stopPolling.hidden = true;
     elements.startOver.hidden = isSubmittedPending;
     showNotice(isSuccess ? "success" : isWarning ? "warning" : "error", title, detail, backend);
+    if (options.inlineRefreshAction === true) {
+      renderInlineRefreshAction(elements.taskSummary, detail);
+      renderInlineRefreshAction(elements.noticeDetail, detail);
+    }
     clearCredentialFields();
     clearCardSecret();
     clearRecoveryCandidate();
@@ -1213,10 +1240,10 @@
       finishTask(
         "success",
         "GPT 充值成功",
-        outcome.confirmedByCard
-          ? "卡密状态已变为“已使用”，说明本次充值已经完成。若会员状态未立即显示，请刷新官方页面或重新登录。"
-          : "充值已经完成。若会员状态未立即显示，请稍后刷新官方页面或重新登录。",
+        RECHARGE_SUCCESS_DETAIL,
         backendMessage(outcome.result),
+        null,
+        { inlineRefreshAction: true },
       );
       return;
     }
@@ -2260,8 +2287,10 @@
         finishTask(
           "success",
           "GPT 充值成功",
-          "服务已直接完成充值。若会员状态未立即显示，请稍后刷新官方页面。",
+          RECHARGE_SUCCESS_DETAIL,
           backendMessage(result),
+          null,
+          { inlineRefreshAction: true },
         );
         return;
       }
