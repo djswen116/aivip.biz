@@ -60,11 +60,6 @@
   const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
   const elements = {
-    systemSwitcher: $("[data-system-switcher]"),
-    systemSwitcherCurrent: $("#system-switcher-current"),
-    systemSwitcherLinkLabel: $("#system-switcher-link-label"),
-    systemSwitcherNotice: $("#system-switcher-notice"),
-    systemSwitcherNoticeTitle: $("#system-switcher-notice-title"),
     workspace: $(".workspace"),
     cardForm: $("#card-form"),
     cardInput: $("#card-code"),
@@ -175,39 +170,6 @@
     constructor() {
       super("request-timeout");
       this.name = "RequestTimeoutError";
-    }
-  }
-
-  function syncSystemSwitcherContext() {
-    const currentSystem = Number(elements.systemSwitcher?.dataset.currentSystem);
-    const defaultSystem = Number(elements.systemSwitcher?.dataset.defaultSystem);
-    const switchLink = elements.systemSwitcher?.querySelector("[data-target-system]");
-    const targetSystem = Number(switchLink?.dataset.targetSystem);
-
-    if (!currentSystem || !defaultSystem) {
-      return;
-    }
-
-    const entryMode = new URLSearchParams(window.location.search).get("entry") === "total"
-      ? "total"
-      : "direct";
-    const isTotalEntry = entryMode === "total";
-    const isDefault = currentSystem === defaultSystem;
-    elements.systemSwitcher.dataset.entryMode = entryMode;
-    elements.systemSwitcherCurrent.textContent = isTotalEntry && isDefault
-      ? `当前默认：AI 充值系统${currentSystem}`
-      : `当前：AI 充值系统${currentSystem}`;
-    elements.systemSwitcherLinkLabel.textContent = isTotalEntry && !isDefault
-      ? `返回默认系统${defaultSystem}`
-      : `切换到系统${targetSystem}`;
-    elements.systemSwitcherNoticeTitle.textContent =
-      `现使用 AI 充值系统${currentSystem}，当前默认系统为 AI 充值系统${defaultSystem}`;
-    elements.systemSwitcherNotice.hidden = !isTotalEntry || isDefault;
-
-    if (switchLink) {
-      const targetUrl = new URL(`./${targetSystem}/`, window.location.href);
-      targetUrl.searchParams.set("entry", entryMode);
-      switchLink.href = targetUrl.href;
     }
   }
 
@@ -702,6 +664,15 @@
     }
   }
 
+  function setVerifyButtonComplete(completed) {
+    const label = $("span:first-child", elements.verifyButton);
+    const text = completed ? "卡密验证通过" : "验证卡密";
+    elements.verifyButton.dataset.defaultLabel = text;
+    if (label) {
+      label.textContent = text;
+    }
+  }
+
   function setInputError(input, errorElement, message) {
     input.setAttribute("aria-invalid", message ? "true" : "false");
     errorElement.textContent = message || "";
@@ -914,6 +885,7 @@
     state.phase = "idle";
     state.userStopped = false;
     state.verified = null;
+    setVerifyButtonComplete(false);
     state.taskId = "";
     clearCredentialFields();
     clearCardSecret();
@@ -2189,6 +2161,7 @@
         productId,
         productName: asText(data.productName) || "GPT",
       };
+      setVerifyButtonComplete(true);
       elements.workspace.classList.remove("workspace-initial");
       elements.accountStage.hidden = false;
       elements.taskStage.hidden = true;
@@ -2646,7 +2619,6 @@
     elements.refreshSession.value = "";
   });
 
-  syncSystemSwitcherContext();
   resetRecoveryPanel();
   syncRecoverySubmitState();
   resetRefreshPanel();

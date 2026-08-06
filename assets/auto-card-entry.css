@@ -1,0 +1,245 @@
+.auto-card-topbar {
+  min-height: 84px;
+}
+
+.auto-card-hero .hero-copy {
+  padding-bottom: 8px;
+}
+
+.auto-card-workspace {
+  align-items: stretch;
+}
+
+.auto-card-entry {
+  min-height: 350px;
+}
+
+.auto-card-entry .code-form {
+  margin-top: 12px;
+}
+
+#auto-card-submit {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.24);
+}
+
+#auto-card-submit::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  inset: -170%;
+  pointer-events: none;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 288deg,
+    rgba(255, 255, 255, 0.08) 302deg,
+    rgba(255, 255, 255, 0.98) 326deg,
+    rgba(255, 255, 255, 0.16) 347deg,
+    transparent 360deg
+  );
+  transform-origin: center;
+  animation: auto-card-border-orbit 2.4s linear infinite;
+  will-change: transform;
+}
+
+#auto-card-submit::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 2px;
+  pointer-events: none;
+  background: linear-gradient(135deg, #5278e9, #3457ca);
+  border-radius: 10px;
+}
+
+#auto-card-submit > span {
+  position: relative;
+  z-index: 2;
+}
+
+#auto-card-submit:disabled::before,
+#auto-card-submit.is-loading::before {
+  opacity: 0.24;
+  animation-play-state: paused;
+}
+
+.auto-card-entry .field-error {
+  min-height: 18px;
+}
+
+.auto-card-support {
+  margin-top: 18px;
+}
+
+.auto-card-support .auto-card-support-warning {
+  box-sizing: border-box;
+  display: grid;
+  gap: 2px;
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px 14px;
+  color: #7a4a00;
+  background: #fff8e8;
+  border: 1px solid rgba(154, 103, 0, 0.15);
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 650;
+  line-height: 1.65;
+}
+
+.auto-card-support .auto-card-support-warning span:last-child {
+  color: #9a5a16;
+  font-weight: 550;
+}
+
+.auto-query-dialog {
+  box-sizing: border-box;
+  width: min(560px, calc(100% - 32px));
+  margin: auto;
+  padding: 32px;
+  color: #1d1d1f;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-radius: 24px;
+  box-shadow: 0 28px 90px rgba(12, 22, 42, 0.28);
+}
+
+.auto-query-dialog::backdrop {
+  background: rgba(12, 22, 42, 0.58);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.auto-query-dialog[open] {
+  animation: auto-query-rise 180ms ease-out;
+}
+
+.auto-query-dialog h2 {
+  margin: 8px 48px 7px 0;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.035em;
+}
+
+.auto-query-intro {
+  margin: 0;
+  color: #6e6e73;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.auto-query-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  color: #515154;
+  background: #eef0f3;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.auto-query-close:hover {
+  color: #1d1d1f;
+  background: #e2e6eb;
+}
+
+.auto-query-close:focus-visible {
+  outline: 3px solid rgba(0, 113, 227, 0.28);
+  outline-offset: 3px;
+}
+
+.auto-query-close:disabled {
+  cursor: not-allowed;
+  opacity: 0.52;
+}
+
+.auto-query-form {
+  margin-top: 26px;
+}
+
+.auto-query-form .field-error {
+  min-height: 18px;
+}
+
+.auto-query-notice {
+  margin-top: 14px;
+}
+
+@keyframes auto-query-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes auto-card-border-orbit {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (max-width: 640px) {
+  .auto-card-topbar {
+    min-height: 108px;
+  }
+
+  .auto-card-topbar .topnav {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    padding: 3px;
+    background: #f2f2f7;
+  }
+
+  .auto-card-hero .hero-copy {
+    padding-bottom: 6px;
+  }
+
+  .auto-query-dialog {
+    width: min(100% - 24px, 560px);
+    padding: 26px 18px 22px;
+    border-radius: 21px;
+  }
+
+  .auto-query-dialog h2 {
+    margin-right: 44px;
+    font-size: 24px;
+  }
+
+  .auto-query-close {
+    top: 14px;
+    right: 14px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .auto-query-form {
+    margin-top: 22px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auto-query-dialog[open] {
+    animation: none;
+  }
+
+  #auto-card-submit::before {
+    opacity: 0.42;
+    animation: none;
+    transform: rotate(25deg);
+  }
+}

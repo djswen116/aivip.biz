@@ -12,7 +12,7 @@
 <body>
   <main class="guide-shell">
     <header class="guide-topbar">
-      <a class="back-link" id="back-link" href="./5.html">返回充值页</a>
+      <a class="back-link" id="back-link" href="./2/">返回充值页</a>
       <span class="system-label" id="system-label">AI 充值系统2</span>
     </header>
 
@@ -92,7 +92,7 @@
       const backLink = document.getElementById("back-link");
       const systemLabel = document.getElementById("system-label");
 
-      backLink.href = fromSystemOne ? "./5-system1.html" : "./5.html";
+      backLink.href = fromSystemOne ? "./5-system1.html" : "./2/";
       systemLabel.textContent = `AI 充值系统${systemNumber}`;
       document.title = `手动刷新订阅｜AI 充值系统${systemNumber}`;
     })();
