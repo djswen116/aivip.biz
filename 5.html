@@ -36,6 +36,13 @@
             aria-haspopup="dialog"
             aria-controls="auto-query-dialog"
           >卡密查询</button>
+          <button
+            type="button"
+            class="topnav-refresh"
+            id="auto-nav-refresh"
+            aria-haspopup="dialog"
+            aria-controls="subscription-refresh-dialog"
+          >订阅刷新</button>
         </nav>
       </header>
 
@@ -187,8 +194,146 @@
       </section>
     </dialog>
 
+    <div class="refresh-dialog-backdrop" id="subscription-refresh-backdrop" hidden>
+      <div
+        class="refresh-card"
+        id="subscription-refresh-dialog"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="subscription-refresh-title"
+        aria-describedby="subscription-refresh-warning subscription-refresh-description"
+      >
+        <button
+          type="button"
+          class="query-dialog-close"
+          id="subscription-refresh-close"
+          aria-label="关闭订阅刷新"
+        >×</button>
+
+        <div class="refresh-card-heading">
+          <span class="section-kicker">SUBSCRIPTION SYNC</span>
+          <h2 id="subscription-refresh-title">刷新并核对订阅状态</h2>
+          <p id="subscription-refresh-warning" class="refresh-heading-warning">
+            请在充值完成，或查询卡密已使用、未成功显示Plus的情况下，才刷新！
+          </p>
+          <p id="subscription-refresh-description">
+            粘贴完整的 Session JSON，完成格式校验后提交同步请求。
+          </p>
+        </div>
+
+        <div class="refresh-workspace">
+          <form class="refresh-panel refresh-input-panel" id="subscription-refresh-form" novalidate>
+            <div class="refresh-panel-heading">
+              <div>
+                <span>STEP 01</span>
+                <h3>输入 Session</h3>
+                <p class="refresh-session-hint">（请点击重新获取，别复用旧的）</p>
+              </div>
+              <a
+                class="refresh-session-link"
+                href="https://chatgpt.com/api/auth/session"
+                target="_blank"
+                rel="noopener noreferrer"
+                referrerpolicy="no-referrer"
+              >点击获取Session</a>
+            </div>
+
+            <label for="subscription-refresh-session">
+              粘贴完整 Session JSON <span aria-hidden="true">*</span>
+            </label>
+            <div class="refresh-textarea-wrap">
+              <textarea
+                id="subscription-refresh-session"
+                name="subscription-refresh-session"
+                rows="7"
+                maxlength="200000"
+                autocomplete="off"
+                autocapitalize="off"
+                spellcheck="false"
+                placeholder='请粘贴完整的JSON数据，例如：&#10;{&#10;  "WARNING_BANNER": "……",&#10;  "user": { "email": "name@example.com" },&#10;  "account": { "id": "account_xxx" },&#10;  "accessToken": "完整 accessToken"&#10;}}}'
+                aria-describedby="subscription-refresh-help subscription-refresh-error"
+                data-1p-ignore="true"
+                data-lpignore="true"
+              ></textarea>
+              <span id="subscription-refresh-count" aria-hidden="true">0 字符</span>
+            </div>
+            <p id="subscription-refresh-help" class="refresh-field-help">
+              上方仅为结构示意，请全选复制 Session 页面中的全部内容，不要增删任何字段。不要开网页翻译，会导致 Session 识别失败。
+            </p>
+            <p id="subscription-refresh-error" class="refresh-field-error" aria-live="assertive"></p>
+
+            <div class="refresh-actions">
+              <button type="submit" class="primary-button" id="subscription-refresh-submit">
+                <span class="query-spinner" id="subscription-refresh-submit-spinner" hidden aria-hidden="true"></span>
+                <span id="subscription-refresh-submit-label">校验并刷新</span>
+              </button>
+              <button type="button" class="secondary-button" id="subscription-refresh-clear">清空输入</button>
+            </div>
+
+            <details class="refresh-rules">
+              <summary>查看页面校验规则</summary>
+              <pre>必须是有效 JSON，并包含：
+• accessToken：有效 JWT 字符串（三段式）
+• user.email：账户邮箱
+• WARNING_BANNER：安全提示字段
+
+请求体：{ "token": "完整 Session JSON 字符串" }</pre>
+            </details>
+          </form>
+
+          <section class="refresh-panel refresh-result-panel" aria-labelledby="subscription-refresh-result-title">
+            <div class="refresh-panel-heading">
+              <div>
+                <span>STEP 02</span>
+                <h3 id="subscription-refresh-result-title">刷新结果（实时显示）</h3>
+              </div>
+              <span class="refresh-status-pill" id="subscription-refresh-status">等待输入</span>
+            </div>
+
+            <div
+              class="refresh-result-state"
+              id="subscription-refresh-result-state"
+              aria-live="polite"
+              aria-atomic="true"
+            >
+              <div class="refresh-state-message" id="subscription-refresh-empty">
+                <span class="query-spinner" id="subscription-refresh-loading-spinner" hidden aria-hidden="true"></span>
+                <span class="refresh-state-symbol" id="subscription-refresh-state-symbol" aria-hidden="true">↻</span>
+                <div>
+                  <strong id="subscription-refresh-state-title">等待刷新，请粘贴完整Session后提交刷新</strong>
+                  <p id="subscription-refresh-state-detail"></p>
+                </div>
+              </div>
+
+              <div class="refresh-result-table-wrap" id="subscription-refresh-table-wrap" hidden>
+                <table class="refresh-result-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">账号信息</th>
+                      <th scope="col">订阅状态</th>
+                      <th scope="col">刷新时间</th>
+                      <th scope="col">结果说明</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td id="subscription-refresh-email">—</td>
+                      <td><span class="refresh-result-tag" id="subscription-refresh-result-tag">—</span></td>
+                      <td id="subscription-refresh-time">—</td>
+                      <td id="subscription-refresh-message">—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+
     <noscript>
       <div class="noscript">此页面需要启用 JavaScript 才能验证卡密。</div>
     </noscript>
+    <script type="module" src="./assets/total-subscription-refresh.js?v=20260806-total-v1"></script>
   </body>
 </html>
