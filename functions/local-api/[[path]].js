@@ -119,7 +119,6 @@ export async function onRequest(context) {
         ...(route.method === "POST" ? { "Content-Type": "application/json" } : {}),
       },
       body: route.method === "POST" ? JSON.stringify(payload) : undefined,
-      redirect: "error",
     });
 
     const headers = new Headers();
@@ -137,6 +136,11 @@ export async function onRequest(context) {
     if (error instanceof ProxyError) {
       return jsonResponse(error.status, { code: -1, detail: error.message });
     }
-    return jsonResponse(502, { code: -1, detail: "无法连接远程 API，请稍后重试" });
+    const diagnosticCode = error instanceof TypeError ? "WORKER_FETCH_TYPE_ERROR" : "WORKER_FETCH_ERROR";
+    return jsonResponse(502, {
+      code: -1,
+      detail: "无法连接远程 API，请稍后重试",
+      diagnosticCode,
+    });
   }
 }
