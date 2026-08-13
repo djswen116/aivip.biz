@@ -136,11 +136,6 @@ export async function onRequest(context) {
     if (error instanceof ProxyError) {
       return jsonResponse(error.status, { code: -1, detail: error.message });
     }
-    const diagnosticCode = error instanceof TypeError ? "WORKER_FETCH_TYPE_ERROR" : "WORKER_FETCH_ERROR";
-    return jsonResponse(502, {
-      code: -1,
-      detail: "无法连接远程 API，请稍后重试",
-      diagnosticCode,
-    });
+    return jsonResponse(502, { code: -1, detail: "无法连接远程 API，请稍后重试" });
   }
 }
