@@ -1,11 +1,15 @@
 (function installApiProxyAdapter() {
   "use strict";
 
-  var upstreamBase = "https://gptpayserve.catfree.me/api/v1";
+  var upstreamBases = new Set([
+    "https://gptpayserve.catfree.me/api/v1",
+    "https://autoserve.de10.online/api/v1",
+  ]);
   var routes = {
     "/third-party/user": "/local-api/user",
     "/third-party/orders/direct": "/local-api/orders/direct",
     "/third-party/orders/status": "/local-api/orders/status",
+    "/third-party/orders/lookup": "/local-api/orders/lookup",
   };
   var originalFetch = window.fetch.bind(window);
 
@@ -21,7 +25,7 @@
       return originalFetch(resource, options);
     }
 
-    if (requestUrl.origin + "/api/v1" !== upstreamBase) {
+    if (!upstreamBases.has(requestUrl.origin + "/api/v1")) {
       return originalFetch(resource, options);
     }
 
@@ -56,6 +60,9 @@
       localBody.payload = upstreamBody;
     } else if (localPath === "/local-api/orders/status") {
       localBody.cardKey = upstreamBody && upstreamBody.cardKey;
+    } else if (localPath === "/local-api/orders/lookup") {
+      localBody.cardNumber = upstreamBody && upstreamBody.cardNumber;
+      localBody.email = upstreamBody && upstreamBody.email;
     }
 
     return originalFetch(localPath, {

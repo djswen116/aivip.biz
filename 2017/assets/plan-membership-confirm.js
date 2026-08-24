@@ -72,6 +72,7 @@ function parseValidSession(value) {
     if (typeof session.user?.email !== "string" || !session.user.email.trim()) return null;
     if (typeof session.account?.id !== "string" || !session.account.id.trim()) return null;
     if (typeof session.accessToken !== "string" || !session.accessToken.trim()) return null;
+    if (session.sessionToken !== undefined && typeof session.sessionToken !== "string") return null;
 
     const payload = decodeJwtPayload(session.accessToken);
     const now = Math.floor(Date.now() / 1000);
@@ -84,6 +85,50 @@ function parseValidSession(value) {
     };
   } catch {
     return null;
+  }
+}
+
+function hasInvalidSessionTokenType(value) {
+  try {
+    const session = JSON.parse(value);
+    return Boolean(
+      session
+      && !Array.isArray(session)
+      && typeof session === "object"
+      && session.sessionToken !== undefined
+      && typeof session.sessionToken !== "string"
+    );
+  } catch {
+    return false;
+  }
+}
+
+function showSessionTokenTypeError() {
+  const textarea = document.querySelector("#session-json");
+  if (!textarea) return;
+
+  document.querySelector(".session-token-type-error")?.remove();
+  const error = document.createElement("p");
+  error.className = "inline-error session-token-type-error";
+  error.setAttribute("role", "alert");
+  error.textContent = "Session JSON 中的 sessionToken 必须是字符串";
+  textarea.insertAdjacentElement("afterend", error);
+  textarea.classList.add("is-invalid");
+  textarea.focus();
+}
+
+function maskRecognizedPaymentFields() {
+  for (const row of document.querySelectorAll(".recognition-grid > div")) {
+    const label = row.querySelector("span")?.textContent?.trim();
+    const value = row.querySelector("strong");
+    if (!value) continue;
+
+    const digits = value.textContent.replace(/\s/g, "");
+    if (label === "卡号" && /^\d{12,19}$/.test(digits)) {
+      value.textContent = `•••• •••• •••• ${digits.slice(-4)}`;
+    } else if (label === "CVV" && /^\d{3,4}$/.test(digits)) {
+      value.textContent = "•".repeat(digits.length);
+    }
   }
 }
 
@@ -216,6 +261,12 @@ document.addEventListener(
     const apiKey = document.querySelector("#api-key")?.value || "";
     const cardValue = document.querySelector("#card-info")?.value || "";
     const sessionValue = document.querySelector("#session-json")?.value || "";
+    if (hasInvalidSessionTokenType(sessionValue)) {
+      event.preventDefault();
+      event.stopImmediatePropagation();
+      showSessionTokenTypeError();
+      return;
+    }
     const session = parseValidSession(sessionValue);
 
     if (!apiKey.trim() || !parseCard(cardValue) || !session) return;
@@ -227,3 +278,19 @@ document.addEventListener(
   },
   true,
 );
+
+document.addEventListener("input", (event) => {
+  if (event.target?.id === "session-json") {
+    document.querySelector(".session-token-type-error")?.remove();
+  }
+  if (event.target?.id === "card-info") {
+    queueMicrotask(maskRecognizedPaymentFields);
+  }
+});
+
+const paymentMaskObserver = new MutationObserver(maskRecognizedPaymentFields);
+const appRoot = document.querySelector("#root");
+if (appRoot) {
+  paymentMaskObserver.observe(appRoot, { childList: true, characterData: true, subtree: true });
+  maskRecognizedPaymentFields();
+}

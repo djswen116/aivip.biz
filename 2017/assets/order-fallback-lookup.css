@@ -1,0 +1,247 @@
+.order-fallback-lookup {
+  flex: 0 0 auto;
+  color: #354257;
+  background: #ffffff;
+  border-bottom: 1px solid #e2e7ed;
+}
+
+.order-fallback-lookup > summary {
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 9px 20px;
+  cursor: pointer;
+  list-style: none;
+}
+
+.order-fallback-lookup > summary::-webkit-details-marker {
+  display: none;
+}
+
+.order-fallback-lookup > summary:hover {
+  background: #f7fbfa;
+}
+
+.order-fallback-lookup > summary span:first-child {
+  display: grid;
+  gap: 2px;
+}
+
+.order-fallback-lookup > summary strong {
+  color: #27354a;
+  font-size: 12px;
+}
+
+.order-fallback-lookup > summary small {
+  color: #7b899c;
+  font-size: 10px;
+}
+
+.fallback-summary-action {
+  color: #168c7b;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.fallback-lookup-form {
+  display: grid;
+  gap: 10px;
+  padding: 3px 20px 16px;
+}
+
+.fallback-lookup-form label {
+  display: grid;
+  gap: 5px;
+}
+
+.fallback-lookup-form label > span {
+  color: #66758d;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.fallback-lookup-form input {
+  width: 100%;
+  height: 40px;
+  padding: 0 11px;
+  color: #26344a;
+  background: #ffffff;
+  border: 1px solid #d9e0e7;
+  border-radius: 5px;
+  outline: 0;
+  font: inherit;
+  font-size: 12px;
+}
+
+.fallback-lookup-form input:focus {
+  border-color: #4ca99b;
+  box-shadow: 0 0 0 3px rgba(76, 169, 155, 0.13);
+}
+
+.fallback-lookup-help {
+  margin: -1px 0 1px;
+  color: #8290a2;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.fallback-lookup-form > button {
+  min-height: 44px;
+  padding: 0 15px;
+  color: #ffffff;
+  background: #149d89;
+  border: 1px solid #149d89;
+  border-radius: 5px;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.fallback-lookup-form > button:hover:not(:disabled) {
+  background: #0f8877;
+  border-color: #0f8877;
+}
+
+.fallback-lookup-form > button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.fallback-lookup-feedback {
+  margin: 0;
+  padding: 9px 10px;
+  color: #536176;
+  background: #f5f7f9;
+  border: 1px solid #e1e6ec;
+  border-radius: 5px;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.fallback-lookup-feedback.success {
+  color: #11735f;
+  background: #edf9f5;
+  border-color: #c9e9df;
+}
+
+.fallback-lookup-feedback.error {
+  color: #b33c3c;
+  background: #fff3f3;
+  border-color: #f0cece;
+}
+
+.fallback-lookup-feedback.info {
+  color: #2c6fae;
+  background: #f0f6fc;
+  border-color: #d3e3f2;
+}
+
+.fallback-lookup-results {
+  display: grid;
+  max-height: 300px;
+  gap: 10px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.fallback-result-card {
+  padding: 12px;
+  background: #f8fafb;
+  border: 1px solid #dfe5ec;
+  border-radius: 7px;
+}
+
+.fallback-result-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.fallback-result-header > strong {
+  min-width: 0;
+  overflow: hidden;
+  color: #405069;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fallback-result-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 14px;
+  margin: 12px 0;
+}
+
+.fallback-result-details dt {
+  margin-bottom: 2px;
+  color: #8793a4;
+  font-size: 9px;
+}
+
+.fallback-result-details dd {
+  margin: 0;
+  overflow: hidden;
+  color: #354257;
+  font-size: 10px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fallback-copy-key {
+  width: 100%;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 0 10px;
+  color: #526176;
+  background: #ffffff;
+  border: 1px solid #dce3e9;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.fallback-copy-key span {
+  min-width: 0;
+  overflow: hidden;
+  font-family: SFMono-Regular, Consolas, monospace;
+  font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fallback-copy-key strong {
+  flex: 0 0 auto;
+  color: #168c7b;
+  font-size: 9px;
+}
+
+.fallback-failure-reason {
+  margin: 9px 0 0;
+  color: #c64040;
+  font-size: 10px;
+  line-height: 1.55;
+}
+
+.order-fallback-lookup summary:focus-visible,
+.fallback-lookup-form input:focus-visible,
+.fallback-lookup-form button:focus-visible,
+.fallback-copy-key:focus-visible {
+  outline: 3px solid rgba(83, 145, 217, 0.3);
+  outline-offset: 2px;
+}
+
+@media (max-width: 520px) {
+  .order-fallback-lookup > summary,
+  .fallback-lookup-form {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+}

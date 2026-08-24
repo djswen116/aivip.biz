@@ -1,4 +1,4 @@
-const UPSTREAM_BASE = "https://gptpayserve.catfree.me/api/v1";
+const UPSTREAM_BASE = "https://autoserve.de10.online/api/v1";
 const MAX_BODY_BYTES = 2 * 1024 * 1024;
 
 const ROUTES = {
@@ -20,6 +20,7 @@ const ROUTES = {
   "/local-api/orders/status": {
     method: "POST",
     path: "/third-party/orders/status",
+    sanitizeOrderResponse: true,
     payload: (body) => {
       const cardKey = body.cardKey;
       const validString = typeof cardKey === "string" && cardKey.trim().length >= 1 && cardKey.trim().length <= 128;
@@ -34,6 +35,24 @@ const ROUTES = {
       return {
         cardKey: validString ? cardKey.trim() : cardKey.map((value) => value.trim()),
       };
+    },
+  },
+  "/local-api/orders/lookup": {
+    method: "POST",
+    path: "/third-party/orders/lookup",
+    sanitizeOrderResponse: true,
+    payload: (body) => {
+      const cardNumber = typeof body.cardNumber === "string" ? body.cardNumber.trim() : "";
+      const email = typeof body.email === "string" ? body.email.trim() : "";
+
+      if (!/^\d{12,19}$/.test(cardNumber)) {
+        throw new ProxyError(400, "银行卡号应为 12-19 位数字");
+      }
+      if (!email || email.length > 255) {
+        throw new ProxyError(400, "充值邮箱长度应为 1-255 个字符");
+      }
+
+      return { cardNumber, email };
     },
   },
 };
@@ -54,6 +73,67 @@ function jsonResponse(status, payload) {
       "Referrer-Policy": "no-referrer",
       "X-Content-Type-Options": "nosniff",
     },
+  });
+}
+
+function sanitizeNestedPaymentData(value, seen = new WeakSet()) {
+  if (!value || typeof value !== "object" || seen.has(value)) return;
+  seen.add(value);
+
+  for (const [key, child] of Object.entries(value)) {
+    if (key === "proxy") {
+      value[key] = null;
+    } else if (key === "source_data") {
+      delete value[key];
+    } else {
+      sanitizeNestedPaymentData(child, seen);
+    }
+  }
+}
+
+function sanitizeOrder(order) {
+  if (!order || Array.isArray(order) || typeof order !== "object") return order;
+
+  delete order.token;
+  delete order.bank_card_no;
+  sanitizeNestedPaymentData(order.payment_result);
+  return order;
+}
+
+async function createUpstreamResponse(upstream, route) {
+  const contentType = upstream.headers.get("Content-Type") || "application/json; charset=utf-8";
+  const headers = new Headers();
+  headers.set("Cache-Control", "no-store");
+  headers.set("Content-Type", contentType);
+  headers.set("Referrer-Policy", "no-referrer");
+  headers.set("X-Content-Type-Options", "nosniff");
+
+  if (!route.sanitizeOrderResponse || !contentType.toLowerCase().includes("application/json")) {
+    return new Response(upstream.body, {
+      status: upstream.status,
+      statusText: upstream.statusText,
+      headers,
+    });
+  }
+
+  const text = await upstream.text();
+  let responseBody = text;
+  try {
+    const payload = JSON.parse(text);
+    if (payload && typeof payload === "object" && payload.code === 0) {
+      payload.data = Array.isArray(payload.data)
+        ? payload.data.map(sanitizeOrder)
+        : sanitizeOrder(payload.data);
+      responseBody = JSON.stringify(payload);
+    }
+  } catch (_error) {
+    // Preserve a non-JSON upstream response so the caller receives the original diagnostic.
+  }
+
+  return new Response(responseBody, {
+    status: upstream.status,
+    statusText: upstream.statusText,
+    headers,
   });
 }
 
@@ -121,17 +201,7 @@ export async function onRequest(context) {
       body: route.method === "POST" ? JSON.stringify(payload) : undefined,
     });
 
-    const headers = new Headers();
-    headers.set("Cache-Control", "no-store");
-    headers.set("Content-Type", upstream.headers.get("Content-Type") || "application/json; charset=utf-8");
-    headers.set("Referrer-Policy", "no-referrer");
-    headers.set("X-Content-Type-Options", "nosniff");
-
-    return new Response(upstream.body, {
-      status: upstream.status,
-      statusText: upstream.statusText,
-      headers,
-    });
+    return createUpstreamResponse(upstream, route);
   } catch (error) {
     if (error instanceof ProxyError) {
       return jsonResponse(error.status, { code: -1, detail: error.message });
